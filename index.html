@@ -1,0 +1,1497 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title data-i18n="title.index">Giordano Patente — Auto-école</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="style.css">
+<style>
+  :root {
+    --asphalt: #1c2023;
+    --asphalt-2: #262b2f;
+    --cream: #f6f3ec;
+    --ochre: #e5a02f;
+    --ochre-dim: #b87e22;
+    --racing-green: #33503f;
+    --signal-red: #bf4238;
+    --line-grey: #d8d3c6;
+  }
+
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+
+  html { scroll-behavior: smooth; }
+
+  body {
+    font-family: 'Work Sans', sans-serif;
+    background: var(--cream);
+    color: var(--asphalt);
+    line-height: 1.5;
+    overflow-x: hidden;
+  }
+
+  h1, h2, h3, .display {
+    font-family: 'Oswald', sans-serif;
+    text-transform: uppercase;
+    letter-spacing: 0.02em;
+  }
+
+  .mono {
+    font-family: 'JetBrains Mono', monospace;
+  }
+
+  a { color: inherit; text-decoration: none; }
+
+  @media (prefers-reduced-motion: reduce) {
+    *, *::before, *::after {
+      animation-duration: 0.01ms !important;
+      animation-iteration-count: 1 !important;
+      transition-duration: 0.01ms !important;
+      scroll-behavior: auto !important;
+    }
+  }
+
+  /* ---------- FLOATING CONTACT BUTTON ---------- */
+  .contact-fab {
+    position: fixed;
+    bottom: 24px;
+    right: 24px;
+    z-index: 200;
+  }
+
+  .contact-fab-toggle {
+    width: 60px;
+    height: 60px;
+    border-radius: 50%;
+    background: var(--ochre);
+    color: var(--cream);
+    border: none;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    box-shadow: 0 10px 28px -8px rgba(28, 32, 35, 0.5), 0 0 0 4px rgba(229, 160, 47, 0.18);
+    transition: transform 0.25s ease, box-shadow 0.25s ease, background 0.25s ease;
+    position: relative;
+  }
+
+  .contact-fab-toggle:hover {
+    transform: scale(1.08);
+    box-shadow: 0 14px 32px -8px rgba(28, 32, 35, 0.55), 0 0 0 6px rgba(229, 160, 47, 0.25);
+  }
+
+  .contact-fab-toggle svg {
+    width: 28px;
+    height: 28px;
+    transition: transform 0.3s ease;
+  }
+
+  .contact-fab-toggle.is-open svg {
+    transform: rotate(45deg);
+  }
+
+  .contact-fab-pulse {
+    position: absolute;
+    inset: 0;
+    border-radius: 50%;
+    background: var(--ochre);
+    opacity: 0.5;
+    animation: fab-pulse 2.2s ease-out infinite;
+    pointer-events: none;
+  }
+
+  @keyframes fab-pulse {
+    0%   { transform: scale(1);   opacity: 0.5; }
+    70%  { transform: scale(1.7); opacity: 0;   }
+    100% { transform: scale(1.7); opacity: 0;   }
+  }
+
+  .contact-fab-menu {
+    position: absolute;
+    bottom: 76px;
+    right: 0;
+    background: var(--cream);
+    border: 1px solid rgba(28, 32, 35, 0.1);
+    border-radius: 6px;
+    padding: 10px;
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+    min-width: 230px;
+    box-shadow: 0 18px 40px -12px rgba(28, 32, 35, 0.4);
+    opacity: 0;
+    transform: translateY(8px) scale(0.96);
+    pointer-events: none;
+    transition: opacity 0.2s ease, transform 0.2s ease;
+  }
+
+  .contact-fab-menu.is-open {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+    pointer-events: auto;
+  }
+
+  .contact-fab-menu::after {
+    content: '';
+    position: absolute;
+    bottom: -7px;
+    right: 22px;
+    width: 14px;
+    height: 14px;
+    background: var(--cream);
+    border-right: 1px solid rgba(28, 32, 35, 0.1);
+    border-bottom: 1px solid rgba(28, 32, 35, 0.1);
+    transform: rotate(45deg);
+  }
+
+  .contact-fab-label {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 10px;
+    color: var(--ochre-dim);
+    letter-spacing: 0.16em;
+    text-transform: uppercase;
+    padding: 4px 8px 8px;
+    border-bottom: 1px dashed rgba(28, 32, 35, 0.15);
+    margin-bottom: 4px;
+  }
+
+  .contact-fab-item {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    padding: 9px 10px;
+    border-radius: 4px;
+    color: var(--asphalt);
+    transition: background 0.15s ease, color 0.15s ease, transform 0.15s ease;
+    font-size: 13.5px;
+    font-weight: 500;
+  }
+
+  .contact-fab-item:hover {
+    background: var(--asphalt);
+    color: var(--cream);
+    transform: translateX(-2px);
+  }
+
+  .contact-fab-item .icon {
+    width: 32px;
+    height: 32px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: var(--cream);
+    flex-shrink: 0;
+  }
+
+  .contact-fab-item .icon svg {
+    width: 16px;
+    height: 16px;
+    fill: currentColor;
+  }
+
+  .contact-fab-item .icon.fb    { background: #1877F2; }
+  .contact-fab-item .icon.tt    { background: #000000; }
+  .contact-fab-item .icon.wa    { background: #25D366; }
+  .contact-fab-item .icon.tg    { background: #229ED9; }
+
+  .contact-fab-item .meta {
+    display: flex;
+    flex-direction: column;
+    line-height: 1.2;
+  }
+
+  .contact-fab-item .meta .name {
+    font-size: 13.5px;
+    font-weight: 600;
+  }
+
+  .contact-fab-item .meta .hint {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 9.5px;
+    color: var(--ochre-dim);
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    margin-top: 2px;
+  }
+
+  .contact-fab-item:hover .meta .hint {
+    color: var(--ochre);
+  }
+
+  @media (max-width: 480px) {
+    .contact-fab { bottom: 18px; right: 18px; }
+    .contact-fab-toggle { width: 54px; height: 54px; }
+    .contact-fab-menu { min-width: 200px; }
+  }
+
+  /* ---------- NAV ---------- */
+  .navbar {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    z-index: 100;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 18px 5%;
+    background: rgba(28, 32, 35, 0.92);
+    backdrop-filter: blur(6px);
+  }
+
+  .logo {
+    display: flex;
+    align-items: baseline;
+    gap: 8px;
+    color: var(--cream);
+  }
+
+  .logo-mark {
+    font-family: 'Oswald', sans-serif;
+    font-weight: 700;
+    font-size: 20px;
+    letter-spacing: 0.03em;
+  }
+
+  .logo-sub {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 11px;
+    color: var(--ochre);
+    letter-spacing: 0.15em;
+  }
+
+  .nav-links {
+    display: flex;
+    gap: 32px;
+    font-size: 14px;
+    color: var(--cream);
+    font-weight: 500;
+  }
+
+  .nav-links a {
+    position: relative;
+    padding-bottom: 4px;
+  }
+
+  .nav-links a::after {
+    content: '';
+    position: absolute;
+    left: 0;
+    bottom: 0;
+    width: 0;
+    height: 2px;
+    background: var(--ochre);
+    transition: width 0.25s ease;
+  }
+
+  .nav-links a:hover::after { width: 100%; }
+
+  .nav-cta {
+    background: var(--ochre);
+    color: var(--asphalt);
+    padding: 10px 20px;
+    border-radius: 2px;
+    font-weight: 600;
+    font-size: 13px;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+  }
+
+  .menu-toggle {
+    display: none;
+    background: transparent;
+    border: none;
+    cursor: pointer;
+    padding: 8px;
+    flex-direction: column;
+    gap: 5px;
+    width: 36px;
+    height: 36px;
+    justify-content: center;
+    align-items: center;
+    z-index: 101;
+  }
+  .menu-toggle-bar {
+    display: block;
+    width: 24px;
+    height: 2px;
+    background: var(--cream);
+    transition: transform 0.3s ease, opacity 0.3s ease;
+    border-radius: 1px;
+  }
+  .menu-toggle.is-open .menu-toggle-bar:nth-child(1) { transform: translateY(7px) rotate(45deg); }
+  .menu-toggle.is-open .menu-toggle-bar:nth-child(2) { opacity: 0; }
+  .menu-toggle.is-open .menu-toggle-bar:nth-child(3) { transform: translateY(-7px) rotate(-45deg); }
+
+  .nav-overlay {
+    position: fixed;
+    top: 0; left: 0; right: 0; bottom: 0;
+    background: rgba(0, 0, 0, 0.6);
+    z-index: 98;
+    opacity: 0;
+    visibility: hidden;
+    transition: opacity 0.3s ease, visibility 0.3s ease;
+  }
+  .nav-overlay.is-visible { opacity: 1; visibility: visible; }
+
+  .nav-drawer {
+    position: fixed;
+    top: 0; right: 0;
+    width: 280px;
+    max-width: 80vw;
+    height: 100vh;
+    background: var(--asphalt);
+    color: var(--cream);
+    z-index: 99;
+    padding: 80px 30px 30px;
+    transform: translateX(100%);
+    transition: transform 0.3s ease;
+    overflow-y: auto;
+    box-shadow: -4px 0 20px rgba(0, 0, 0, 0.3);
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+  }
+  .nav-drawer.is-open { transform: translateX(0); }
+  .nav-drawer-link {
+    display: block;
+    padding: 14px 12px;
+    color: var(--cream);
+    font-size: 15px;
+    font-weight: 500;
+    text-decoration: none;
+    border-bottom: 1px solid rgba(246, 243, 236, 0.08);
+    transition: color 0.2s ease, padding-left 0.2s ease;
+  }
+  .nav-drawer-link:hover, .nav-drawer-link:active { color: var(--ochre); padding-left: 18px; }
+  .nav-drawer-cta {
+    display: block;
+    margin-top: 20px;
+    padding: 14px 20px;
+    background: var(--ochre);
+    color: var(--asphalt);
+    text-align: center;
+    font-weight: 600;
+    font-size: 15px;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    border-radius: 2px;
+    text-decoration: none;
+    transition: background 0.2s ease;
+  }
+  .nav-drawer-cta:hover { background: var(--ochre-dim); }
+
+  /* ---------- HERO ---------- */
+  .hero {
+    position: relative;
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    background: var(--asphalt);
+    color: var(--cream);
+    padding: 0 5%;
+    overflow: hidden;
+  }
+
+  .road-line {
+    position: absolute;
+    top: 0;
+    left: 50%;
+    width: 6px;
+    height: 100%;
+    transform: translateX(-50%);
+    background: repeating-linear-gradient(
+      to bottom,
+      var(--ochre) 0px,
+      var(--ochre) 40px,
+      transparent 40px,
+      transparent 80px
+    );
+    opacity: 0.35;
+    animation: drive 2.4s linear infinite;
+  }
+
+  @keyframes drive {
+    from { background-position: 0 0; }
+    to { background-position: 0 80px; }
+  }
+
+  .hero-eyebrow {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 13px;
+    color: var(--ochre);
+    letter-spacing: 0.2em;
+    margin-bottom: 20px;
+    z-index: 2;
+  }
+
+  .hero h1 {
+    font-size: clamp(42px, 7vw, 92px);
+    line-height: 0.98;
+    max-width: 16ch;
+    z-index: 2;
+  }
+
+  .hero h1 span { color: var(--ochre); }
+
+  .hero-desc {
+    margin-top: 24px;
+    max-width: 46ch;
+    font-size: 17px;
+    color: #cfcbc0;
+    z-index: 2;
+  }
+
+  .hero-actions {
+    margin-top: 40px;
+    display: flex;
+    gap: 16px;
+    z-index: 2;
+    flex-wrap: wrap;
+  }
+
+  .btn-primary, .btn-secondary {
+    padding: 15px 28px;
+    font-size: 14px;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    border-radius: 2px;
+    cursor: pointer;
+    border: 1px solid transparent;
+    transition: transform 0.2s ease, background 0.2s ease;
+  }
+
+  .btn-primary {
+    background: var(--ochre);
+    color: var(--asphalt);
+  }
+  .btn-primary:hover { transform: translateY(-2px); background: #f0ac3f; }
+
+  .btn-secondary {
+    background: transparent;
+    color: var(--cream);
+    border-color: rgba(246,243,236,0.35);
+  }
+  .btn-secondary:hover { transform: translateY(-2px); border-color: var(--cream); }
+
+  /* ---------- STATS ---------- */
+  .stats {
+    background: var(--ochre);
+    color: var(--asphalt);
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+  }
+
+  .stat {
+    padding: 34px 20px;
+    text-align: center;
+    border-right: 1px solid rgba(28,32,35,0.15);
+  }
+  .stat:last-child { border-right: none; }
+
+  .stat-number {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: clamp(28px, 4vw, 40px);
+    font-weight: 700;
+  }
+
+  .stat-label {
+    font-size: 12px;
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    margin-top: 6px;
+  }
+
+  /* ---------- SECTION SHARED ---------- */
+  section { padding: 110px 5%; }
+
+  .section-eyebrow {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 13px;
+    color: var(--ochre-dim);
+    letter-spacing: 0.2em;
+    margin-bottom: 14px;
+  }
+
+  .section-title {
+    font-size: clamp(30px, 4vw, 48px);
+    max-width: 18ch;
+    margin-bottom: 20px;
+  }
+
+  .section-intro {
+    max-width: 60ch;
+    color: #4a4844;
+    font-size: 16px;
+    margin-bottom: 56px;
+  }
+
+  /* ---------- CORSI ---------- */
+  .categorie-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+    gap: 2px;
+    background: var(--line-grey);
+    border: 1px solid var(--line-grey);
+  }
+
+  .corso-card {
+    background: var(--cream);
+    padding: 34px 28px;
+    position: relative;
+    transition: background 0.25s ease;
+  }
+
+  .corso-card:hover { background: #fff; }
+
+  .corso-code {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 13px;
+    color: var(--racing-green);
+    letter-spacing: 0.1em;
+  }
+
+  .corso-card h3 {
+    font-size: 22px;
+    margin-top: 10px;
+    margin-bottom: 12px;
+  }
+
+  .corso-card p {
+    font-size: 14px;
+    color: #55524c;
+  }
+
+.features {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+    gap: 40px;
+  }
+
+  .feature-num {
+    font-family: 'JetBrains Mono', monospace;
+    color: var(--ochre);
+    font-size: 14px;
+    margin-bottom: 12px;
+  }
+
+  .feature h3 {
+    font-size: 19px;
+    margin-bottom: 10px;
+    text-transform: none;
+    font-family: 'Work Sans', sans-serif;
+    font-weight: 600;
+  }
+
+  .feature p {
+    font-size: 14px;
+    color: #b8b4a9;
+  }
+
+  /* ---------- CATEGORIES ---------- */
+  .cat-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 18px;
+    margin-top: 50px;
+  }
+
+  .cat-card {
+    background: var(--cream);
+    border: 1px solid rgba(28, 32, 35, 0.08);
+    border-top: 3px solid var(--ochre);
+    padding: 26px 22px 24px;
+    border-radius: 2px;
+    transition: transform 0.25s ease, box-shadow 0.25s ease, border-color 0.25s ease;
+    position: relative;
+  }
+
+  .cat-card:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 14px 30px -16px rgba(28, 32, 35, 0.25);
+    border-top-color: var(--signal-red);
+  }
+
+  .cat-card-icon {
+    width: 100%;
+    height: 90px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: linear-gradient(180deg, #f6f3ec 0%, #ece8de 100%);
+    border-radius: 2px;
+    margin-bottom: 18px;
+    border: 1px solid rgba(28, 32, 35, 0.05);
+  }
+
+  .cat-card-icon svg {
+    width: 64px;
+    height: 64px;
+  }
+
+  .cat-card-code {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 11px;
+    color: var(--ochre-dim);
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    margin-bottom: 8px;
+  }
+
+  .cat-card h3 {
+    font-size: 18px;
+    text-transform: none;
+    font-family: 'Work Sans', sans-serif;
+    font-weight: 600;
+    color: var(--asphalt);
+    margin-bottom: 10px;
+    line-height: 1.25;
+  }
+
+  .cat-card p {
+    font-size: 13.5px;
+    color: #5a5a5a;
+    line-height: 1.5;
+  }
+
+  .cat-card .age {
+    display: inline-block;
+    margin-top: 12px;
+    padding: 3px 9px;
+    background: var(--asphalt);
+    color: var(--cream);
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 10px;
+    letter-spacing: 0.08em;
+    border-radius: 2px;
+  }
+
+  .cat-section-title {
+    font-family: 'Oswald', sans-serif;
+    font-size: 13px;
+    text-transform: uppercase;
+    letter-spacing: 0.15em;
+    color: var(--ochre);
+    margin: 50px 0 20px;
+    padding-bottom: 12px;
+    border-bottom: 2px solid var(--ochre);
+    display: inline-block;
+  }
+
+  @media (max-width: 1024px) {
+    .cat-grid { grid-template-columns: repeat(3, 1fr); }
+  }
+  @media (max-width: 720px) {
+    .cat-grid { grid-template-columns: repeat(2, 1fr); }
+  }
+  @media (max-width: 480px) {
+    .cat-grid { grid-template-columns: 1fr; }
+  }
+
+  /* ---------- CATEGORIES ---------- */
+  .cat-group {
+    margin-top: 50px;
+  }
+
+  .cat-group-title {
+    font-family: 'Oswald', sans-serif;
+    font-size: 14px;
+    text-transform: uppercase;
+    letter-spacing: 0.18em;
+    color: var(--ochre);
+    margin-bottom: 22px;
+    padding-bottom: 12px;
+    border-bottom: 2px solid var(--ochre);
+    display: flex;
+    align-items: center;
+    gap: 14px;
+  }
+
+  .cat-group-title span.tag {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 10px;
+    background: var(--asphalt);
+    color: var(--cream);
+    padding: 3px 9px;
+    letter-spacing: 0.1em;
+    margin-left: auto;
+  }
+
+  .cat-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 18px;
+  }
+
+  .cat-card {
+    background: var(--cream);
+    border: 1px solid rgba(28, 32, 35, 0.08);
+    border-top: 3px solid var(--ochre);
+    padding: 22px 20px 20px;
+    border-radius: 2px;
+    transition: transform 0.25s ease, box-shadow 0.25s ease;
+    position: relative;
+  }
+
+  .cat-card:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 16px 32px -18px rgba(28, 32, 35, 0.3);
+  }
+
+  .cat-card-icon {
+    width: 100%;
+    height: 78px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: linear-gradient(180deg, #f6f3ec 0%, #e8e3d6 100%);
+    border-radius: 2px;
+    margin-bottom: 16px;
+    border: 1px solid rgba(28, 32, 35, 0.05);
+  }
+
+  .cat-card-icon svg { width: 58px; height: 58px; }
+
+  .cat-card-code {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 10.5px;
+    color: var(--ochre-dim);
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    margin-bottom: 6px;
+  }
+
+  .cat-card h3 {
+    font-size: 17px;
+    text-transform: none;
+    font-family: 'Work Sans', sans-serif;
+    font-weight: 600;
+    color: var(--asphalt);
+    margin-bottom: 8px;
+    line-height: 1.25;
+  }
+
+  .cat-card p {
+    font-size: 13px;
+    color: #5a5a5a;
+    line-height: 1.5;
+    margin-bottom: 12px;
+  }
+
+  .cat-card .age {
+    display: inline-block;
+    padding: 3px 8px;
+    background: var(--asphalt);
+    color: var(--cream);
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 10px;
+    letter-spacing: 0.1em;
+    border-radius: 2px;
+  }
+
+  .cat-card.is-pro {
+    border-top-color: var(--signal-red);
+    background: linear-gradient(180deg, var(--cream) 0%, #fbf1ee 100%);
+  }
+  .cat-card.is-pro .cat-card-code { color: var(--signal-red); }
+  .cat-card.is-pro .age { background: var(--signal-red); }
+
+  .cat-card.is-marine {
+    border-top-color: var(--racing-green);
+    background: linear-gradient(180deg, var(--cream) 0%, #eef3ee 100%);
+  }
+  .cat-card.is-marine .cat-card-code { color: var(--racing-green); }
+  .cat-card.is-marine .age { background: var(--racing-green); }
+
+  @media (max-width: 1024px) {
+    .cat-grid { grid-template-columns: repeat(3, 1fr); }
+  }
+  @media (max-width: 720px) {
+    .cat-grid { grid-template-columns: repeat(2, 1fr); }
+  }
+  @media (max-width: 480px) {
+    .cat-grid { grid-template-columns: 1fr; }
+  }
+
+  /* ---------- TESTIMONIALS ---------- */
+  .testimonials {
+    background: var(--asphalt-2);
+    color: var(--cream);
+    padding: 90px 5%;
+  }
+
+  .testimonials-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 24px;
+    margin-top: 50px;
+  }
+
+  .testimonial-card {
+    background: rgba(246, 243, 236, 0.04);
+    border: 1px solid rgba(246, 243, 236, 0.08);
+    border-left: 3px solid var(--ochre);
+    padding: 32px 28px;
+    border-radius: 2px;
+    position: relative;
+  }
+
+  .testimonial-card::before {
+    content: '\201C';
+    font-family: 'Oswald', serif;
+    font-size: 72px;
+    line-height: 1;
+    color: var(--ochre);
+    position: absolute;
+    top: 8px;
+    right: 22px;
+    opacity: 0.55;
+    font-weight: 700;
+  }
+
+  .testimonial-text {
+    font-size: 15.5px;
+    line-height: 1.65;
+    color: #e3dfd4;
+    margin-bottom: 22px;
+    position: relative;
+    z-index: 1;
+  }
+
+  .testimonial-stars {
+    display: inline-flex;
+    gap: 4px;
+    margin-bottom: 14px;
+    line-height: 1;
+  }
+  .testimonial-stars svg { width: 18px; height: 18px; display: block; }
+
+  .testimonial-author {
+    display: flex;
+    align-items: center;
+    gap: 14px;
+    padding-top: 18px;
+    border-top: 1px solid rgba(246, 243, 236, 0.1);
+  }
+
+  .testimonial-avatar {
+    width: 44px;
+    height: 44px;
+    border-radius: 50%;
+    background: var(--ochre);
+    color: var(--asphalt);
+    font-family: 'Oswald', sans-serif;
+    font-weight: 700;
+    font-size: 17px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+  }
+
+  .testimonial-info {
+    display: flex;
+    flex-direction: column;
+  }
+
+  .testimonial-name {
+    font-family: 'Oswald', sans-serif;
+    font-size: 16px;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.03em;
+    color: var(--cream);
+  }
+
+  .testimonial-meta {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 11px;
+    color: #9a9587;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    margin-top: 2px;
+  }
+
+  @media (max-width: 860px) {
+    .menu-toggle { display: flex !important; }
+    .testimonials-grid { grid-template-columns: 1fr; }
+  }
+
+  /* ---------- CTA BANNER ---------- */
+  .cta-banner {
+    background: var(--racing-green);
+    color: var(--cream);
+    padding: 80px 5%;
+    text-align: center;
+  }
+
+  .cta-banner h2 {
+    font-size: clamp(26px, 4vw, 42px);
+    max-width: 20ch;
+    margin: 0 auto 28px;
+  }
+
+  /* ---------- CONTATTI / FOOTER ---------- */
+  footer {
+    background: var(--asphalt);
+    color: #b8b4a9;
+    padding: 70px 5% 30px;
+  }
+
+  .footer-grid {
+    display: grid;
+    grid-template-columns: 1.4fr 1fr 1fr;
+    gap: 40px;
+    padding-bottom: 50px;
+    border-bottom: 1px solid rgba(246,243,236,0.12);
+  }
+
+  .footer-col h4 {
+    color: var(--cream);
+    font-size: 13px;
+    text-transform: uppercase;
+    letter-spacing: 0.12em;
+    margin-bottom: 18px;
+    font-family: 'JetBrains Mono', monospace;
+  }
+
+  .footer-col p, .footer-col a {
+    font-size: 14px;
+    display: block;
+    margin-bottom: 10px;
+  }
+
+  .footer-col a:hover { color: var(--ochre); }
+
+  .footer-bottom {
+    padding-top: 24px;
+    font-size: 12px;
+    display: flex;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    gap: 10px;
+  }
+
+  /* ---------- TARIFS ---------- */
+  .tarifs-intro { max-width: 60ch; margin: 0 auto 50px; text-align: center; }
+  .tarifs-note {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 11px;
+    color: var(--ochre-dim);
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    text-align: center;
+    margin-top: 36px;
+    padding: 14px 18px;
+    border-top: 1px dashed rgba(28, 32, 35, 0.15);
+    border-bottom: 1px dashed rgba(28, 32, 35, 0.15);
+  }
+  .tarifs-note strong { color: var(--asphalt); font-weight: 700; }
+  .tarifs-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 24px;
+  }
+  .price-card {
+    position: relative;
+    background: #fff;
+    border: 1px solid rgba(28, 32, 35, 0.12);
+    border-top: 4px solid var(--ochre);
+    padding: 32px 26px 26px;
+    border-radius: 4px;
+    display: flex;
+    flex-direction: column;
+    transition: transform 0.25s ease, box-shadow 0.25s ease;
+  }
+  .price-card:hover { transform: translateY(-4px); box-shadow: 0 16px 36px -16px rgba(28, 32, 35, 0.35); }
+  .price-card.is-cat-a { border-top-color: var(--racing-green); }
+  .price-card.is-cat-b { border-top-color: var(--ochre); }
+  .price-card.is-cat-be { border-top-color: var(--ochre-dim); }
+  .price-card.is-cat-c { border-top-color: var(--signal-red); }
+  .price-card.is-cat-d { border-top-color: var(--signal-red); }
+  .price-card.is-cat-cqc { border-top-color: #1c2023; }
+  .price-card.is-featured {
+    background: var(--asphalt);
+    color: var(--cream);
+    border: 1px solid var(--asphalt);
+    border-top: 4px solid var(--ochre);
+    transform: translateY(-6px);
+    box-shadow: 0 22px 50px -20px rgba(28, 32, 35, 0.55);
+  }
+  .price-card.is-featured:hover { transform: translateY(-10px); }
+  .price-badge {
+    position: absolute;
+    top: -14px;
+    right: 22px;
+    background: var(--ochre);
+    color: var(--asphalt);
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 10px;
+    font-weight: 700;
+    letter-spacing: 0.15em;
+    padding: 6px 12px;
+    border-radius: 2px;
+  }
+  .price-head {
+    display: flex;
+    align-items: center;
+    gap: 14px;
+    margin-bottom: 18px;
+  }
+  .price-mark {
+    width: 52px;
+    height: 52px;
+    border-radius: 50%;
+    background: var(--cream);
+    color: var(--asphalt);
+    border: 2px solid var(--ochre);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-family: 'Oswald', sans-serif;
+    font-weight: 700;
+    font-size: 22px;
+    flex-shrink: 0;
+  }
+  .price-card.is-featured .price-mark {
+    background: var(--asphalt-2);
+    color: var(--ochre);
+    border-color: var(--ochre);
+  }
+  .price-title { font-family: 'Oswald', sans-serif; font-size: 22px; text-transform: uppercase; letter-spacing: 0.04em; line-height: 1.1; }
+  .price-sub { font-family: 'JetBrains Mono', monospace; font-size: 10px; color: var(--ochre-dim); letter-spacing: 0.14em; text-transform: uppercase; margin-top: 4px; }
+  .price-card.is-featured .price-sub { color: var(--ochre); }
+  .price-amount { display: flex; align-items: baseline; gap: 6px; margin: 18px 0 6px; padding-bottom: 18px; border-bottom: 1px dashed rgba(28, 32, 35, 0.15); }
+  .price-card.is-featured .price-amount { border-bottom-color: rgba(246, 243, 236, 0.2); }
+  .price-from { font-family: 'JetBrains Mono', monospace; font-size: 11px; color: var(--ochre-dim); letter-spacing: 0.1em; text-transform: uppercase; }
+  .price-card.is-featured .price-from { color: var(--ochre); }
+  .price-num { font-family: 'Oswald', sans-serif; font-size: 44px; font-weight: 600; color: var(--asphalt); line-height: 1; }
+  .price-card.is-featured .price-num { color: var(--cream); }
+  .price-cur { font-family: 'Oswald', sans-serif; font-size: 22px; color: var(--asphalt); margin-left: 2px; }
+  .price-card.is-featured .price-cur { color: var(--cream); }
+  .price-duration { font-family: 'JetBrains Mono', monospace; font-size: 11px; color: #555; letter-spacing: 0.08em; text-transform: uppercase; margin-bottom: 16px; }
+  .price-card.is-featured .price-duration { color: #cfcbc0; }
+  .price-list { list-style: none; padding: 0; margin: 0 0 22px; display: flex; flex-direction: column; gap: 8px; }
+  .price-list li { font-size: 13.5px; padding-left: 22px; position: relative; line-height: 1.45; }
+  .price-list li::before { content: ''; position: absolute; left: 0; top: 2px; width: 14px; height: 14px; background: var(--racing-green); -webkit-mask: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'><path d='M9 16.2l-3.5-3.5-1.4 1.4L9 19 20 8l-1.4-1.4z'/></svg>") no-repeat center / contain; mask: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'><path d='M9 16.2l-3.5-3.5-1.4 1.4L9 19 20 8l-1.4-1.4z'/></svg>") no-repeat center / contain; }
+  .price-card.is-featured .price-list li::before { color: var(--ochre); }
+
+  /* ---------- SUB-CATEGORY PRICE LIST (inclus dans la carte) ---------- */
+  .price-sub-list { list-style: none; padding: 0; margin: 0 0 20px; display: flex; flex-direction: column; }
+  .price-sub-list li { display: flex; justify-content: space-between; align-items: baseline; gap: 10px; font-size: 13px; padding: 8px 0; border-bottom: 1px dashed rgba(28, 32, 35, 0.1); }
+  .price-sub-list li:last-child { border-bottom: none; }
+  .price-card.is-featured .price-sub-list li { border-bottom-color: rgba(246, 243, 236, 0.18); }
+  .sub-code { font-family: 'JetBrains Mono', monospace; font-size: 11.5px; font-weight: 700; color: var(--ochre-dim); letter-spacing: 0.04em; flex-shrink: 0; min-width: 40px; }
+  .price-card.is-featured .sub-code { color: var(--ochre); }
+  .sub-desc { flex: 1; font-size: 12px; color: #555; line-height: 1.35; }
+  .price-card.is-featured .sub-desc { color: #cfcbc0; }
+  .sub-price { font-family: 'Oswald', sans-serif; font-size: 17px; font-weight: 600; color: var(--asphalt); flex-shrink: 0; white-space: nowrap; }
+  .price-card.is-featured .sub-price { color: var(--cream); }
+
+  /* ---------- TARIFS INCLUDE BANNER (phrase légale) ---------- */
+  .tarifs-include { max-width: 84ch; margin: 0 auto 44px; padding: 20px 24px; background: rgba(229, 160, 47, 0.10); border-left: 3px solid var(--ochre); border-radius: 2px; font-size: 13.5px; line-height: 1.65; color: #3a3a3a; }
+  .tarifs-include strong { color: var(--asphalt); font-weight: 700; }
+
+  /* ---------- COMBINAISONS / FORFAITS GROUPÉS ---------- */
+  .tarifs-combo-head { display: flex; align-items: baseline; justify-content: space-between; flex-wrap: wrap; gap: 12px; margin: 36px 0 18px; padding-top: 28px; border-top: 1px solid rgba(28, 32, 35, 0.08); }
+  .tarifs-combo-head h3 { font-family: 'Oswald', sans-serif; font-size: 22px; font-weight: 600; letter-spacing: 0.02em; color: var(--asphalt); margin: 0; }
+  .tarifs-combo-head p { font-size: 12.5px; color: #6a6a6a; margin: 0; font-style: italic; }
+  .tarifs-combo-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 18px; margin-bottom: 40px; }
+  .combo-card { position: relative; padding: 24px 22px 22px; background: var(--cream); border-top: 4px solid var(--asphalt); border-radius: 2px; box-shadow: 0 1px 0 rgba(28, 32, 35, 0.04), 0 6px 18px -8px rgba(28, 32, 35, 0.12); transition: transform 0.25s ease, box-shadow 0.25s ease; }
+  .combo-card:hover { transform: translateY(-3px); box-shadow: 0 1px 0 rgba(28, 32, 35, 0.04), 0 14px 28px -10px rgba(28, 32, 35, 0.18); }
+  .combo-card.is-combo-save { background: var(--asphalt); color: var(--cream); border-top-color: var(--ochre); }
+  .combo-tag { display: inline-block; font-family: 'JetBrains Mono', monospace; font-size: 10.5px; font-weight: 700; letter-spacing: 0.12em; padding: 4px 10px; background: var(--ochre); color: var(--asphalt); border-radius: 2px; margin-bottom: 14px; }
+  .combo-code { font-family: 'Oswald', sans-serif; font-size: 32px; font-weight: 600; letter-spacing: 0.04em; color: var(--asphalt); line-height: 1; margin-bottom: 4px; }
+  .combo-card.is-combo-save .combo-code { color: var(--ochre); }
+  .combo-title { font-family: 'Oswald', sans-serif; font-size: 16px; font-weight: 500; letter-spacing: 0.02em; color: var(--asphalt); margin: 0 0 8px; text-transform: uppercase; }
+  .combo-card.is-combo-save .combo-title { color: var(--cream); }
+  .combo-desc { font-size: 13px; line-height: 1.55; color: #4a4a4a; margin: 0 0 18px; }
+  .combo-card.is-combo-save .combo-desc { color: #c4bfb3; }
+  .combo-price-row { display: flex; align-items: baseline; gap: 8px; padding: 14px 0 16px; border-top: 1px dashed rgba(28, 32, 35, 0.12); }
+  .combo-card.is-combo-save .combo-price-row { border-top-color: rgba(246, 243, 236, 0.2); }
+  .combo-price-from { font-size: 11px; letter-spacing: 0.06em; color: #6a6a6a; text-transform: uppercase; }
+  .combo-card.is-combo-save .combo-price-from { color: #a5a098; }
+  .combo-price-num { font-family: 'Oswald', sans-serif; font-size: 30px; font-weight: 600; color: var(--asphalt); line-height: 1; }
+  .combo-card.is-combo-save .combo-price-num { color: var(--cream); }
+  .combo-price-cur { font-family: 'Oswald', sans-serif; font-size: 18px; font-weight: 500; color: var(--asphalt); }
+  .combo-card.is-combo-save .combo-price-cur { color: var(--ochre); }
+  .combo-cta { display: inline-flex; align-items: center; justify-content: center; width: 100%; padding: 11px 16px; font-family: 'Oswald', sans-serif; font-size: 13px; font-weight: 500; letter-spacing: 0.12em; text-transform: uppercase; color: var(--cream); background: var(--asphalt); border: 1px solid var(--asphalt); border-radius: 2px; text-decoration: none; transition: all 0.2s ease; }
+  .combo-cta:hover { background: var(--ochre); border-color: var(--ochre); color: var(--asphalt); }
+  .combo-card.is-combo-save .combo-cta { background: var(--ochre); border-color: var(--ochre); color: var(--asphalt); }
+  .combo-card.is-combo-save .combo-cta:hover { background: var(--cream); border-color: var(--cream); color: var(--asphalt); }
+  @media (max-width: 900px) { .tarifs-combo-grid { grid-template-columns: repeat(2, 1fr); } }
+  @media (max-width: 600px) { .tarifs-combo-grid { grid-template-columns: 1fr; } .tarifs-combo-head h3 { font-size: 18px; } }
+
+  /* ---------- MODE DE PAIEMENT ---------- */
+  .payment-head { display: flex; align-items: baseline; justify-content: space-between; flex-wrap: wrap; gap: 12px; margin: 44px 0 22px; padding-top: 28px; border-top: 1px solid rgba(28, 32, 35, 0.08); }
+  .payment-head h3 { font-family: 'Oswald', sans-serif; font-size: 22px; font-weight: 600; letter-spacing: 0.02em; color: var(--asphalt); margin: 0; }
+  .payment-head p { font-size: 12.5px; color: #6a6a6a; margin: 0; font-style: italic; }
+  .payment-steps { display: grid; grid-template-columns: 1fr 1fr; gap: 18px; margin-bottom: 26px; }
+  .payment-step { position: relative; padding: 30px 26px 24px; background: var(--cream); border: 1px solid rgba(28, 32, 35, 0.08); border-radius: 2px; transition: transform 0.25s ease, box-shadow 0.25s ease; }
+  .payment-step:hover { transform: translateY(-3px); box-shadow: 0 14px 28px -10px rgba(28, 32, 35, 0.18); }
+  .payment-step.is-final { background: var(--asphalt); color: var(--cream); border-color: var(--asphalt); }
+  .step-num { position: absolute; top: -18px; left: 22px; width: 36px; height: 36px; border-radius: 50%; background: var(--cream); border: 2px solid var(--asphalt); color: var(--asphalt); font-family: 'Oswald', sans-serif; font-size: 16px; font-weight: 700; display: flex; align-items: center; justify-content: center; box-shadow: 0 4px 10px -3px rgba(28, 32, 35, 0.3); }
+  .payment-step.is-final .step-num { background: var(--ochre); border-color: var(--ochre); color: var(--asphalt); }
+  .step-eyebrow { font-family: 'JetBrains Mono', monospace; font-size: 10.5px; font-weight: 700; letter-spacing: 0.12em; text-transform: uppercase; color: #6a6a6a; margin: 0 0 8px; }
+  .payment-step.is-final .step-eyebrow { color: var(--ochre); }
+  .step-title { font-family: 'Oswald', sans-serif; font-size: 22px; font-weight: 600; letter-spacing: 0.02em; text-transform: uppercase; margin: 0 0 4px; }
+  .step-subtitle { font-size: 12.5px; color: #6a6a6a; margin: 0 0 16px; font-style: italic; }
+  .payment-step.is-final .step-subtitle { color: #a5a098; }
+  .step-amount { font-family: 'Oswald', sans-serif; font-size: 30px; font-weight: 600; line-height: 1; color: var(--asphalt); margin: 0 0 14px; }
+  .payment-step.is-final .step-amount { color: var(--ochre); font-style: italic; }
+  .step-desc { font-size: 13.5px; line-height: 1.6; color: #3a3a3a; margin: 0; }
+  .payment-step.is-final .step-desc { color: #c4bfb3; }
+
+  .payment-methods { padding: 24px 26px; background: rgba(28, 32, 35, 0.03); border-left: 3px solid var(--ochre); border-radius: 2px; margin-bottom: 22px; }
+  .payment-methods-title { font-family: 'Oswald', sans-serif; font-size: 15px; font-weight: 600; letter-spacing: 0.04em; text-transform: uppercase; color: var(--asphalt); margin: 0 0 16px; }
+  .methods-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 18px; }
+  .method { padding: 16px 18px; background: var(--cream); border: 1px solid rgba(28, 32, 35, 0.08); border-radius: 2px; position: relative; }
+  .method-badge { position: absolute; top: -10px; right: 12px; font-family: 'JetBrains Mono', monospace; font-size: 9.5px; font-weight: 700; letter-spacing: 0.12em; padding: 3px 8px; border-radius: 2px; text-transform: uppercase; }
+  .method-badge.is-recommended { background: var(--racing-green); color: var(--cream); }
+  .method-badge.is-instant { background: var(--ochre); color: var(--asphalt); }
+  .method-name { font-family: 'Oswald', sans-serif; font-size: 16px; font-weight: 500; letter-spacing: 0.02em; text-transform: uppercase; color: var(--asphalt); margin: 0 0 6px; }
+  .method-desc { font-size: 12.5px; color: #4a4a4a; line-height: 1.5; margin: 0; }
+
+  .payment-note { font-size: 12px; line-height: 1.65; color: #6a6a6a; font-style: italic; max-width: 80ch; margin: 0 0 50px; padding: 0 4px; }
+  .payment-note strong { color: var(--asphalt); font-style: normal; font-weight: 600; }
+
+  @media (max-width: 800px) { .payment-steps { grid-template-columns: 1fr; } .methods-grid { grid-template-columns: 1fr; } }
+  @media (max-width: 600px) { .payment-head h3 { font-size: 18px; } .step-amount { font-size: 26px; } }
+  .price-cta {
+    display: inline-block;
+    text-align: center;
+    padding: 12px 18px;
+    font-size: 12.5px;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    border: 1.5px solid var(--asphalt);
+    color: var(--asphalt);
+    border-radius: 2px;
+    margin-top: auto;
+    transition: background 0.2s ease, color 0.2s ease, transform 0.2s ease;
+  }
+  .price-cta:hover { background: var(--asphalt); color: var(--cream); transform: translateY(-1px); }
+  .price-card.is-featured .price-cta { background: var(--ochre); border-color: var(--ochre); color: var(--asphalt); }
+  .price-card.is-featured .price-cta:hover { background: #f0ac3f; border-color: #f0ac3f; }
+
+  .tarifs-extra {
+    margin-top: 50px;
+    display: grid;
+    grid-template-columns: 1.2fr 1fr;
+    gap: 24px;
+  }
+  .tarifs-extra-card {
+    background: var(--asphalt);
+    color: var(--cream);
+    padding: 32px 30px;
+    border-radius: 4px;
+    position: relative;
+    overflow: hidden;
+  }
+  .tarifs-extra-card::before {
+    content: '';
+    position: absolute;
+    top: 0; right: 0;
+    width: 6px; height: 100%;
+    background: var(--ochre);
+  }
+  .tarifs-extra-card .extra-eyebrow {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 11px;
+    color: var(--ochre);
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    margin-bottom: 10px;
+  }
+  .tarifs-extra-card h3 { font-size: 26px; margin-bottom: 14px; }
+  .tarifs-extra-card p { color: #cfcbc0; font-size: 14.5px; line-height: 1.6; margin-bottom: 18px; }
+  .tarifs-extra-card .price-cta { background: transparent; border-color: var(--ochre); color: var(--ochre); }
+  .tarifs-extra-card .price-cta:hover { background: var(--ochre); color: var(--asphalt); }
+  .nautica-list { display: flex; flex-direction: column; gap: 10px; margin-bottom: 18px; }
+  .nautica-list li {
+    list-style: none;
+    display: flex;
+    justify-content: space-between;
+    align-items: baseline;
+    font-size: 13.5px;
+    padding: 8px 0;
+    border-bottom: 1px dashed rgba(246, 243, 236, 0.15);
+  }
+  .nautica-list li:last-child { border-bottom: none; }
+  .nautica-list .naut-cat { font-family: 'JetBrains Mono', monospace; font-size: 10px; color: var(--ochre); letter-spacing: 0.12em; text-transform: uppercase; }
+  .nautica-list .naut-price { font-family: 'Oswald', sans-serif; font-size: 18px; font-weight: 600; color: var(--cream); }
+
+  @media (max-width: 980px) {
+    .tarifs-grid { grid-template-columns: repeat(2, 1fr); }
+    .price-card.is-featured { transform: none; }
+    .price-card.is-featured:hover { transform: translateY(-4px); }
+    .tarifs-extra { grid-template-columns: 1fr; }
+  }
+  @media (max-width: 600px) {
+    .tarifs-grid { grid-template-columns: 1fr; }
+  }
+
+  /* ---------- RESPONSIVE ---------- */
+  @media (max-width: 860px) {
+    .menu-toggle { display: flex !important; }
+    .nav-links, .nav-cta { display: none; }
+    .menu-toggle { display: flex !important; }
+    .stats { grid-template-columns: 1fr; }
+    .stat { border-right: none; border-bottom: 1px solid rgba(28,32,35,0.15); }
+    .stat:last-child { border-bottom: none; }
+    .footer-grid { grid-template-columns: 1fr; }
+    section { padding: 70px 6%; }
+  }
+
+  /* ---------- ACTIVE NAV ---------- */
+  .nav-links a.active {
+    color: var(--ochre);
+    font-weight: 700;
+  }
+  .nav-links a.active::after { width: 100%; }
+  .nav-cta.active {
+    background: var(--ochre-dim);
+    pointer-events: none;
+  }
+</style>
+  <link rel="stylesheet" href="i18n.css">
+  <script>
+    // Theme init: apply saved theme before paint to avoid flash
+    (function(){
+      try {
+        var t = localStorage.getItem('gp-theme');
+        if (t === 'dark') document.documentElement.setAttribute('data-dark', 'true');
+      } catch(e) {}
+    })();
+  </script>
+</head>
+<body>
+
+<nav class="navbar">
+  <div class="logo">
+    <span class="logo-mark" data-i18n="nav.logo.mark">GIORDANO</span>
+    <span class="logo-sub" data-i18n="nav.logo.sub">PATENTE</span>
+  </div>
+  <div class="nav-links">
+    <a href="chi-siamo.html" data-i18n="nav.about">À propos</a>
+    <a href="pourquoi.html" data-i18n="nav.why">Pourquoi nous</a>
+    <a href="commencer.html" data-i18n="nav.prices">Tarifs</a>
+    <a href="informations.html" data-i18n="nav.informations">Informations</a>
+    <a href="procedure.html" data-i18n="nav.procedure">La procédure</a>
+    
+    <a href="gallery.html" data-i18n="nav.gallery">Galerie</a>
+    <a href="contact.html" data-i18n="nav.contact">Contact</a>
+  </div>
+      <button class="theme-toggle" type="button" aria-label="Toggle theme">
+        <svg class="icon-sun" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="4"/><path d="M12 2v2M12 20v2M4.93 4.93l1.41 1.41M17.66 17.66l1.41 1.41M2 12h2M20 12h2M4.93 19.07l1.41-1.41M17.66 6.34l1.41-1.41"/></svg>
+        <svg class="icon-moon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/></svg>
+      </button>
+      <a href="commencer.html" class="nav-cta" data-i18n="nav.book">Comencer</a>
+</nav>
+
+<section class="hero">
+  <div class="road-line" aria-hidden="true"></div>
+  <p class="hero-eyebrow" data-i18n="hero.eyebrow">PERMIS DE CONDUIRE EN 7 JOURS</p>
+  <h1 data-i18n="hero.title">LA BONNE ROUTE<br>VERS TON <span>PERMIS</span></h1>
+  <p class="hero-desc" data-i18n="hero.desc">Ce protocole a été développé par Giordano Patente pour simplifier et accélérer le processus d'obtention du permis de conduire, en éliminant les attentes bureaucratiques traditionnelles. Grâce à des procédures standardisées et à un personnel qualifié, nous garantissons la gestion complète du dossier dans les 7 jours ouvrables, dans le plein respect de la législation en vigueur (D.Lgs. 285/1992 - Code de la route et Dir. 2006/126/CE).</p>
+  <div class="hero-actions">
+    <a href="commencer.html" class="btn-primary" data-i18n="hero.cta1">Commence</a>
+    <a href="procedure.html" class="btn-secondary" data-i18n="hero.cta2">Découvrir la procédure</a>
+  </div>
+</section>
+
+<div class="stats">
+  <div class="stat">
+    <div class="stat-number">25+</div>
+    <div class="stat-label" data-i18n="u.annees_d_experience">Années d'expérience</div>
+  </div>
+  <div class="stat">
+    <div class="stat-number">92%</div>
+    <div class="stat-label" data-i18n="stat.pass">Reçus au premier examen</div>
+  </div>
+  <div class="stat">
+    <div class="stat-number">3.400+</div>
+    <div class="stat-label" data-i18n="u.permis_obtenus">Permis obtenus</div>
+  </div>
+</div>
+
+
+<section class="testimonials">
+  <p class="section-eyebrow" style="color: var(--ochre);" data-i18n="u.temoignages">TÉMOIGNAGES</p>
+  <h2 class="section-title" style="color: var(--cream);" data-i18n="index.testimonials.title">Ce qu'ils disent après avoir eu leur permis</h2>
+
+  <div class="testimonials-grid">
+    <div class="testimonial-card">
+      <div class="testimonial-stars" aria-label="Note 5 sur 5"><svg viewBox="0 0 24 24" fill="#f5b400" xmlns="http://www.w3.org/2000/svg"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg><svg viewBox="0 0 24 24" fill="#f5b400" xmlns="http://www.w3.org/2000/svg"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg><svg viewBox="0 0 24 24" fill="#f5b400" xmlns="http://www.w3.org/2000/svg"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg><svg viewBox="0 0 24 24" fill="#f5b400" xmlns="http://www.w3.org/2000/svg"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg><svg viewBox="0 0 24 24" fill="#f5b400" xmlns="http://www.w3.org/2000/svg"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg></div>
+      <p class="testimonial-text" data-i18n="u.je_redoutais_l_examen_depuis_des_annees_grace_a_mr">Je redoutais l'examen depuis des années. Grâce à Mr Giordano, j'ai obtenu mon permis B en 7 jours, sans examen, sans stress. Tout a été géré de A à Z, je n'ai eu qu'à signer. Une vraie chance pour quelqu'un comme moi qui n'aurait jamais osé se présenter devant un inspecteur.</p>
+      <div class="testimonial-author">
+        <div class="testimonial-avatar">SR</div>
+        <div class="testimonial-info">
+          <span class="testimonial-name">Sara R.</span>
+          <span class="testimonial-meta" data-i18n="u.permis_b_recue_en_7_jours_sans_examen">Permis B — Reçue en 7 jours, sans examen</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="testimonial-card">
+      <div class="testimonial-stars" aria-label="Note 5 sur 5"><svg viewBox="0 0 24 24" fill="#f5b400" xmlns="http://www.w3.org/2000/svg"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg><svg viewBox="0 0 24 24" fill="#f5b400" xmlns="http://www.w3.org/2000/svg"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg><svg viewBox="0 0 24 24" fill="#f5b400" xmlns="http://www.w3.org/2000/svg"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg><svg viewBox="0 0 24 24" fill="#f5b400" xmlns="http://www.w3.org/2000/svg"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg><svg viewBox="0 0 24 24" fill="#f5b400" xmlns="http://www.w3.org/2000/svg"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg></div>
+      <p class="testimonial-text" data-i18n="u.j_ai_eu_mon_permis_a2_sans_passer_le_permis_moto_n">J'ai eu mon permis A2 sans passer le permis moto ni l'examen. Dossier monté en quelques jours, document livré chez moi en recommandé. Pour les expatriés qui n'ont pas le temps de tout refaire en Italie, c'est la solution parfaite. Service sérieux, M. Giordano répond sur WhatsApp à toute heure.</p>
+      <div class="testimonial-author">
+        <div class="testimonial-avatar">ML</div>
+        <div class="testimonial-info">
+          <span class="testimonial-name">Marco L.</span>
+          <span class="testimonial-meta" data-i18n="u.permis_a2_recu_en_10_jours_sans_examen">Permis A2 — Reçu en 10 jours, sans examen</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="testimonial-card">
+      <div class="testimonial-stars" aria-label="Note 5 sur 5"><svg viewBox="0 0 24 24" fill="#f5b400" xmlns="http://www.w3.org/2000/svg"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg><svg viewBox="0 0 24 24" fill="#f5b400" xmlns="http://www.w3.org/2000/svg"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg><svg viewBox="0 0 24 24" fill="#f5b400" xmlns="http://www.w3.org/2000/svg"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg><svg viewBox="0 0 24 24" fill="#f5b400" xmlns="http://www.w3.org/2000/svg"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg><svg viewBox="0 0 24 24" fill="#f5b400" xmlns="http://www.w3.org/2000/svg"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg></div>
+      <p class="testimonial-text" data-i18n="u.vivre_en_italie_sans_le_permis_etait_un_vrai_handi">Vivre en Italie sans le permis était un vrai handicap au quotidien. Mr Giordano m'a obtenu mon permis B sans examen, 100% administratif, et le document est arrivé directement chez moi en lettre recommandée. Tout est légal, conforme à la loi italienne. Je recommande les yeux fermés.</p>
+      <div class="testimonial-author">
+        <div class="testimonial-avatar">JC</div>
+        <div class="testimonial-info">
+          <span class="testimonial-name">Julie C.</span>
+          <span class="testimonial-meta" data-i18n="u.permis_b_recue_en_7_jours_sans_examen_1192"></span>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<div class="cta-banner">
+  <h2 data-i18n="cta.title">Prêt à prendre le volant ?</h2>
+  <a href="commencer.html" class="btn-primary" data-i18n="u.commencer_des_maintenant">Commencer dès maintenant</a>
+</div>
+
+<div class="contact-fab" id="contactFab">
+  <div class="contact-fab-menu" id="contactMenu" role="menu" aria-label="Réseaux sociaux et messagerie">
+    <span class="contact-fab-label" data-i18n="footer.contact_us">CONTACTE-NOUS</span>
+    <a href="https://www.facebook.com/share/1DP1bPDC87/?mibextid=wwXIfr" target="_blank" rel="noopener" class="contact-fab-item" role="menuitem">
+      <span class="icon fb" aria-hidden="true">
+        <svg viewBox="0 0 24 24"><path d="M22 12.06C22 6.5 17.52 2 12 2S2 6.5 2 12.06c0 5 3.66 9.14 8.44 9.94v-7.03H7.9v-2.91h2.54V9.85c0-2.51 1.49-3.9 3.78-3.9 1.1 0 2.24.2 2.24.2v2.47h-1.26c-1.24 0-1.63.77-1.63 1.56v1.88h2.78l-.45 2.91h-2.33V22c4.78-.8 8.43-4.94 8.43-9.94z"/></svg>
+      </span>
+      <span class="meta"><span class="name" data-i18n="footer.facebook">Facebook</span></span>
+    </a>
+    <a href="https://www.tiktok.com/@giordano.patente39?_r=1&_t=ZN-97pliphQy4l" target="_blank" rel="noopener" class="contact-fab-item" role="menuitem">
+      <span class="icon tt" aria-hidden="true">
+        <svg viewBox="0 0 24 24"><path d="M19.59 6.69a4.83 4.83 0 0 1-3.77-4.25V2h-3.45v13.67a2.89 2.89 0 0 1-5.2 1.74 2.89 2.89 0 0 1 2.31-4.64 2.93 2.93 0 0 1 .88.13V9.4a6.84 6.84 0 0 0-1-.05A6.33 6.33 0 0 0 5.8 20.1a6.34 6.34 0 0 0 10.86-4.43V8.84a8.16 8.16 0 0 0 4.77 1.52V6.9a4.85 4.85 0 0 1-1.84-.21z"/></svg>
+      </span>
+      <span class="meta"><span class="name" data-i18n="footer.tiktok">TikTok</span><span class="hint" data-i18n="u.videos_coulisses_1027"></span></span>
+    </a>
+    <a href="https://wa.me/393510101837" target="_blank" rel="noopener" class="contact-fab-item" role="menuitem">
+      <span class="icon wa" aria-hidden="true">
+        <svg viewBox="0 0 24 24"><path d="M17.47 14.38c-.3-.15-1.76-.87-2.03-.97-.27-.1-.47-.15-.66.15s-.77.97-.94 1.17-.35.22-.64.07c-.3-.15-1.26-.46-2.4-1.48a8.94 8.94 0 0 1-1.65-2.07c-.17-.3 0-.46.13-.6.13-.13.3-.34.45-.51.15-.17.2-.3.3-.5.1-.2.05-.37-.02-.52-.07-.15-.66-1.6-.91-2.18-.24-.57-.48-.5-.66-.5l-.56-.01c-.2 0-.52.07-.79.37s-1.05 1.02-1.05 2.5 1.07 2.9 1.22 3.1c.15.2 2.12 3.24 5.14 4.55.72.31 1.28.5 1.72.64.72.23 1.38.2 1.9.12.58-.09 1.76-.72 2-1.42.25-.7.25-1.3.17-1.42-.07-.13-.27-.2-.56-.34zM12 2C6.48 2 2 6.48 2 12c0 1.76.45 3.42 1.25 4.85L2 22l5.25-1.23A9.96 9.96 0 0 0 12 22c5.52 0 10-4.48 10-10S17.52 2 12 2zm0 18.15a8.13 8.13 0 0 1-4.15-1.13l-.3-.18-3.12.73.74-3.04-.2-.31A8.15 8.15 0 1 1 12 20.15z"/></svg>
+      </span>
+      <span class="meta"><span class="name" data-i18n="footer.whatsapp">WhatsApp</span><span class="hint">+39 351 010 1837</span></span>
+    </a>
+    <a href="https://t.me/giordanopatente39" target="_blank" rel="noopener" class="contact-fab-item" role="menuitem">
+      <span class="icon tg" aria-hidden="true">
+        <svg viewBox="0 0 24 24"><path d="M9.78 18.65l.28-4.23 7.68-6.92c.34-.31-.07-.46-.52-.19L7.74 13.24 3.64 11.95c-.88-.25-.89-.86.2-1.3l15.97-6.16c.73-.33 1.43.18 1.15 1.3l-2.72 12.81c-.19.91-.74 1.13-1.5.71L12.6 16.3l-1.99 1.93c-.23.23-.42.42-.83.42z"/></svg>
+      </span>
+      <span class="meta"><span class="name" data-i18n="footer.telegram">Telegram</span><span class="hint" data-i18n="u.discussion_privee">Discussion privée</span></span>
+    </a>
+  </div>
+  <button type="button" class="contact-fab-toggle" id="contactToggle" aria-label="Ouvrir le menu de contact" aria-expanded="false" aria-controls="contactMenu">
+    <span class="contact-fab-pulse" aria-hidden="true"></span>
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+      <path d="M21 11.5a8.38 8.38 0 0 1-.9 3.8 8.5 8.5 0 0 1-7.6 4.7 8.38 8.38 0 0 1-3.8-.9L3 21l1.9-5.7a8.38 8.38 0 0 1-.9-3.8 8.5 8.5 0 0 1 4.7-7.6 8.38 8.38 0 0 1 3.8-.9h.5a8.48 8.48 0 0 1 8 8v.5z"/>
+    </svg>
+  </button>
+</div>
+
+<script>
+  (function() {
+    var fab = document.getElementById('contactFab');
+    var toggle = document.getElementById('contactToggle');
+    var menu = document.getElementById('contactMenu');
+    if (!fab || !toggle || !menu) return;
+    function setOpen(open) {
+      toggle.classList.toggle('is-open', open);
+      menu.classList.toggle('is-open', open);
+      toggle.setAttribute('aria-expanded', open ? 'true' : 'false');
+      toggle.setAttribute('aria-label', open ? 'Fermer le menu de contact' : 'Ouvrir le menu de contact');
+    }
+    toggle.addEventListener('click', function(e) {
+      e.stopPropagation();
+      setOpen(!menu.classList.contains('is-open'));
+    });
+    document.addEventListener('click', function(e) {
+      if (!fab.contains(e.target)) setOpen(false);
+    });
+    document.addEventListener('keydown', function(e) {
+      if (e.key === 'Escape') setOpen(false);
+    });
+  })();
+</script>
+
+<footer id="contatti">
+  <div class="footer-grid">
+    <div class="footer-col">
+      <h4>Giordano Patente</h4>
+      <p data-i18n="footer.hours">24h sur 24</p>
+      <p data-i18n="footer.days">Lundi à Dimanche</p>
+    </div>
+    <div class="footer-col">
+      <h4 data-i18n="footer.contact">Contact</h4>
+      <a href="https://wa.me/393510101837" target="_blank" rel="noopener">+39 351 010 1837</a>
+      <a href="mailto:giordanopatente39@gmail.com">giordanopatente39@gmail.com</a>
+    </div>
+    <div class="footer-col">
+      <h4 data-i18n="footer.links">Liens rapides</h4>
+      <a href="chi-siamo.html" data-i18n="nav.about">À propos</a>
+    </div>
+  </div>
+  <div class="footer-bottom">
+    <span data-i18n="footer.copyright">© 2026 Giordano Patente. Tous droits réservés.</span>
+    <span data-i18n="footer.credit">Site réalisé avec soin.</span>
+  </div>
+</footer>
+
+  <script src="burger.js"></script>
+  <script src="i18n.js"></script>
+  <script>
+    // Dark mode toggle
+    document.addEventListener('click', function(e) {
+      if (e.target.closest('.theme-toggle')) {
+        e.preventDefault();
+        var isDark = document.documentElement.getAttribute('data-dark') === 'true';
+        if (isDark) {
+          document.documentElement.removeAttribute('data-dark');
+          try { localStorage.setItem('gp-theme', 'light'); } catch(_) {}
+        } else {
+          document.documentElement.setAttribute('data-dark', 'true');
+          try { localStorage.setItem('gp-theme', 'dark'); } catch(_) {}
+        }
+      }
+    });
+    // Cookie banner
+    (function() {
+      try {
+        if (localStorage.getItem('gp-cookie')) return;
+      } catch(_) {}
+      var div = document.createElement('div');
+      div.className = 'cookie-banner';
+      div.innerHTML = '<p data-i18n="cookie.text"></p>' +
+        '<div class="cookie-actions">' +
+        '<button class="cookie-accept" data-cookie="accept" data-i18n="cookie.accept"></button>' +
+        '<button class="cookie-refuse" data-cookie="refuse" data-i18n="cookie.refuse"></button>' +
+        '</div>';
+      document.body.appendChild(div);
+      setTimeout(function() { div.classList.add('is-visible'); I18N.apply(); }, 800);
+      div.addEventListener('click', function(e) {
+        var btn = e.target.closest('[data-cookie]');
+        if (!btn) return;
+        try { localStorage.setItem('gp-cookie', btn.dataset.cookie); } catch(_) {}
+        div.classList.remove('is-visible');
+        setTimeout(function() { div.remove(); }, 400);
+      });
+    })();
+  </script>
+</body>
+</html>

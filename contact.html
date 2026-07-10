@@ -1,0 +1,356 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title data-i18n="title.contact">Contact — Giordano Patente</title>
+<meta name="description" content="Contactez Giordano Patente par WhatsApp, téléphone, email ou Facebook. Disponible 24h/24, 7j/7 en italien, français, anglais, allemand.">
+<meta name="theme-color" content="#1c2023">
+<meta property="og:title" content="Contact — Giordano Patente">
+<meta property="og:description" content="WhatsApp, téléphone, email, Facebook. Disponible 24h/24.">
+<meta property="og:type" content="website">
+<meta property="og:locale" content="fr_FR">
+<link rel="canonical" href="https://giordanopatente.it/contact.html">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Oswald:wght@400;500;600;700&family=Work+Sans:wght@400;500;600&family=JetBrains+Mono:wght@500&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="style.css">
+  <link rel="stylesheet" href="i18n.css">
+  <script>
+    (function(){
+      try {
+        var t = localStorage.getItem('gp-theme');
+        if (t === 'dark') document.documentElement.setAttribute('data-dark', 'true');
+      } catch(e) {}
+    })();
+  </script>
+<style>
+.contact-hero { padding: 60px 6vw 30px; max-width: 1100px; margin: 0 auto; }
+.contact-hero h1 { font-size: clamp(36px, 6vw, 56px); line-height: 1.1; margin-bottom: 12px; }
+.contact-hero .eyebrow { color: var(--ochre); font-family: 'JetBrains Mono', monospace; font-size: 12px; letter-spacing: 0.12em; margin-bottom: 20px; }
+.contact-hero .lead { font-size: 17px; color: #3a3a3a; line-height: 1.65; margin-bottom: 40px; max-width: 65ch; }
+.contact-grid { padding: 30px 6vw 60px; max-width: 1100px; margin: 0 auto; display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 18px; }
+.contact-card { display: flex; align-items: center; gap: 18px; padding: 24px; background: #fff; border: 1px solid rgba(28,32,35,0.1); border-radius: 4px; transition: all 0.2s ease; text-decoration: none; color: var(--asphalt); }
+[data-dark="true"] .contact-card { background: #262b2f; border-color: rgba(246,243,236,0.12); }
+.contact-card:hover { transform: translateY(-3px); border-color: var(--ochre); box-shadow: 0 12px 30px -10px rgba(28,32,35,0.2); }
+.contact-icon { width: 52px; height: 52px; border-radius: 4px; display: flex; align-items: center; justify-content: center; font-family: 'Oswald', sans-serif; font-weight: 700; font-size: 16px; color: #fff; flex-shrink: 0; }
+.contact-icon.wa { background: #25D366; }
+.contact-icon.ph { background: var(--ochre); color: var(--asphalt); }
+.contact-icon.em { background: #EA4335; }
+.contact-icon.fb { background: #1877F2; }
+.contact-info p { margin: 0; }
+.contact-info .label { font-family: 'Oswald', sans-serif; font-size: 11px; letter-spacing: 0.08em; color: #6a6a6a; text-transform: uppercase; margin-bottom: 4px; }
+[data-dark="true"] .contact-info .label { color: #a4a098; }
+.contact-info .value { font-family: 'Oswald', sans-serif; font-size: 17px; font-weight: 500; }
+.contact-info .hint { font-size: 12px; color: #6a6a6a; margin-top: 2px; }
+[data-dark="true"] .contact-info .hint { color: #a4a098; }
+.contact-form-section { padding: 60px 6vw; background: var(--cream); border-top: 1px solid rgba(28,32,35,0.08); }
+[data-dark="true"] .contact-form-section { background: #1a1d20; border-color: rgba(246,243,236,0.08); }
+.contact-form-wrap { max-width: 720px; margin: 0 auto; }
+.contact-form-wrap h2 { font-size: 32px; margin-bottom: 8px; }
+.contact-form { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; margin-top: 28px; }
+.contact-form .full { grid-column: 1 / -1; }
+.contact-form label { display: block; font-family: 'JetBrains Mono', monospace; font-size: 11px; letter-spacing: 0.08em; color: #6a6a6a; text-transform: uppercase; margin-bottom: 6px; }
+[data-dark="true"] .contact-form label { color: #a4a098; }
+.contact-form input, .contact-form textarea, .contact-form select { width: 100%; padding: 12px 14px; border: 1px solid rgba(28,32,35,0.18); border-radius: 2px; background: #fff; color: var(--asphalt); font-family: 'Work Sans', sans-serif; font-size: 15px; }
+[data-dark="true"] .contact-form input, [data-dark="true"] .contact-form textarea, [data-dark="true"] .contact-form select { background: #262b2f; color: var(--cream); border-color: rgba(246,243,236,0.18); }
+.contact-form input:focus, .contact-form textarea:focus, .contact-form select:focus { outline: none; border-color: var(--ochre); }
+.contact-form textarea { min-height: 120px; resize: vertical; }
+.contact-form button { background: var(--ochre); color: var(--asphalt); padding: 14px 28px; border: 0; border-radius: 2px; font-family: 'Oswald', sans-serif; font-size: 14px; font-weight: 600; letter-spacing: 0.08em; text-transform: uppercase; cursor: pointer; transition: all 0.2s ease; }
+.contact-form button:hover { background: #f0ac3f; transform: translateY(-2px); }
+.info-box { background: rgba(229,160,47,0.08); border-left: 3px solid var(--ochre); padding: 20px 24px; border-radius: 2px; margin-bottom: 30px; }
+.info-box h3 { font-family: 'Oswald', sans-serif; font-size: 16px; margin-bottom: 6px; }
+.info-box p { margin: 0; font-size: 14px; line-height: 1.6; color: #3a3a3a; }
+[data-dark="true"] .info-box p { color: #c4c0b6; }
+@media (max-width: 600px) { .contact-form { grid-template-columns: 1fr; } }
+
+  /* ---------- ACTIVE NAV ---------- */
+  .nav-links a.active {
+    color: var(--ochre);
+    font-weight: 700;
+  }
+  .nav-links a.active::after { width: 100%; }
+  .nav-cta.active {
+    background: var(--ochre-dim);
+    pointer-events: none;
+  }
+
+  /* ---------- BURGER BUTTON ---------- */
+  .menu-toggle {
+    display: none;
+    background: transparent;
+    border: none;
+    cursor: pointer;
+    padding: 8px;
+    flex-direction: column;
+    gap: 5px;
+    width: 36px;
+    height: 36px;
+    justify-content: center;
+    align-items: center;
+    z-index: 101;
+  }
+  .menu-toggle-bar {
+    display: block;
+    width: 24px;
+    height: 2px;
+    background: var(--cream);
+    transition: transform 0.3s ease, opacity 0.3s ease;
+    border-radius: 1px;
+  }
+  .menu-toggle.is-open .menu-toggle-bar:nth-child(1) { transform: translateY(7px) rotate(45deg); }
+  .menu-toggle.is-open .menu-toggle-bar:nth-child(2) { opacity: 0; }
+  .menu-toggle.is-open .menu-toggle-bar:nth-child(3) { transform: translateY(-7px) rotate(-45deg); }
+
+  .nav-overlay {
+    position: fixed;
+    top: 0; left: 0; right: 0; bottom: 0;
+    background: rgba(0, 0, 0, 0.6);
+    z-index: 98;
+    opacity: 0;
+    visibility: hidden;
+    transition: opacity 0.3s ease, visibility 0.3s ease;
+  }
+  .nav-overlay.is-visible { opacity: 1; visibility: visible; }
+
+  .nav-drawer {
+    position: fixed;
+    top: 0; right: 0;
+    width: 280px;
+    max-width: 80vw;
+    height: 100vh;
+    background: var(--asphalt);
+    color: var(--cream);
+    z-index: 99;
+    padding: 80px 30px 30px;
+    transform: translateX(100%);
+    transition: transform 0.3s ease;
+    overflow-y: auto;
+    box-shadow: -4px 0 20px rgba(0, 0, 0, 0.3);
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+  }
+  .nav-drawer.is-open { transform: translateX(0); }
+  .nav-drawer-link {
+    display: block;
+    padding: 14px 12px;
+    color: var(--cream);
+    font-size: 15px;
+    font-weight: 500;
+    text-decoration: none;
+    border-bottom: 1px solid rgba(246, 243, 236, 0.08);
+    transition: color 0.2s ease, padding-left 0.2s ease;
+  }
+  .nav-drawer-link:hover, .nav-drawer-link:active { color: var(--ochre); padding-left: 18px; }
+  .nav-drawer-cta {
+    display: block;
+    margin-top: 20px;
+    padding: 14px 20px;
+    background: var(--ochre);
+    color: var(--asphalt);
+    text-align: center;
+    font-weight: 600;
+    font-size: 15px;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    border-radius: 2px;
+    text-decoration: none;
+    transition: background 0.2s ease;
+  }
+  .nav-drawer-cta:hover { background: var(--ochre-dim); }
+
+  @media (max-width: 860px) {
+    .menu-toggle { display: flex !important; }
+    .nav-links, .nav-cta { display: none; }
+    .menu-toggle { display: flex !important; }
+  }
+
+</style>
+</head>
+<body>
+
+<nav class="navbar">
+  <div class="logo">
+    <a href="index.html"><span class="logo-mark" data-i18n="nav.logo.mark">GIORDANO</span><span class="logo-sub" data-i18n="nav.logo.sub">PATENTE</span></a>
+  </div>
+  <div class="nav-links">
+    <a href="index.html" data-i18n="nav.home">Accueil</a>
+    <a href="chi-siamo.html" data-i18n="nav.about">À propos</a>
+    <a href="pourquoi.html" data-i18n="nav.why">Pourquoi nous</a>
+    <a href="commencer.html" data-i18n="nav.prices">Tarifs</a>
+    <a href="informations.html" data-i18n="nav.informations">Informations</a>
+    <a href="procedure.html" data-i18n="nav.procedure">La procédure</a>
+    
+    <a href="gallery.html" data-i18n="nav.gallery">Galerie</a>
+    <a href="contact.html" data-i18n="nav.contact" class="active">Contact</a>
+  </div>
+      <button class="theme-toggle" type="button" aria-label="Toggle theme">
+        <svg class="icon-sun" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="4"/><path d="M12 2v2M12 20v2M4.93 4.93l1.41 1.41M17.66 17.66l1.41 1.41M2 12h2M20 12h2M4.93 19.07l1.41-1.41M17.66 6.34l1.41-1.41"/></svg>
+        <svg class="icon-moon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/></svg>
+      </button>
+      <a href="commencer.html" class="nav-cta" data-i18n="nav.book">Comencer</a>
+</nav>
+
+<section class="contact-hero">
+  <p class="eyebrow" data-i18n="contact.eyebrow">CONTACTEZ-NOUS</p>
+  <h1 data-i18n="contact.title">Parlons de votre permis</h1>
+  <p class="lead" data-i18n="contact.desc">Choisissez le canal qui vous convient le mieux. Notre équipe est disponible 24h/24 et 7j/7.</p>
+</section>
+
+<div class="contact-grid">
+  <a href="https://wa.me/393510101837" target="_blank" rel="noopener" class="contact-card">
+    <div class="contact-icon wa">WA</div>
+    <div class="contact-info">
+      <p class="label" data-i18n="contact.whatsapp">WhatsApp (réponse rapide)</p>
+      <p class="value">+39 351 010 1837</p>
+      <p class="hint" data-i18n="u.reponse_en_quelques_minutes">Réponse en quelques minutes</p>
+    </div>
+  </a>
+  <a href="mailto:giordanopatente39@gmail.com" class="contact-card">
+    <div class="contact-icon em">@</div>
+    <div class="contact-info">
+      <p class="label" data-i18n="contact.email">Email</p>
+      <p class="value">giordanopatente39@gmail.com</p>
+      <p class="hint" data-i18n="u.reponse_sous_24h">Réponse sous 24h</p>
+    </div>
+  </a>
+  <a href="https://www.facebook.com/share/1DP1bPDC87/?mibextid=wwXIfr" target="_blank" rel="noopener" class="contact-card">
+    <div class="contact-icon fb">f</div>
+    <div class="contact-info">
+      <p class="label" data-i18n="contact.facebook">Facebook</p>
+      <p class="value">Giordano Patente</p>
+      <p class="hint" data-i18n="cat.contact.hint.facebook">Suivre la page · Promotions</p>
+    </div>
+  </a>
+</div>
+
+<section class="contact-form-section">
+  <div class="contact-form-wrap">
+    <h2 data-i18n="contact.title">Parlons de votre permis</h2>
+    <p style="color: #3a3a3a; margin-top: 8px;" data-i18n="contact.desc">Choisissez le canal qui vous convient le mieux. Notre équipe est disponible 24h/24 et 7j/7.</p>
+
+    <div class="info-box">
+      <h3>ℹ️ <span data-i18n="contact.hours">Horaires</span> · <span data-i18n="contact.lang">Langues parlées</span></h3>
+      <p><strong data-i18n="contact.hours_val">24h/24, 7j/7</strong> · <span data-i18n="contact.lang_val">Italien · Français · Anglais · Allemand</span></p>
+    </div>
+
+    <div id="selectedBanner" style="display:none; padding: 14px 18px; background: rgba(229,160,47,0.1); border: 1px solid var(--ochre); border-radius: 4px; margin-bottom: 20px; font-size: 14px;">
+      <strong>✓ Catégorie sélectionnée :</strong> <span id="selectedCatName"></span> — <span id="selectedCatPrice"></span>
+    </div>
+
+    <form class="contact-form" id="contactForm">
+      <div>
+        <label for="cf-name" data-i18n="u.nom_complet">Nom complet</label>
+        <input type="text" id="cf-name" name="name" required placeholder="Mario Rossi">
+      </div>
+      <div>
+        <label for="cf-phone" data-i18n="u.telephone">Téléphone</label>
+        <input type="tel" id="cf-phone" name="phone" required placeholder="+33 6 12 34 56 78">
+      </div>
+      <div class="full">
+        <label for="cf-cat" data-i18n="u.categorie_de_permis">Catégorie de permis</label>
+        <select id="cf-cat" name="category">
+          <option value="B" data-i18n="opt.b_voiture">B — Voiture (800 €)</option>
+          <option value="A" data-i18n="opt.a_moto">A — Moto</option>
+          <option value="AM" data-i18n="opt.am_cyclo">AM — Cyclo (dès 14 ans)</option>
+          <option value="C" data-i18n="opt.c_camion">C — Camion</option>
+          <option value="D" data-i18n="opt.d_bus">D — Bus</option>
+          <option value="CQC" data-i18n="opt.cqc_pro">CQC — Pro</option>
+          <option value="NAUT" data-i18n="u.permis_bateau">Permis bateau</option>
+          <option value="AB" data-i18n="opt.combo_moto_voiture">Combo Moto + Voiture</option>
+          <option value="CCQC" data-i18n="opt.combo_camion_cqc">Combo Camion + CQC</option>
+        </select>
+      </div>
+      <div class="full">
+        <label for="cf-msg" data-i18n="contact.message">Votre message</label>
+        <textarea id="cf-msg" name="message" required placeholder="Ciao, vorrei delle informazioni su..."></textarea>
+      </div>
+      <div class="full">
+        <button type="submit" data-i18n="contact.send">Envoyer par WhatsApp</button>
+      </div>
+    </form>
+  </div>
+</section>
+
+<footer id="contatti" style="background: var(--asphalt); color: var(--cream); padding: 50px 6vw 30px;">
+  <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 30px; max-width: 1100px; margin: 0 auto;">
+    <div>
+      <h4 style="font-family: 'Oswald', sans-serif; font-size: 16px; margin-bottom: 12px; letter-spacing: 0.04em;">Giordano Patente</h4>
+      <p style="font-size: 14px; opacity: 0.8;" data-i18n="footer.hours">24h sur 24</p>
+      <p style="font-size: 14px; opacity: 0.8;" data-i18n="footer.days">Lundi à Dimanche</p>
+    </div>
+    <div>
+      <h4 style="font-family: 'Oswald', sans-serif; font-size: 16px; margin-bottom: 12px; letter-spacing: 0.04em;" data-i18n="footer.contact">Contact</h4>
+      <a href="https://wa.me/393510101837" style="display: block; font-size: 14px; opacity: 0.8; color: var(--cream); margin-bottom: 4px;">+39 351 010 1837</a>
+      <a href="mailto:giordanopatente39@gmail.com" style="font-size: 14px; opacity: 0.8; color: var(--cream);">giordanopatente39@gmail.com</a>
+    </div>
+  </div>
+  <div style="text-align: center; padding-top: 30px; margin-top: 30px; border-top: 1px solid rgba(246,243,236,0.12); font-size: 12px; opacity: 0.7;">
+    <span data-i18n="footer.copyright">© 2026 Giordano Patente. Tous droits réservés.</span>
+  </div>
+</footer>
+
+  <script src="burger.js"></script>
+  <script src="i18n.js"></script>
+  <script>
+    document.addEventListener('click', function(e) {
+      if (e.target.closest('.theme-toggle')) {
+        e.preventDefault();
+        var isDark = document.documentElement.getAttribute('data-dark') === 'true';
+        if (isDark) { document.documentElement.removeAttribute('data-dark'); try { localStorage.setItem('gp-theme', 'light'); } catch(_) {} }
+        else { document.documentElement.setAttribute('data-dark', 'true'); try { localStorage.setItem('gp-theme', 'dark'); } catch(_) {} }
+      }
+    });
+    // Pre-fill from commencer.html (?cat=...&name=...&price=...)
+    (function() {
+      var params = new URLSearchParams(window.location.search);
+      var cat = params.get('cat');
+      var name = params.get('name');
+      var price = params.get('price');
+      if (cat) {
+        var sel = document.getElementById('cf-cat');
+        if (sel) {
+          for (var i = 0; i < sel.options.length; i++) {
+            if (sel.options[i].value === cat) { sel.selectedIndex = i; break; }
+          }
+        }
+        if (name || price) {
+          var banner = document.getElementById('selectedBanner');
+          document.getElementById('selectedCatName').textContent = name || cat;
+          document.getElementById('selectedCatPrice').textContent = price ? price + ' €' : '';
+          if (banner) banner.style.display = 'block';
+        }
+      }
+    })();
+
+    // Contact form: redirect to WhatsApp
+    document.getElementById('contactForm').addEventListener('submit', function(e) {
+      e.preventDefault();
+      var data = new FormData(e.target);
+      var name = data.get('name') || '';
+      var phone = data.get('phone') || '';
+      var cat = data.get('category') || 'B';
+      var msg = data.get('message') || '';
+      var text = 'Bonjour, je suis ' + name + ' (' + phone + '). Catégorie: ' + cat + '. ' + msg;
+      window.open('https://wa.me/393510101837?text=' + encodeURIComponent(text), '_blank');
+    });
+    (function() {
+      try { if (localStorage.getItem('gp-cookie')) return; } catch(_) {}
+      var div = document.createElement('div');
+      div.className = 'cookie-banner';
+      div.innerHTML = '<p data-i18n="cookie.text"></p><div class="cookie-actions"><button class="cookie-accept" data-cookie="accept" data-i18n="cookie.accept"></button><button class="cookie-refuse" data-cookie="refuse" data-i18n="cookie.refuse"></button></div>';
+      document.body.appendChild(div);
+      setTimeout(function() { div.classList.add('is-visible'); I18N.apply(); }, 800);
+      div.addEventListener('click', function(e) {
+        var btn = e.target.closest('[data-cookie]');
+        if (!btn) return;
+        try { localStorage.setItem('gp-cookie', btn.dataset.cookie); } catch(_) {}
+        div.classList.remove('is-visible');
+        setTimeout(function() { div.remove(); }, 400);
+      });
+    })();
+  </script>
+
+</body>
+</html>

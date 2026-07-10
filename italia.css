@@ -1,0 +1,125 @@
+/* Giordano Patente — Italia Theme
+ * Activated only when body has class "lang-it"
+ * Subtle Italian tricolore (green-white-red) accents
+ */
+
+/* === Tricolore ribbon under the header === */
+body.lang-it header {
+  position: relative;
+}
+body.lang-it header::after {
+  content: '';
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: -3px;
+  height: 3px;
+  background: linear-gradient(
+    to right,
+    #008c45 0%, #008c45 33.33%,
+    #f4f5f0 33.33%, #f4f5f0 66.66%,
+    #cd212a 66.66%, #cd212a 100%
+  );
+  box-shadow: 0 1px 3px rgba(0,0,0,0.15);
+}
+
+/* === Active language button (IT) glows green === */
+body.lang-it .lang-switcher button.active,
+body.lang-it [data-lang="it"].active,
+body.lang-it button.active[data-lang="it"] {
+  background: #008c45 !important;
+  color: #fff !important;
+  border-color: #008c45 !important;
+}
+
+/* === Subtle Italian flag in hero (top-right corner) === */
+body.lang-it .hero,
+body.lang-it .hero-section,
+body.lang-it section.hero,
+body.lang-it [class*="hero"]:first-of-type {
+  position: relative;
+}
+body.lang-it .hero::before,
+body.lang-it .hero-section::before,
+body.lang-it section.hero::before {
+  content: '';
+  position: absolute;
+  top: 16px;
+  right: 16px;
+  width: 36px;
+  height: 24px;
+  background: linear-gradient(
+    to right,
+    #008c45 0%, #008c45 33.33%,
+    #f4f5f0 33.33%, #f4f5f0 66.66%,
+    #cd212a 66.66%, #cd212a 100%
+  );
+  border-radius: 3px;
+  box-shadow: 0 2px 6px rgba(0,0,0,0.2);
+  pointer-events: none;
+  z-index: 5;
+  opacity: 0.85;
+}
+
+/* === Primary CTA in Italian mode: green gradient === */
+body.lang-it .btn-primary,
+body.lang-it button.cta,
+body.lang-it a.cta,
+body.lang-it [class*="btn-"]:not(.btn-secondary) {
+  background: linear-gradient(135deg, #008c45 0%, #006d35 100%) !important;
+  border-color: #006d35 !important;
+}
+body.lang-it .btn-primary:hover,
+body.lang-it button.cta:hover,
+body.lang-it a.cta:hover {
+  background: linear-gradient(135deg, #00a64f 0%, #008c45 100%) !important;
+}
+
+/* === Section heading underlines get Italian red accent === */
+body.lang-it h2::after,
+body.lang-it .display::after,
+body.lang-it h1::after {
+  background: linear-gradient(to right, #008c45 0%, #cd212a 100%) !important;
+}
+
+/* === Card borders on hover: Italian flag === */
+body.lang-it .card:hover,
+body.lang-it [class*="price-card"]:hover,
+body.lang-it [class*="offer"]:hover {
+  border-color: #008c45 !important;
+  box-shadow: 0 8px 24px -8px rgba(0, 140, 69, 0.35) !important;
+}
+
+/* === Eyebrow labels (small uppercase) turn green === */
+body.lang-it .eyebrow,
+body.lang-it [class*="eyebrow"] {
+  color: #008c45 !important;
+}
+
+/* === Form input focus: green ring === */
+body.lang-it input:focus,
+body.lang-it textarea:focus,
+body.lang-it select:focus {
+  border-color: #008c45 !important;
+  box-shadow: 0 0 0 3px rgba(0, 140, 69, 0.18) !important;
+  outline: none;
+}
+
+/* === Floating contact FAB stays ochre (not changed) === */
+/* Already brand-consistent, no override needed */
+
+/* === Footer accent: green/red corner === */
+body.lang-it footer {
+  border-top: 3px solid;
+  border-image: linear-gradient(to right, #008c45 0%, #008c45 33%, #f4f5f0 33%, #f4f5f0 66%, #cd212a 66%, #cd212a 100%) 1;
+}
+
+/* === Selection color: Italian green === */
+body.lang-it ::selection {
+  background: #008c45;
+  color: #fff;
+}
+body.lang-it ::-moz-selection {
+  background: #008c45;
+  color: #fff;
+}
