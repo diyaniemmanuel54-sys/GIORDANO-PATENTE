@@ -147,7 +147,7 @@
       'paymodal.iban.name': "Bonifico IBAN",
       'paymodal.iban.desc': "Tracciabilità bancaria totale. Bonifica l'acconto all'IBAN qui sotto e invia la prova su WhatsApp.",
       'paymodal.iban.detail': "Tempo: 1-2 giorni lavorativi · Intestatario: Wamba Patrick",
-      'paymodal.iban.coord': "IBAN: IT17O0760102800001081208330",
+      'paymodal.iban.coord': "IBAN: IT58J3608105138204834904854",
       'paymodal.iban.bank': "Banca Intesa Sanpaolo · Codice fiscale: WMBPRC80R16Z306T",
       'paymodal.poste.name': 'PostePay',
       'paymodal.poste.desc': "Conferma immediata. Ideale per acconto rapido. Ricarica la carta prepagata e invia la prova.",
