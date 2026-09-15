@@ -1,0 +1,862 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title data-i18n="title.procedure">Svolgimento del processo — Giordano Patente</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Oswald:wght@400;500;600;700&family=Work+Sans:wght@400;500;600&family=JetBrains+Mono:wght@500&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --asphalt: #1c2023;
+    --asphalt-2: #262b2f;
+    --cream: #f6f3ec;
+    --ochre: #e5a02f;
+    --ochre-dim: #b87e22;
+    --racing-green: #33503f;
+    --signal-red: #bf4238;
+    --line-grey: #d8d3c6;
+  }
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  html { scroll-behavior: smooth; }
+  body { font-family: 'Work Sans', sans-serif; background: var(--cream); color: var(--asphalt); line-height: 1.5; overflow-x: hidden; }
+  h1, h2, h3, .display { font-family: 'Oswald', sans-serif; text-transform: uppercase; letter-spacing: 0.02em; }
+  .mono { font-family: 'JetBrains Mono', monospace; }
+  a { color: inherit; text-decoration: none; }
+
+  @media (prefers-reduced-motion: reduce) {
+    *, *::before, *::after { animation-duration: 0.01ms !important; animation-iteration-count: 1 !important; transition-duration: 0.01ms !important; scroll-behavior: auto !important; }
+  }
+
+  /* ---------- NAVBAR ---------- */
+  .navbar { position: fixed; top: 0; left: 0; right: 0; z-index: 100; display: flex; align-items: center; justify-content: space-between; padding: 18px 5%; background: rgba(28, 32, 35, 0.92); backdrop-filter: blur(6px); }
+  .logo { display: flex; align-items: baseline; gap: 8px; color: var(--cream); }
+  .logo-mark { font-family: 'Oswald', sans-serif; font-weight: 700; font-size: 20px; letter-spacing: 0.03em; }
+  .logo-sub { font-family: 'JetBrains Mono', monospace; font-size: 11px; color: var(--ochre); letter-spacing: 0.15em; }
+  .nav-links { display: flex; gap: 32px; font-size: 14px; color: var(--cream); font-weight: 500; }
+  .nav-links a { position: relative; padding-bottom: 4px; }
+  .nav-links a::after { content: ''; position: absolute; left: 0; bottom: 0; width: 0; height: 2px; background: var(--ochre); transition: width 0.25s ease; }
+  .nav-links a:hover::after { width: 100%; }
+  .nav-links a.is-active::after { width: 100%; }
+  .nav-cta { background: var(--ochre); color: var(--asphalt); padding: 10px 20px; border-radius: 2px; font-weight: 600; font-size: 13px; text-transform: uppercase; letter-spacing: 0.05em; }
+
+  /* ---------- HERO ---------- */
+  .hero-procedure {
+    position: relative;
+    min-height: 70vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    background: var(--asphalt);
+    color: var(--cream);
+    padding: 140px 5% 80px;
+    overflow: hidden;
+  }
+  .road-line {
+    position: absolute;
+    top: 0;
+    left: 50%;
+    width: 6px;
+    height: 100%;
+    transform: translateX(-50%);
+    background: repeating-linear-gradient(to bottom, var(--ochre) 0px, var(--ochre) 40px, transparent 40px, transparent 80px);
+    opacity: 0.35;
+    animation: drive 2.4s linear infinite;
+  }
+  @keyframes drive { from { background-position: 0 0; } to { background-position: 0 80px; } }
+  .hero-eyebrow {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 13px;
+    color: var(--ochre);
+    letter-spacing: 0.2em;
+    margin-bottom: 20px;
+    z-index: 2;
+  }
+  .hero-procedure h1 {
+    font-size: clamp(40px, 6.5vw, 82px);
+    line-height: 0.98;
+    max-width: 18ch;
+    z-index: 2;
+  }
+  .hero-procedure h1 span { color: var(--ochre); }
+  .hero-procedure .hero-desc {
+    margin-top: 24px;
+    max-width: 56ch;
+    font-size: 17px;
+    color: #cfcbc0;
+    z-index: 2;
+  }
+  .hero-actions { margin-top: 36px; display: flex; gap: 16px; z-index: 2; flex-wrap: wrap; }
+  .btn-primary, .btn-secondary {
+    padding: 15px 28px;
+    font-size: 14px;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    border-radius: 2px;
+    cursor: pointer;
+    border: 1px solid transparent;
+    transition: transform 0.2s ease, background 0.2s ease;
+  }
+  .btn-primary { background: var(--ochre); color: var(--asphalt); display: inline-block; }
+  .btn-primary:hover { transform: translateY(-2px); background: #f0ac3f; }
+  .btn-secondary { background: transparent; color: var(--cream); border-color: rgba(246,243,236,0.35); display: inline-block; }
+  .btn-secondary:hover { transform: translateY(-2px); border-color: var(--cream); }
+
+  /* ---------- INTRO BAR ---------- */
+  .intro-bar {
+    background: var(--ochre);
+    color: var(--asphalt);
+    padding: 32px 5%;
+    text-align: center;
+  }
+  .intro-bar p {
+    max-width: 72ch;
+    margin: 0 auto;
+    font-size: 15px;
+    line-height: 1.6;
+  }
+  .intro-bar strong { font-weight: 700; }
+
+  /* ---------- STEPS ---------- */
+  .steps-section { padding: 80px 5% 60px; }
+  .step {
+    display: grid;
+    grid-template-columns: 1.1fr 1fr;
+    gap: 60px;
+    align-items: center;
+    padding: 60px 0;
+    border-bottom: 1px dashed rgba(28, 32, 35, 0.15);
+  }
+  .step:last-child { border-bottom: none; }
+  .step.is-reverse .step-text { order: 2; }
+  .step.is-reverse .step-visual { order: 1; }
+
+  .step-number {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 12px;
+    color: var(--ochre-dim);
+    letter-spacing: 0.2em;
+    margin-bottom: 14px;
+    display: flex;
+    align-items: center;
+    gap: 12px;
+  }
+  .step-number::before {
+    content: '';
+    display: inline-block;
+    width: 28px;
+    height: 1px;
+    background: var(--ochre);
+  }
+  .step h2 {
+    font-size: clamp(28px, 3.5vw, 42px);
+    line-height: 1.05;
+    margin-bottom: 20px;
+    color: var(--asphalt);
+  }
+  .step h2 small {
+    display: block;
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 13px;
+    color: var(--asphalt-2);
+    text-transform: uppercase;
+    letter-spacing: 0.12em;
+    font-weight: 500;
+    margin-top: 8px;
+  }
+  .step p.lead {
+    font-size: 15.5px;
+    color: #444;
+    line-height: 1.65;
+    margin-bottom: 22px;
+  }
+  .step-meta {
+    display: grid;
+    gap: 14px;
+  }
+  .meta-block {
+    background: var(--cream);
+    border: 1px solid rgba(28, 32, 35, 0.1);
+    border-left: 3px solid var(--ochre);
+    padding: 14px 18px;
+    border-radius: 2px;
+  }
+  .meta-block.is-result { border-left-color: var(--racing-green); }
+  .meta-block .label {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 10.5px;
+    color: var(--ochre-dim);
+    text-transform: uppercase;
+    letter-spacing: 0.16em;
+    margin-bottom: 6px;
+  }
+  .meta-block.is-result .label { color: var(--racing-green); }
+  .meta-block .value {
+    font-size: 14px;
+    color: var(--asphalt);
+    line-height: 1.55;
+  }
+  .step-visual {
+    position: relative;
+    aspect-ratio: 1 / 1;
+    background: linear-gradient(180deg, #f6f3ec 0%, #e8e3d6 100%);
+    border: 1px solid rgba(28, 32, 35, 0.08);
+    border-radius: 4px;
+    padding: 30px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    overflow: hidden;
+  }
+  .step-visual::before {
+    content: '';
+    position: absolute;
+    top: 16px;
+    right: 16px;
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 11px;
+    color: var(--ochre-dim);
+    letter-spacing: 0.1em;
+    background: var(--cream);
+    padding: 4px 8px;
+    border-radius: 2px;
+  }
+  .step-visual svg { width: 80%; height: 80%; position: relative; z-index: 1; }
+  .step-visual::before { content: attr(data-step); }
+
+  @media (max-width: 900px) {
+    .step { grid-template-columns: 1fr; gap: 30px; padding: 40px 0; }
+    .step.is-reverse .step-text { order: 1; }
+    .step.is-reverse .step-visual { order: 2; }
+  }
+
+  /* ---------- CTA BANNER ---------- */
+  .cta-banner {
+    background: var(--racing-green);
+    color: var(--cream);
+    padding: 60px 5%;
+    text-align: center;
+  }
+  .cta-banner h2 { font-size: clamp(28px, 4vw, 44px); margin-bottom: 20px; }
+  .cta-banner .btn-primary { display: inline-block; }
+
+  /* ---------- FOOTER ---------- */
+  footer { background: var(--asphalt); color: var(--cream); padding: 60px 5% 24px; }
+  .footer-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 40px; max-width: 1100px; margin: 0 auto; }
+  .footer-col h4 { font-family: 'Oswald', sans-serif; font-size: 14px; letter-spacing: 0.15em; color: var(--ochre); margin-bottom: 16px; }
+  .footer-col p, .footer-col a { display: block; font-size: 13.5px; color: #d3cec3; margin-bottom: 6px; transition: color 0.2s ease; }
+  .footer-col a:hover { color: var(--ochre); }
+  .footer-bottom { max-width: 1100px; margin: 40px auto 0; padding-top: 20px; border-top: 1px solid rgba(246, 243, 236, 0.12); display: flex; justify-content: space-between; font-size: 12px; color: #a39e93; }
+  @media (max-width: 720px) {
+    .footer-grid { grid-template-columns: 1fr; gap: 28px; }
+    .footer-bottom { flex-direction: column; gap: 8px; text-align: center; }
+  }
+
+  /* ---------- FLOATING CONTACT BUTTON ---------- */
+  .contact-fab { position: fixed; bottom: 24px; right: 24px; z-index: 200; }
+  .contact-fab-toggle {
+    width: 60px; height: 60px; border-radius: 50%; background: var(--ochre); color: var(--cream);
+    border: none; cursor: pointer; display: flex; align-items: center; justify-content: center;
+    box-shadow: 0 10px 28px -8px rgba(28, 32, 35, 0.5), 0 0 0 4px rgba(229, 160, 47, 0.18);
+    transition: transform 0.25s ease, box-shadow 0.25s ease; position: relative;
+  }
+  .contact-fab-toggle:hover { transform: scale(1.08); box-shadow: 0 14px 32px -8px rgba(28, 32, 35, 0.55), 0 0 0 6px rgba(229, 160, 47, 0.25); }
+  .contact-fab-toggle svg { width: 28px; height: 28px; transition: transform 0.3s ease; }
+  .contact-fab-toggle.is-open svg { transform: rotate(45deg); }
+  .contact-fab-pulse { position: absolute; inset: 0; border-radius: 50%; background: var(--ochre); opacity: 0.5; animation: fab-pulse 2.2s ease-out infinite; pointer-events: none; }
+  @keyframes fab-pulse { 0% { transform: scale(1); opacity: 0.5; } 70% { transform: scale(1.7); opacity: 0; } 100% { transform: scale(1.7); opacity: 0; } }
+  .contact-fab-menu {
+    position: absolute; bottom: 76px; right: 0; background: var(--cream);
+    border: 1px solid rgba(28, 32, 35, 0.1); border-radius: 6px; padding: 10px;
+    display: flex; flex-direction: column; gap: 6px; min-width: 230px;
+    box-shadow: 0 18px 40px -12px rgba(28, 32, 35, 0.4);
+    opacity: 0; transform: translateY(8px) scale(0.96); pointer-events: none;
+    transition: opacity 0.2s ease, transform 0.2s ease;
+  }
+  .contact-fab-menu.is-open { opacity: 1; transform: translateY(0) scale(1); pointer-events: auto; }
+  .contact-fab-menu::after {
+    content: ''; position: absolute; bottom: -7px; right: 22px; width: 14px; height: 14px;
+    background: var(--cream); border-right: 1px solid rgba(28, 32, 35, 0.1);
+    border-bottom: 1px solid rgba(28, 32, 35, 0.1); transform: rotate(45deg);
+  }
+  .contact-fab-label {
+    font-family: 'JetBrains Mono', monospace; font-size: 10px; color: var(--ochre-dim);
+    letter-spacing: 0.16em; text-transform: uppercase; padding: 4px 8px 8px;
+    border-bottom: 1px dashed rgba(28, 32, 35, 0.15); margin-bottom: 4px;
+  }
+  .contact-fab-item {
+    display: flex; align-items: center; gap: 12px; padding: 9px 10px; border-radius: 4px;
+    color: var(--asphalt); transition: background 0.15s ease, color 0.15s ease, transform 0.15s ease;
+    font-size: 13.5px; font-weight: 500;
+  }
+  .contact-fab-item:hover { background: var(--asphalt); color: var(--cream); transform: translateX(-2px); }
+  .contact-fab-item .icon { width: 32px; height: 32px; border-radius: 50%; display: flex; align-items: center; justify-content: center; color: var(--cream); flex-shrink: 0; }
+  .contact-fab-item .icon svg { width: 16px; height: 16px; fill: currentColor; }
+  .contact-fab-item .icon.fb { background: #1877F2; }
+  .contact-fab-item .icon.tt { background: #000000; }
+  .contact-fab-item .icon.wa { background: #25D366; }
+  .contact-fab-item .icon.tg { background: #229ED9; }
+  .contact-fab-item .meta { display: flex; flex-direction: column; line-height: 1.2; }
+  .contact-fab-item .meta .name { font-size: 13.5px; font-weight: 600; }
+  .contact-fab-item .meta .hint { font-family: 'JetBrains Mono', monospace; font-size: 9.5px; color: var(--ochre-dim); letter-spacing: 0.1em; text-transform: uppercase; margin-top: 2px; }
+  .contact-fab-item:hover .meta .hint { color: var(--ochre); }
+  @media (max-width: 480px) { .contact-fab { bottom: 18px; right: 18px; } .contact-fab-toggle { width: 54px; height: 54px; } .contact-fab-menu { min-width: 200px; } }
+
+  /* ---------- ACTIVE NAV ---------- */
+  .nav-links a.active {
+    color: var(--ochre);
+    font-weight: 700;
+  }
+  .nav-links a.active::after { width: 100%; }
+  .nav-cta.active {
+    background: var(--ochre-dim);
+    pointer-events: none;
+  }
+
+  /* ---------- BURGER BUTTON ---------- */
+  .menu-toggle {
+    display: none;
+    background: transparent;
+    border: none;
+    cursor: pointer;
+    padding: 8px;
+    flex-direction: column;
+    gap: 5px;
+    width: 36px;
+    height: 36px;
+    justify-content: center;
+    align-items: center;
+    z-index: 101;
+  }
+  .menu-toggle-bar {
+    display: block;
+    width: 24px;
+    height: 2px;
+    background: var(--cream);
+    transition: transform 0.3s ease, opacity 0.3s ease;
+    border-radius: 1px;
+  }
+  .menu-toggle.is-open .menu-toggle-bar:nth-child(1) { transform: translateY(7px) rotate(45deg); }
+  .menu-toggle.is-open .menu-toggle-bar:nth-child(2) { opacity: 0; }
+  .menu-toggle.is-open .menu-toggle-bar:nth-child(3) { transform: translateY(-7px) rotate(-45deg); }
+
+  /* ---------- NAV OVERLAY ---------- */
+  .nav-overlay {
+    position: fixed;
+    top: 0; left: 0; right: 0; bottom: 0;
+    background: rgba(0, 0, 0, 0.6);
+    z-index: 98;
+    opacity: 0;
+    visibility: hidden;
+    transition: opacity 0.3s ease, visibility 0.3s ease;
+  }
+  .nav-overlay.is-visible { opacity: 1; visibility: visible; }
+
+  /* ---------- NAV DRAWER ---------- */
+  .nav-drawer {
+    position: fixed;
+    top: 0; right: 0;
+    width: 280px;
+    max-width: 80vw;
+    height: 100vh;
+    background: var(--asphalt);
+    color: var(--cream);
+    z-index: 99;
+    padding: 80px 30px 30px;
+    transform: translateX(100%);
+    transition: transform 0.3s ease;
+    overflow-y: auto;
+    box-shadow: -4px 0 20px rgba(0, 0, 0, 0.3);
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+  }
+  .nav-drawer.is-open { transform: translateX(0); }
+  .nav-drawer-link {
+    display: block;
+    padding: 14px 12px;
+    color: var(--cream);
+    font-size: 15px;
+    font-weight: 500;
+    text-decoration: none;
+    border-bottom: 1px solid rgba(246, 243, 236, 0.08);
+    transition: color 0.2s ease, padding-left 0.2s ease;
+  }
+  .nav-drawer-link:hover, .nav-drawer-link:active {
+    color: var(--ochre);
+    padding-left: 18px;
+  }
+  .nav-drawer-cta {
+    display: block;
+    margin-top: 20px;
+    padding: 14px 20px;
+    background: var(--ochre);
+    color: var(--asphalt);
+    text-align: center;
+    font-weight: 600;
+    font-size: 15px;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    border-radius: 2px;
+    text-decoration: none;
+    transition: background 0.2s ease;
+  }
+  .nav-drawer-cta:hover { background: var(--ochre-dim); }
+
+  /* ---------- RESPONSIVE ---------- */
+  @media (max-width: 860px) {
+    .menu-toggle { display: flex !important; }
+    .nav-links, .nav-cta { display: none; }
+    .menu-toggle { display: flex !important; }
+    .navbar { padding: 14px 6%; }
+    section { padding: 70px 6%; }
+    .hero { padding: 0 6%; }
+    .step { grid-template-columns: 1fr; gap: 12px; }
+    .step-num { font-size: 42px; }
+    .contact-fab { bottom: 18px; right: 18px; }
+  }
+  @media (max-width: 480px) {
+    .contact-fab { bottom: 18px; right: 18px; }
+    .contact-fab-toggle { width: 54px; height: 54px; }
+    .contact-fab-menu { min-width: 200px; }
+  }
+</style>
+  <link rel="stylesheet" href="i18n.css">
+  <script>
+    // Theme init: apply saved theme before paint to avoid flash
+    (function(){
+      try {
+        var t = localStorage.getItem('gp-theme');
+        if (t === 'dark') document.documentElement.setAttribute('data-dark', 'true');
+      } catch(e) {}
+    })();
+  </script>
+</head>
+<body>
+
+<nav class="navbar">
+  <a href="index.html" class="logo">
+    <span class="logo-mark" data-i18n="nav.logo.mark">GIORDANO</span>
+    <span class="logo-sub" data-i18n="nav.logo.sub">PATENTE</span>
+  </a>
+  <div class="nav-links">
+    <a href="index.html" data-i18n="nav.home">Home</a>
+    <a href="chi-siamo.html" data-i18n="nav.about">Chi siamo</a>
+    <a href="perche.html" data-i18n="nav.why">Perché noi</a>
+    <a href="inizia.html" data-i18n="nav.prices">Prezzi</a>
+    <a href="informazioni.html" data-i18n="nav.informations">Informazioni</a>
+    <a href="procedura.html" data-i18n="nav.procedure" class="active">La procedura</a>
+    
+    <a href="galleria.html" data-i18n="nav.gallery">Galleria</a>
+    <a href="contact.html" data-i18n="nav.contact">Contatti</a>
+  </div>
+      <button class="theme-toggle" type="button" aria-label="Toggle theme">
+        <svg class="icon-sun" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="4"/><path d="M12 2v2M12 20v2M4.93 4.93l1.41 1.41M17.66 17.66l1.41 1.41M2 12h2M20 12h2M4.93 19.07l1.41-1.41M17.66 6.34l1.41-1.41"/></svg>
+        <svg class="icon-moon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/></svg>
+      </button>
+      <a href="index.html#contatti" class="nav-cta" data-i18n="nav.book">Inizia</a>
+</nav>
+
+<section class="hero-procedure">
+  <div class="road-line" aria-hidden="true" data-i18n="u.procedure">PROCEDURA</div>
+  <p class="hero-eyebrow" data-i18n="proc.eyebrow">PROCEDURA — 6 FASI</p>
+  <h1 data-i18n="procedure.h1">SVOLGIMENTO DELLA PROCEDURA</h1>
+  <p class="hero-desc" data-i18n="procedure.desc">Dalla ricezione del fascicolo alla fine della procedura del documento fisico a casa vostra, ecco come Giordano Patente orchestra le 6 fasi normative di una richiesta di patente di guida conforme alla direttiva europea 2006/126/CE.</p>
+  <div class="hero-actions">
+    <a href="#etape-1" class="btn-primary" data-i18n="u.lire_la_procedure">Leggi la procedura</a>
+    <a href="index.html" class="btn-secondary" data-i18n="u.retour_a_l_accueil">Torna alla home</a>
+  </div>
+</section>
+
+<div class="intro-bar">
+  <p data-i18n="proc.intro.full"><strong>Ai sensi del D.Lgs. 285/1992 — Codice della strada italiano</strong> e alla direttiva 2006/126/CE, ogni richiesta di patente segue un percorso disciplinato dalla Motorizzazione Civile e dal Ministero delle Infrastrutture e dei Trasporti (MIT).</p>
+</div>
+
+<section class="steps-section">
+
+  <article class="step" id="etape-1">
+    <div class="step-text">
+      <div class="step-number" data-i18n="u.etape_01_06">FASE 01 / 06</div>
+      <h2 data-i18n="proc.step1.h2">VÉRIFICATION ET VALIDATION DU DOSSIER <small>ÉTAPE 1 — Vérification et validation du dossier</small></h2>
+      <p class="lead" data-i18n="u.des_que_nous_recevons_la_documentation_nos_operate">Non appena riceviamo la documentazione, i nostri operatori qualificati effettuano una verifica completa della conformità, confrontando tutti i documenti con i requisiti stabiliti dalla Motorizzazione Civile e dal Ministero delle Infrastrutture e dei Trasporti.</p>
+      <div class="step-meta">
+        <div class="meta-block">
+          <div class="label" data-i18n="u.action">AZIONE</div>
+          <div class="value" data-i18n="u.analyse_des_documents_d_identite_et_verification_d">Analisi dei documenti d'identità e verifica del casellario giudiziale nel sistema nazionale (ANPR e ANAC).</div>
+        </div>
+        <div class="meta-block is-result">
+          <div class="label" data-i18n="u.resultat">RISULTATO</div>
+          <div class="value" data-i18n="u.le_profil_est_active_immediatement_pour_l_enregist">Il profilo viene attivato immediatamente per la registrazione, senza blocchi amministrativi.</div>
+        </div>
+      </div>
+    </div>
+    <div class="step-visual" data-step="01 / VÉRIFICATION">
+      <svg viewBox="0 0 200 200" fill="none" xmlns="http://www.w3.org/2000/svg" stroke="#1c2023" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+        <rect x="40" y="55" width="100" height="130" rx="4" fill="#f6f3ec" stroke-width="2.2"/>
+        <rect x="48" y="68" width="50" height="14" fill="#e5a02f" stroke="none"/>
+        <circle cx="118" cy="80" r="9" fill="#f6f3ec"/>
+        <path d="M115 80 Q118 75 121 80 Q118 85 115 80 Z" fill="#1c2023" stroke="none"/>
+        <path d="M118 87 L118 96" stroke-width="1.5"/>
+        <line x1="48" y1="100" x2="132" y2="100"/>
+        <line x1="48" y1="112" x2="120" y2="112"/>
+        <line x1="48" y1="124" x2="128" y2="124"/>
+        <line x1="48" y1="136" x2="110" y2="136"/>
+        <rect x="48" y="148" width="84" height="22" fill="none" stroke-dasharray="3 3" stroke="#33503f"/>
+        <text x="90" y="162" text-anchor="middle" font-size="8" fill="#33503f" stroke="none" font-family="monospace" font-weight="bold">CONFORME</text>
+        <circle cx="155" cy="155" r="28" fill="#33503f" stroke-width="2.2"/>
+        <path d="M142 156 L152 166 L170 145" stroke="#f6f3ec" stroke-width="3.5" fill="none"/>
+        <circle cx="60" cy="40" r="14" fill="none" stroke="#e5a02f" stroke-width="2"/>
+        <line x1="71" y1="51" x2="80" y2="60" stroke="#e5a02f" stroke-width="3"/>
+        <line x1="55" y1="36" x2="65" y2="36"/>
+        <line x1="55" y1="40" x2="62" y2="40"/>
+        <line x1="55" y1="44" x2="63" y2="44"/>
+      </svg>
+    </div>
+  </article>
+
+  <article class="step is-reverse" id="etape-2">
+    <div class="step-text">
+      <div class="step-number" data-i18n="u.etape_02_06">FASE 02 / 06</div>
+      <h2 data-i18n="proc.step2.h2">ENREGISTREMENT ET ATTRIBUTION NUMÉRIQUE <small>ÉTAPE 2 — Enregistrement et affectation numérique</small></h2>
+      <p class="lead" data-i18n="u.contrairement_aux_auto_ecoles_traditionnelles_chaq">A differenza delle autoscuole tradizionali, ogni fascicolo è gestito individualmente da un consulente dedicato, garantendo la massima precisione nell'inserimento dei dati e una comunicazione diretta con gli uffici della Motorizzazione civile.</p>
+      <div class="step-meta">
+        <div class="meta-block">
+          <div class="label">ACTION</div>
+          <div class="value" data-i18n="u.saisie_directe_des_donnees_dans_le_registre_de_la_">Inserimento diretto dei dati nel Registro della Motorizzazione (MIT — Ministero delle Infrastrutture e dei Trasporti).</div>
+        </div>
+        <div class="meta-block is-result">
+          <div class="label" data-i18n="u.preuve_de_fiabilite">PROVA DI AFFIDABILITÀ</div>
+          <div class="value" data-i18n="u.generation_d_un_numero_de_dossier_officiel_attesta">Generazione di un numero di fascicolo ufficiale che attesta la presenza della futura patente di guida nella banca dati dello Stato.</div>
+        </div>
+      </div>
+    </div>
+    <div class="step-visual" data-step="02 / ENREGISTREMENT">
+      <svg viewBox="0 0 200 200" fill="none" xmlns="http://www.w3.org/2000/svg" stroke="#1c2023" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+        <rect x="25" y="50" width="150" height="110" rx="5" fill="#262b2f" stroke="#1c2023" stroke-width="2.5"/>
+        <rect x="32" y="58" width="136" height="78" fill="#1c2023" stroke="none"/>
+        <rect x="60" y="160" width="80" height="6" rx="2" fill="#1c2023"/>
+        <rect x="40" y="68" width="60" height="8" fill="#e5a02f" stroke="none"/>
+        <text x="40" y="74.5" font-size="6" fill="#1c2023" stroke="none" font-family="monospace" font-weight="bold">MIT — REGISTRE</text>
+        <line x1="40" y1="84" x2="160" y2="84" stroke="#33503f" stroke-width="1"/>
+        <rect x="40" y="90" width="42" height="6" fill="#33503f" stroke="none" opacity="0.7"/>
+        <rect x="86" y="90" width="30" height="6" fill="#33503f" stroke="none" opacity="0.7"/>
+        <rect x="40" y="100" width="50" height="6" fill="#f6f3ec" stroke="none" opacity="0.4"/>
+        <rect x="94" y="100" width="24" height="6" fill="#f6f3ec" stroke="none" opacity="0.4"/>
+        <rect x="40" y="110" width="34" height="6" fill="#f6f3ec" stroke="none" opacity="0.4"/>
+        <rect x="78" y="110" width="40" height="6" fill="#f6f3ec" stroke="none" opacity="0.4"/>
+        <text x="40" y="128" font-size="6" fill="#e5a02f" stroke="none" font-family="monospace" font-weight="bold">DOSS#</text>
+        <text x="155" y="128" text-anchor="end" font-size="8" fill="#e5a02f" stroke="none" font-family="monospace" font-weight="bold">RN-2026-047</text>
+        <circle cx="148" cy="148" r="12" fill="#e5a02f" stroke="none"/>
+        <path d="M142 148 L147 153 L156 142" stroke="#1c2023" stroke-width="2.5" fill="none"/>
+      </svg>
+    </div>
+  </article>
+
+  <article class="step" id="etape-3">
+    <div class="step-text">
+      <div class="step-number" data-i18n="u.etape_03_06">FASE 03 / 06</div>
+      <h2 data-i18n="proc.step3.h2">AFFILIATION AVEC DES AUTO-ÉCOLES PARTENAIRES AGRÉÉES <small>Phase 3 — Affiliation avec une autoscuola partenaire agréée</small></h2>
+      <p class="lead" data-i18n="u.pour_que_le_permis_de_conduire_acquiere_une_validi">Affinché la patente di guida acquisisca piena validità legale, la pratica deve essere associata a un'installazione fisica regolarmente autorizzata dalla prefettura. Disponiamo di una rete di autoscuole partner certificate su tutto il territorio nazionale.</p>
+      <div class="step-meta">
+        <div class="meta-block">
+          <div class="label" data-i18n="u.procedure_1002">PROCEDURA</div>
+          <div class="value" data-i18n="u.saisie_numerique_des_donnees_du_demandeur_dans_les">Inserimento digitale dei dati del richiedente negli archivi dell'autoscuola partner della sua regione di residenza.</div>
+        </div>
+        <div class="meta-block is-result">
+          <div class="label" data-i18n="u.role_de_l_auto_ecole">RUOLO DELL'AUTOSCULA</div>
+          <div class="value" data-i18n="u.validation_officielle_des_heures_de_formation_et_d">Convalida ufficiale delle ore di formazione e delle competenze acquisite, ai sensi dell'art. 123 del Codice della strada.</div>
+        </div>
+      </div>
+    </div>
+    <div class="step-visual" data-step="03 / AFFILIATION">
+      <svg viewBox="0 0 200 200" fill="none" xmlns="http://www.w3.org/2000/svg" stroke="#1c2023" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+        <path d="M50 145 Q50 100 60 85 L75 70 L95 70 L95 80 L80 80 L75 88 L70 105 L70 145 Z" fill="#f6f3ec" stroke-width="2.2"/>
+        <rect x="73" y="98" width="14" height="14" fill="#e5a02f" stroke="none"/>
+        <line x1="78" y1="98" x2="78" y2="112" stroke="#1c2023"/>
+        <line x1="73" y1="105" x2="87" y2="105" stroke="#1c2023"/>
+        <rect x="60" y="80" width="6" height="6" fill="#33503f" stroke="none"/>
+        <text x="100" y="50" font-size="9" fill="#e5a02f" stroke="none" font-family="Oswald" font-weight="bold">GIORDANO</text>
+        <line x1="100" y1="55" x2="160" y2="55" stroke="#e5a02f" stroke-width="1.5" stroke-dasharray="3 2"/>
+        <path d="M155 50 L165 50 L165 80 L155 80 Z" fill="#f6f3ec" stroke-width="2.2"/>
+        <rect x="158" y="55" width="9" height="9" fill="#e5a02f" stroke="none"/>
+        <text x="162.5" y="62" text-anchor="middle" font-size="6" fill="#1c2023" stroke="none" font-family="Oswald" font-weight="bold">A</text>
+        <line x1="160" y1="80" x2="160" y2="90" stroke="#1c2023" stroke-width="1.5"/>
+        <line x1="155" y1="90" x2="165" y2="90" stroke="#1c2023" stroke-width="2"/>
+        <line x1="40" y1="160" x2="180" y2="160" stroke="#1c2023" stroke-width="2.2"/>
+        <line x1="40" y1="160" x2="40" y2="170" stroke="#1c2023" stroke-width="2.2"/>
+        <line x1="180" y1="160" x2="180" y2="170" stroke="#1c2023" stroke-width="2.2"/>
+        <line x1="50" y1="165" x2="58" y2="165" stroke="#e5a02f" stroke-width="2"/>
+        <line x1="80" y1="165" x2="88" y2="165" stroke="#e5a02f" stroke-width="2"/>
+        <line x1="110" y1="165" x2="118" y2="165" stroke="#e5a02f" stroke-width="2"/>
+        <line x1="140" y1="165" x2="148" y2="165" stroke="#e5a02f" stroke-width="2"/>
+        <path d="M170 165 L170 170 M172 165 L172 170" stroke="#1c2023" stroke-width="1.5"/>
+        <circle cx="105" cy="125" r="14" fill="#bf4238" stroke="none"/>
+        <text x="105" y="130" text-anchor="middle" font-size="14" fill="#f6f3ec" stroke="none" font-family="Oswald" font-weight="bold">A.S.</text>
+      </svg>
+    </div>
+  </article>
+
+  <article class="step is-reverse" id="etape-4">
+    <div class="step-text">
+      <div class="step-number" data-i18n="u.etape_04_06">FASE 04 / 06</div>
+      <h2 data-i18n="proc.step4.h2">CERTIFICATION ET SCEAU ADMINISTRATIF <small>Étape 4 — Certification et sceau administratif</small></h2>
+      <p class="lead" data-i18n="u.une_fois_le_dossier_valide_par_le_systeme_le_permi">Una volta convalidato il fascicolo dal sistema, la patente entra nella fase di produzione sicura. La fabbricazione è effettuata conformemente alle norme di sicurezza europee previste dalla direttiva 2006/126/CE relativa alla patente di guida.</p>
+      <div class="step-meta">
+        <div class="meta-block">
+          <div class="label" data-i18n="u.procedure_1003">PROCEDURA</div>
+          <div class="value" data-i18n="u.impression_laser_sur_polycarbonate_de_haute_securi">Stampa laser su policarbonato ad alta sicurezza conforme alle norme UE, con integrazione del microchip elettronico (RFID).</div>
+        </div>
+        <div class="meta-block is-result">
+          <div class="label" data-i18n="u.elements_de_securite">ELEMENTI DI SICUREZZA</div>
+          <div class="value" data-i18n="u.hologrammes_encres_reactives_aux_uv_gravure_laser_">Ologrammi, inchiostri UV reattivi, incisione laser e microstampa anticontraffazione.</div>
+        </div>
+      </div>
+    </div>
+    <div class="step-visual" data-step="04 / PRODUCTION">
+      <svg viewBox="0 0 200 200" fill="none" xmlns="http://www.w3.org/2000/svg" stroke="#1c2023" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+        <rect x="30" y="65" width="140" height="90" rx="8" fill="#f6f3ec" stroke-width="2.5"/>
+        <rect x="30" y="65" width="140" height="90" rx="8" fill="url(#grad-uv)" opacity="0.6"/>
+        <defs>
+          <linearGradient id="grad-uv" x1="0" y1="0" x2="1" y2="1">
+            <stop offset="0" stop-color="#e5a02f" stop-opacity="0.4"/>
+            <stop offset="0.5" stop-color="#33503f" stop-opacity="0.2"/>
+            <stop offset="1" stop-color="#1877F2" stop-opacity="0.3"/>
+          </linearGradient>
+        </defs>
+        <circle cx="60" cy="100" r="18" fill="#f6f3ec" stroke="#e5a02f" stroke-width="2"/>
+        <circle cx="60" cy="100" r="10" fill="#1c2023" stroke="none"/>
+        <circle cx="60" cy="100" r="4" fill="#e5a02f" stroke="none"/>
+        <text x="90" y="88" font-size="9" fill="#1c2023" stroke="none" font-family="Oswald" font-weight="bold">PERMIS DE CONDUIRE</text>
+        <text x="90" y="100" font-size="6" fill="#1c2023" stroke="none" font-family="monospace">REPUBBLICA ITALIANA</text>
+        <line x1="90" y1="106" x2="155" y2="106" stroke="#1c2023" stroke-width="0.8"/>
+        <text x="90" y="116" font-size="5" fill="#1c2023" stroke="none" font-family="monospace">D.Lgs. 285/1992 — Dir. 2006/126/CE</text>
+        <rect x="90" y="120" width="32" height="22" fill="#1c2023" stroke="none"/>
+        <rect x="93" y="123" width="26" height="16" fill="#e5a02f" stroke="none" opacity="0.3"/>
+        <line x1="100" y1="125" x2="112" y2="125" stroke="#e5a02f" stroke-width="0.6"/>
+        <line x1="100" y1="129" x2="112" y2="129" stroke="#e5a02f" stroke-width="0.6"/>
+        <line x1="100" y1="133" x2="108" y2="133" stroke="#e5a02f" stroke-width="0.6"/>
+        <text x="106" y="150" text-anchor="middle" font-size="6" fill="#1c2023" stroke="none" font-family="monospace" font-weight="bold">RFID CHIP</text>
+        <line x1="40" y1="130" x2="40" y2="145" stroke="#1c2023" stroke-width="1.2"/>
+        <line x1="40" y1="145" x2="55" y2="145" stroke="#1c2023" stroke-width="1.2"/>
+        <line x1="40" y1="138" x2="50" y2="138" stroke="#1c2023" stroke-width="1.2"/>
+        <line x1="48" y1="55" x2="48" y2="35" stroke="#1877F2" stroke-width="1" stroke-dasharray="2 2"/>
+        <line x1="152" y1="55" x2="152" y2="35" stroke="#1877F2" stroke-width="1" stroke-dasharray="2 2"/>
+        <line x1="48" y1="35" x2="152" y2="35" stroke="#1877F2" stroke-width="1" stroke-dasharray="2 2"/>
+        <text x="100" y="28" text-anchor="middle" font-size="7" fill="#1877F2" stroke="none" font-family="monospace" font-weight="bold">UV · HOLOGRAMME</text>
+        <circle cx="48" cy="40" r="3" fill="#1877F2" stroke="none"/>
+        <circle cx="152" cy="40" r="3" fill="#1877F2" stroke="none"/>
+      </svg>
+    </div>
+  </article>
+
+  <article class="step" id="etape-5">
+    <div class="step-text">
+      <div class="step-number" data-i18n="u.etape_05_06">FASE 05 / 06</div>
+      <h2 data-i18n="proc.step5.h2">ACTIVATION DU STATUT « ACTIF / VALIDE » <small>Étape 5 — Activation du statut « Actif/Valide »</small></h2>
+      <p class="lead" data-i18n="u.il_s_agit_de_l_etape_finale_et_determinante_dans_l">Si tratta della fase finale e determinante: nel sistema nazionale di gestione delle patenti di guida, lo stato del documento viene aggiornato da «In lavorazione» a «Attivo/Valido».</p>
+      <div class="step-meta">
+        <div class="meta-block">
+          <div class="label">ACTION</div>
+          <div class="value" data-i18n="u.synchronisation_finale_avec_le_registre_national_d">Sincronizzazione finale con il registro nazionale delle patenti (RNP) presso la Motorizzazione civile.</div>
+        </div>
+        <div class="meta-block is-result">
+          <div class="label" data-i18n="u.statut_juridique">STATO GIURIDICO</div>
+          <div class="value" data-i18n="u.a_partir_de_ce_moment_le_demandeur_est_legalement_">Da questo momento, il richiedente è legalmente registrato come titolare della categoria di patente di guida ottenuta.</div>
+        </div>
+      </div>
+    </div>
+    <div class="step-visual" data-step="05 / ACTIVATION">
+      <svg viewBox="0 0 200 200" fill="none" xmlns="http://www.w3.org/2000/svg" stroke="#1c2023" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+        <rect x="25" y="60" width="150" height="95" rx="5" fill="#1c2023" stroke-width="2.5"/>
+        <rect x="25" y="60" width="150" height="20" fill="#bf4238" stroke="none"/>
+        <text x="100" y="74" text-anchor="middle" font-size="9" fill="#f6f3ec" stroke="none" font-family="monospace" font-weight="bold">REGISTRE NATIONAL — RNP</text>
+        <line x1="35" y1="92" x2="80" y2="92" stroke="#a39e93" stroke-width="1.2"/>
+        <text x="35" y="100" font-size="6" fill="#a39e93" stroke="none" font-family="monospace">STATUT PRÉCÉDENT</text>
+        <rect x="35" y="106" width="68" height="18" fill="#bf4238" opacity="0.85" stroke="none"/>
+        <text x="69" y="118" text-anchor="middle" font-size="7" fill="#f6f3ec" stroke="none" font-family="monospace" font-weight="bold">EN COURS</text>
+        <line x1="105" y1="115" x2="118" y2="115" stroke="#e5a02f" stroke-width="2.5"/>
+        <path d="M114 110 L120 115 L114 120" stroke="#e5a02f" stroke-width="2.5" fill="none"/>
+        <line x1="120" y1="92" x2="165" y2="92" stroke="#a39e93" stroke-width="1.2"/>
+        <text x="120" y="100" font-size="6" fill="#a39e93" stroke="none" font-family="monospace">NOUVEAU STATUT</text>
+        <rect x="120" y="106" width="45" height="18" fill="#33503f" stroke="none"/>
+        <text x="142.5" y="118" text-anchor="middle" font-size="7" fill="#f6f3ec" stroke="none" font-family="monospace" font-weight="bold">ACTIF</text>
+        <line x1="35" y1="138" x2="165" y2="138" stroke="#a39e93" stroke-width="0.8" stroke-dasharray="2 2"/>
+        <text x="35" y="148" font-size="6" fill="#a39e93" stroke="none" font-family="monospace">SYNCHRO MOTORISATION</text>
+        <circle cx="148" cy="145" r="6" fill="#33503f" stroke="none"/>
+        <path d="M144 145 L147 148 L152 142" stroke="#f6f3ec" stroke-width="1.5" fill="none"/>
+        <line x1="100" y1="40" x2="100" y2="58" stroke="#e5a02f" stroke-width="2"/>
+        <path d="M95 53 L100 60 L105 53" stroke="#e5a02f" stroke-width="2" fill="none"/>
+      </svg>
+    </div>
+  </article>
+
+  <article class="step is-reverse" id="etape-6">
+    <div class="step-text">
+      <div class="step-number" data-i18n="u.etape_06_06">FASE 06 / 06</div>
+      <h2 data-i18n="proc.step6.h2">EXPÉDITION SÛRE ET CONFIDENTIELLE <small>Étape 6 — Expédition sécurisée et confidentielle</small></h2>
+      <p class="lead" data-i18n="u.pour_proteger_les_donnees_personnelles_du_demandeu">Per proteggere i dati personali del richiedente e garantire l'integrità del documento, la consegna avviene esclusivamente tramite raccomandata con ricevuta di ritorno, in una busta neutra e anonima.</p>
+      <div class="step-meta">
+        <div class="meta-block">
+          <div class="label" data-i18n="u.mode_d_expedition">MODALITÀ DI SPEDIZIONE</div>
+          <div class="value" data-i18n="u.lettre_recommandee_avec_accuse_de_reception_numero">Lettera raccomandata con ricevuta di ritorno, numero di tracciamento e firma del destinatario a fine procedura.</div>
+        </div>
+        <div class="meta-block is-result">
+          <div class="label" data-i18n="u.delai_de_livraison">TEMPI DI CONSEGNA</div>
+          <div class="value" data-i18n="u.2_a_3_jours_ouvrables_a_compter_de_l_emission_dire">Da 2 a 3 giorni lavorativi dall'emissione, direttamente all'indirizzo di residenza del richiedente.</div>
+        </div>
+      </div>
+    </div>
+    <div class="step-visual" data-step="06 / EXPÉDITION">
+      <svg viewBox="0 0 200 200" fill="none" xmlns="http://www.w3.org/2000/svg" stroke="#1c2023" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+        <rect x="30" y="60" width="140" height="95" rx="3" fill="#f6f3ec" stroke-width="2.5"/>
+        <path d="M30 60 L100 115 L170 60" stroke="#e5a02f" stroke-width="2.5" fill="none"/>
+        <path d="M30 60 L30 155 L78 110" stroke="#1c2023" stroke-width="1.5" fill="none" opacity="0.4"/>
+        <path d="M170 60 L170 155 L122 110" stroke="#1c2023" stroke-width="1.5" fill="none" opacity="0.4"/>
+        <rect x="100" y="65" width="60" height="20" fill="#33503f" stroke="none"/>
+        <text x="130" y="78" text-anchor="middle" font-size="8" fill="#f6f3ec" stroke="none" font-family="monospace" font-weight="bold">RACCOMANDATA</text>
+        <text x="130" y="142" text-anchor="middle" font-size="6" fill="#1c2023" stroke="none" font-family="monospace">N° DE SUIVI</text>
+        <text x="130" y="150" text-anchor="middle" font-size="7" fill="#e5a02f" stroke="none" font-family="monospace" font-weight="bold">IT-2026-9A47F2</text>
+        <circle cx="155" cy="170" r="14" fill="#e5a02f" stroke="none"/>
+        <path d="M148 170 L153 175 L162 165" stroke="#1c2023" stroke-width="2.5" fill="none"/>
+        <line x1="30" y1="170" x2="120" y2="170" stroke="#a39e93" stroke-width="1" stroke-dasharray="3 2"/>
+        <path d="M30 180 L120 180" stroke="#1c2023" stroke-width="1.5" opacity="0.5"/>
+        <text x="75" y="195" text-anchor="middle" font-size="6" fill="#a39e93" stroke="none" font-family="monospace">ADRESSE DU DESTINATAIRE</text>
+      </svg>
+    </div>
+  </article>
+
+</section>
+
+<div class="cta-banner">
+  <h2 data-i18n="proc.cta.title">Pronto ad avviare la tua procedura?</h2>
+  <a href="https://wa.me/393510101837" target="_blank" rel="noopener" class="btn-primary" data-i18n="u.commencer_des_maintenant">Inizia subito</a>
+</div>
+
+<div class="contact-fab" id="contactFab">
+  <div class="contact-fab-menu" id="contactMenu" role="menu" aria-label="Réseaux sociaux et messagerie">
+    <span class="contact-fab-label" data-i18n="footer.contact_us">CONTATTACI</span>
+    <a href="https://www.facebook.com/share/1DP1bPDC87/?mibextid=wwXIfr" target="_blank" rel="noopener" class="contact-fab-item" role="menuitem">
+      <span class="icon fb" aria-hidden="true">
+        <svg viewBox="0 0 24 24"><path d="M22 12.06C22 6.5 17.52 2 12 2S2 6.5 2 12.06c0 5 3.66 9.14 8.44 9.94v-7.03H7.9v-2.91h2.54V9.85c0-2.51 1.49-3.9 3.78-3.9 1.1 0 2.24.2 2.24.2v2.47h-1.26c-1.24 0-1.63.77-1.63 1.56v1.88h2.78l-.45 2.91h-2.33V22c4.78-.8 8.43-4.94 8.43-9.94z"/></svg>
+      </span>
+      <span class="meta"><span class="name" data-i18n="footer.facebook">Facebook</span></span>
+    </a>
+    <a href="https://www.tiktok.com/@giordano.patente3?is_from_webapp=1&sender_device=pc" target="_blank" rel="noopener" class="contact-fab-item" role="menuitem">
+      <span class="icon tt" aria-hidden="true">
+        <svg viewBox="0 0 24 24"><path d="M19.59 6.69a4.83 4.83 0 0 1-3.77-4.25V2h-3.45v13.67a2.89 2.89 0 0 1-5.2 1.74 2.89 2.89 0 0 1 2.31-4.64 2.93 2.93 0 0 1 .88.13V9.4a6.84 6.84 0 0 0-1-.05A6.33 6.33 0 0 0 5.8 20.1a6.34 6.34 0 0 0 10.86-4.43V8.84a8.16 8.16 0 0 0 4.77 1.52V6.9a4.85 4.85 0 0 1-1.84-.21z"/></svg>
+      </span>
+      <span class="meta"><span class="name" data-i18n="footer.tiktok">TikTok</span><span class="hint" data-i18n="u.videos_coulisses_1027">Video e retroscena</span></span>
+    </a>
+    <a href="https://wa.me/393510101837" target="_blank" rel="noopener" class="contact-fab-item" role="menuitem">
+      <span class="icon wa" aria-hidden="true">
+        <svg viewBox="0 0 24 24"><path d="M17.47 14.38c-.3-.15-1.76-.87-2.03-.97-.27-.1-.47-.15-.66.15s-.77.97-.94 1.17-.35.22-.64.07c-.3-.15-1.26-.46-2.4-1.48a8.94 8.94 0 0 1-1.65-2.07c-.17-.3 0-.46.13-.6.13-.13.3-.34.45-.51.15-.17.2-.3.3-.5.1-.2.05-.37-.02-.52-.07-.15-.66-1.6-.91-2.18-.24-.57-.48-.5-.66-.5l-.56-.01c-.2 0-.52.07-.79.37s-1.05 1.02-1.05 2.5 1.07 2.9 1.22 3.1c.15.2 2.12 3.24 5.14 4.55.72.31 1.28.5 1.72.64.72.23 1.38.2 1.9.12.58-.09 1.76-.72 2-1.42.25-.7.25-1.3.17-1.42-.07-.13-.27-.2-.56-.34zM12 2C6.48 2 2 6.48 2 12c0 1.76.45 3.42 1.25 4.85L2 22l5.25-1.23A9.96 9.96 0 0 0 12 22c5.52 0 10-4 10-10S17.52 2 12 2zm0 18.15a8.13 8.13 0 0 1-4.15-1.13l-.3-.18-3.12.73.74-3.04-.2-.31A8.15 8.15 0 1 1 12 20.15z"/></svg>
+      </span>
+      <span class="meta"><span class="name" data-i18n="footer.whatsapp">WhatsApp</span><span class="hint">+39 351 010 1837</span></span>
+    </a>
+    <a href="https://t.me/giordanopatente39" target="_blank" rel="noopener" class="contact-fab-item" role="menuitem">
+      <span class="icon tg" aria-hidden="true">
+        <svg viewBox="0 0 24 24"><path d="M9.78 18.65l.28-4.23 7.68-6.92c.34-.31-.07-.46-.52-.19L7.74 13.24 3.64 11.95c-.88-.25-.89-.86.2-1.3l15.97-6.16c.73-.33 1.43.18 1.15 1.3l-2.72 12.81c-.19.91-.74 1.13-1.5.71L12.6 16.3l-1.99 1.93c-.23.23-.42.42-.83.42z"/></svg>
+      </span>
+      <span class="meta"><span class="name" data-i18n="footer.telegram">Telegram</span><span class="hint" data-i18n="u.discussion_privee">Chat privata</span></span>
+    </a>
+  </div>
+  <button type="button" class="contact-fab-toggle" id="contactToggle" aria-label="Apri il menu contatti" aria-expanded="false" aria-controls="contactMenu">
+    <span class="contact-fab-pulse" aria-hidden="true"></span>
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+      <path d="M21 11.5a8.38 8.38 0 0 1-.9 3.8 8.5 8.5 0 0 1-7.6 4.7 8.38 8.38 0 0 1-3.8-.9L3 21l1.9-5.7a8.38 8.38 0 0 1-.9-3.8 8.5 8.5 0 0 1 4.7-7.6 8.38 8.38 0 0 1 3.8-.9h.5a8.48 8.48 0 0 1 8 8v.5z"/>
+    </svg>
+  </button>
+</div>
+
+<script>
+  (function() {
+    var fab = document.getElementById('contactFab');
+    var toggle = document.getElementById('contactToggle');
+    var menu = document.getElementById('contactMenu');
+    if (!fab || !toggle || !menu) return;
+    function setOpen(open) {
+      toggle.classList.toggle('is-open', open);
+      menu.classList.toggle('is-open', open);
+      toggle.setAttribute('aria-expanded', open ? 'true' : 'false');
+      toggle.setAttribute('aria-label', open ? 'Chiudi il menu contatti' : 'Apri il menu contatti');
+    }
+    toggle.addEventListener('click', function(e) {
+      e.stopPropagation();
+      setOpen(!menu.classList.contains('is-open'));
+    });
+    document.addEventListener('click', function(e) {
+      if (!fab.contains(e.target)) setOpen(false);
+    });
+    document.addEventListener('keydown', function(e) {
+      if (e.key === 'Escape') setOpen(false);
+    });
+  })();
+</script>
+
+<footer id="contatti">
+  <div class="footer-grid">
+    <div class="footer-col">
+      <h4>Giordano Patente</h4>
+      <p data-i18n="footer.hours">24 ore su 24</p>
+      <p data-i18n="footer.days">Lunedì a Domenica</p>
+    </div>
+    <div class="footer-col">
+      <h4 data-i18n="footer.contact">Contatti</h4>
+      <a href="https://wa.me/393510101837" target="_blank" rel="noopener">+39 351 010 1837</a>
+      <a href="mailto:giordanopatente39@gmail.com">giordanopatente39@gmail.com</a>
+    </div>
+    <div class="footer-col">
+      <h4 data-i18n="footer.links">Link rapidi</h4>
+      <a href="index.html" data-i18n="bc.home">Home</a>
+    </div>
+  </div>
+  <div class="footer-bottom">
+    <span data-i18n="footer.copyright">© 2026 Giordano Patente. Tutti i diritti riservati.</span>
+    <span data-i18n="footer.credit">Sito realizzato con cura.</span>
+  </div>
+</footer>
+
+  <script src="burger.js"></script>
+  <script src="i18n.js"></script>
+  <script>
+    // Dark mode toggle
+    document.addEventListener('click', function(e) {
+      if (e.target.closest('.theme-toggle')) {
+        e.preventDefault();
+        var isDark = document.documentElement.getAttribute('data-dark') === 'true';
+        if (isDark) {
+          document.documentElement.removeAttribute('data-dark');
+          try { localStorage.setItem('gp-theme', 'light'); } catch(_) {}
+        } else {
+          document.documentElement.setAttribute('data-dark', 'true');
+          try { localStorage.setItem('gp-theme', 'dark'); } catch(_) {}
+        }
+      }
+    });
+    // Cookie banner
+    (function() {
+      try {
+        if (localStorage.getItem('gp-cookie')) return;
+      } catch(_) {}
+      var div = document.createElement('div');
+      div.className = 'cookie-banner';
+      div.innerHTML = '<p data-i18n="cookie.text">Utilizziamo i cookie per migliorare la tua esperienza. Continuando, accetti la nostra politica sulla privacy.</p>' +
+        '<div class="cookie-actions">' +
+        '<button class="cookie-accept" data-cookie="accept" data-i18n="cookie.accept">Accetta</button>' +
+        '<button class="cookie-refuse" data-cookie="refuse" data-i18n="cookie.refuse">Rifiuta</button>' +
+        '</div>';
+      document.body.appendChild(div);
+      setTimeout(function() { div.classList.add('is-visible'); I18N.apply(); }, 800);
+      div.addEventListener('click', function(e) {
+        var btn = e.target.closest('[data-cookie]');
+        if (!btn) return;
+        try { localStorage.setItem('gp-cookie', btn.dataset.cookie); } catch(_) {}
+        div.classList.remove('is-visible');
+        setTimeout(function() { div.remove(); }, 400);
+      });
+    })();
+  </script>
+</body>
+</html>

@@ -3275,8 +3275,8 @@
     let activeHref = null;
     if (file === 'index.html' || file === '' || file === '/') {
       activeHref = 'index.html';
-    } else if (base.startsWith('permis-') || base.startsWith('combinaison-')) {
-      activeHref = 'commencer.html';
+    } else if (base.startsWith('patente-') || base.startsWith('combinazione-')) {
+      activeHref = 'inizia.html';
     } else {
       activeHref = file;
     }
@@ -3345,7 +3345,7 @@
 
   function translateNavLinks() {
     // Translate "informations" nav link if it doesn't have data-i18n yet
-    document.querySelectorAll('.nav-links a[href="informations.html"]').forEach(a => {
+    document.querySelectorAll('.nav-links a[href="informazioni.html"]').forEach(a => {
       if (!a.hasAttribute('data-i18n')) {
         a.setAttribute('data-i18n', 'nav.informations');
       }

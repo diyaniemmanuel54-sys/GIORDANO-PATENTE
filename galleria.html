@@ -1,0 +1,360 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title data-i18n="title.gallery">Clienti soddisfatti — Giordano Patente</title>
+<meta name="description" content="Photos et vidéos des clients satisfaits de Giordano Patente en Sicile.">
+<meta name="theme-color" content="#1c2023">
+<meta property="og:title" content="Client satisfait — Giordano Patente">
+<meta property="og:description" content="Notre autoscuola en images.">
+<meta property="og:type" content="website">
+<meta property="og:locale" content="it_IT">
+<link rel="canonical" href="https://giordanopatente.it/galleria.html">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Oswald:wght@400;500;600;700&family=Work+Sans:wght@400;500;600&family=JetBrains+Mono:wght@500&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="style.css">
+  <link rel="stylesheet" href="i18n.css">
+  <script>
+    (function(){
+      try {
+        var t = localStorage.getItem('gp-theme');
+        if (t === 'dark') document.documentElement.setAttribute('data-dark', 'true');
+      } catch(e) {}
+    })();
+  </script>
+<style>
+.gallery-hero { padding: 80px 6vw 40px; max-width: 1000px; margin: 0 auto; text-align: center; }
+.gallery-hero .eyebrow { color: var(--ochre); font-family: 'JetBrains Mono', monospace; font-size: 12px; letter-spacing: 0.12em; margin-bottom: 16px; }
+.gallery-hero h1 { font-size: clamp(40px, 7vw, 64px); line-height: 1.05; margin-bottom: 16px; }
+.gallery-hero .lead { font-size: 17px; color: #3a3a3a; line-height: 1.6; max-width: 60ch; margin: 0 auto; }
+.gallery-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 18px; padding: 40px 6vw 60px; max-width: 1300px; margin: 0 auto; }
+.gallery-item { position: relative; aspect-ratio: 4/3; overflow: hidden; border-radius: 4px; background: #262b2f; cursor: pointer; }
+.gallery-item.tall { aspect-ratio: 3/4; }
+.gallery-item.wide { aspect-ratio: 16/9; }
+.gallery-item img { width: 100%; height: 100%; object-fit: cover; transition: transform 0.5s ease; }
+.gallery-item:hover img { transform: scale(1.05); }
+.gallery-video { position: relative; aspect-ratio: 9/16; overflow: hidden; border-radius: 4px; background: #1c2023; cursor: pointer; }
+.gallery-video video { width: 100%; height: 100%; object-fit: cover; display: block; }
+.gallery-video .play-overlay { position: absolute; inset: 0; display: flex; align-items: center; justify-content: center; background: rgba(28,32,35,0.25); transition: opacity 0.3s ease; pointer-events: none; }
+.gallery-video .play-overlay svg { width: 56px; height: 56px; fill: var(--cream); filter: drop-shadow(0 2px 8px rgba(0,0,0,0.4)); }
+.gallery-video.playing .play-overlay { opacity: 0; }
+.gallery-video .video-caption { position: absolute; bottom: 0; left: 0; right: 0; padding: 16px 20px; background: linear-gradient(180deg, transparent 0%, rgba(28,32,35,0.85) 100%); color: var(--cream); z-index: 2; }
+.gallery-video .video-caption h4 { font-family: 'Oswald', sans-serif; font-size: 16px; margin: 0 0 2px; }
+.gallery-video .video-caption p { font-size: 12px; opacity: 0.8; margin: 0; font-family: 'JetBrains Mono', monospace; letter-spacing: 0.04em; }
+.video-divider { display: flex; align-items: center; gap: 16px; padding: 50px 6vw 20px; max-width: 1300px; margin: 0 auto; }
+.video-divider h3 { font-family: 'Oswald', sans-serif; font-size: clamp(28px, 4vw, 40px); margin: 0; color: var(--asphalt); }
+.video-divider .divider-line { flex: 1; height: 1px; background: var(--asphalt); opacity: 0.15; }
+.gallery-caption { position: absolute; bottom: 0; left: 0; right: 0; padding: 16px 20px; background: linear-gradient(180deg, transparent 0%, rgba(28,32,35,0.85) 100%); color: var(--cream); }
+.gallery-caption h4 { font-family: 'Oswald', sans-serif; font-size: 16px; margin: 0 0 2px; }
+.gallery-caption p { font-size: 12px; opacity: 0.8; margin: 0; font-family: 'JetBrains Mono', monospace; letter-spacing: 0.04em; }
+
+  /* ---------- ACTIVE NAV ---------- */
+  .nav-links a.active {
+    color: var(--ochre);
+    font-weight: 700;
+  }
+  .nav-links a.active::after { width: 100%; }
+  .nav-cta.active {
+    background: var(--ochre-dim);
+    pointer-events: none;
+  }
+
+  /* ---------- BURGER BUTTON ---------- */
+  .menu-toggle {
+    display: none;
+    background: transparent;
+    border: none;
+    cursor: pointer;
+    padding: 8px;
+    flex-direction: column;
+    gap: 5px;
+    width: 36px;
+    height: 36px;
+    justify-content: center;
+    align-items: center;
+    z-index: 101;
+  }
+  .menu-toggle-bar {
+    display: block;
+    width: 24px;
+    height: 2px;
+    background: var(--cream);
+    transition: transform 0.3s ease, opacity 0.3s ease;
+    border-radius: 1px;
+  }
+  .menu-toggle.is-open .menu-toggle-bar:nth-child(1) { transform: translateY(7px) rotate(45deg); }
+  .menu-toggle.is-open .menu-toggle-bar:nth-child(2) { opacity: 0; }
+  .menu-toggle.is-open .menu-toggle-bar:nth-child(3) { transform: translateY(-7px) rotate(-45deg); }
+
+  .nav-overlay {
+    position: fixed;
+    top: 0; left: 0; right: 0; bottom: 0;
+    background: rgba(0, 0, 0, 0.6);
+    z-index: 98;
+    opacity: 0;
+    visibility: hidden;
+    transition: opacity 0.3s ease, visibility 0.3s ease;
+  }
+  .nav-overlay.is-visible { opacity: 1; visibility: visible; }
+
+  .nav-drawer {
+    position: fixed;
+    top: 0; right: 0;
+    width: 280px;
+    max-width: 80vw;
+    height: 100vh;
+    background: var(--asphalt);
+    color: var(--cream);
+    z-index: 99;
+    padding: 80px 30px 30px;
+    transform: translateX(100%);
+    transition: transform 0.3s ease;
+    overflow-y: auto;
+    box-shadow: -4px 0 20px rgba(0, 0, 0, 0.3);
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+  }
+  .nav-drawer.is-open { transform: translateX(0); }
+  .nav-drawer-link {
+    display: block;
+    padding: 14px 12px;
+    color: var(--cream);
+    font-size: 15px;
+    font-weight: 500;
+    text-decoration: none;
+    border-bottom: 1px solid rgba(246, 243, 236, 0.08);
+    transition: color 0.2s ease, padding-left 0.2s ease;
+  }
+  .nav-drawer-link:hover, .nav-drawer-link:active { color: var(--ochre); padding-left: 18px; }
+  .nav-drawer-cta {
+    display: block;
+    margin-top: 20px;
+    padding: 14px 20px;
+    background: var(--ochre);
+    color: var(--asphalt);
+    text-align: center;
+    font-weight: 600;
+    font-size: 15px;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    border-radius: 2px;
+    text-decoration: none;
+    transition: background 0.2s ease;
+  }
+  .nav-drawer-cta:hover { background: var(--ochre-dim); }
+
+  @media (max-width: 860px) {
+    .menu-toggle { display: flex !important; }
+    .nav-links, .nav-cta { display: none; }
+    .menu-toggle { display: flex !important; }
+  }
+
+</style>
+</head>
+<body>
+
+<nav class="navbar">
+  <div class="logo">
+    <a href="index.html"><span class="logo-mark" data-i18n="nav.logo.mark">GIORDANO</span><span class="logo-sub" data-i18n="nav.logo.sub">PATENTE</span></a>
+  </div>
+  <div class="nav-links">
+    <a href="index.html" data-i18n="nav.home">Home</a>
+    <a href="chi-siamo.html" data-i18n="nav.about">Chi siamo</a>
+    <a href="perche.html" data-i18n="nav.why">Perché noi</a>
+    <a href="inizia.html" data-i18n="nav.prices">Prezzi</a>
+    <a href="informazioni.html" data-i18n="nav.informations">Informazioni</a>
+    <a href="procedura.html" data-i18n="nav.procedure">La procedura</a>
+    
+    <a href="galleria.html" data-i18n="nav.gallery" class="active">Galleria</a>
+    <a href="contact.html" data-i18n="nav.contact">Contatti</a>
+  </div>
+      <button class="theme-toggle" type="button" aria-label="Toggle theme">
+        <svg class="icon-sun" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="4"/><path d="M12 2v2M12 20v2M4.93 4.93l1.41 1.41M17.66 17.66l1.41 1.41M2 12h2M20 12h2M4.93 19.07l1.41-1.41M17.66 6.34l1.41-1.41"/></svg>
+        <svg class="icon-moon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/></svg>
+      </button>
+      <a href="inizia.html" class="nav-cta" data-i18n="nav.book">Inizia</a>
+</nav>
+
+<section class="gallery-hero">
+  <p class="eyebrow" data-i18n="gallery.eyebrow">GALLERIA</p>
+  <h1 data-i18n="gallery.title">Cliente soddisfatto</h1>
+</section>
+
+<div class="gallery-grid">
+  <div class="gallery-item tall">
+    <img src="images/gallery-01.jpg" alt="Cliente satisfaite avec son permis" loading="lazy">
+    <div class="gallery-caption"><h4 data-i18n="u.permis_obtenu">Patente ottenuta</h4><p data-i18n="u.cliente_satisfaite">Cliente soddisfatta</p></div>
+  </div>
+  <div class="gallery-item">
+    <img src="images/gallery-02.jpg" alt="Cliente avec son nouveau permis" loading="lazy">
+    <div class="gallery-caption"><h4 data-i18n="u.remise_du_permis">Consegna della patente</h4><p data-i18n="u.catane_sicile">Catania, Sicilia</p></div>
+  </div>
+  <div class="gallery-item wide">
+    <img src="images/gallery-07.jpg" alt="Documents officiels et permis de conduire" loading="lazy">
+    <div class="gallery-caption"><h4 data-i18n="u.dossier_complet">Fascicolo completo</h4><p data-i18n="u.permis_documents">Patente + documenti</p></div>
+  </div>
+  <div class="gallery-item tall">
+    <img src="images/gallery-03.jpg" alt="Patente di guida della Repubblica Italiana" loading="lazy">
+    <div class="gallery-caption"><h4 data-i18n="u.permis_italien">Patente italiana</h4><p data-i18n="u.repubblica_italiana">Repubblica Italiana</p></div>
+  </div>
+  <div class="gallery-item">
+    <img src="images/gallery-04.jpg" alt="Cliente avec son permis et étoile dorée" loading="lazy">
+    <div class="gallery-caption"><h4 data-i18n="u.felicitations">Congratulazioni</h4><p data-i18n="u.permis_en_main">Patente in mano</p></div>
+  </div>
+  <div class="gallery-item tall">
+    <img src="images/gallery-05.jpg" alt="Documents administratifs et permis" loading="lazy">
+    <div class="gallery-caption"><h4 data-i18n="u.demarches_facilitees">Pratiche facilitate</h4><p data-i18n="u.dossier_gere_en_7_jours">Pratica gestita in 7 giorni</p></div>
+  </div>
+  <div class="gallery-item">
+    <img src="images/gallery-06.jpg" alt="Cliente avec son permis" loading="lazy">
+    <div class="gallery-caption"><h4 data-i18n="u.nouvelle_conductrice">Nuova conducente</h4><p data-i18n="u.cat_b">Cat. B</p></div>
+  </div>
+  <div class="gallery-item tall">
+    <img src="images/gallery-08.jpg" alt="Client avec son permis dans sa voiture" loading="lazy">
+    <div class="gallery-caption"><h4 data-i18n="u.au_volant">Al volante</h4><p data-i18n="u.premiere_sortie_officielle">Prima uscita ufficiale</p></div>
+  </div>
+  <div class="gallery-item">
+    <img src="images/gallery-09.jpg" alt="Cliente avec son nouveau permis" loading="lazy">
+    <div class="gallery-caption"><h4 data-i18n="u.permis_cat_b">Patente Cat. B</h4><p data-i18n="u.reussite_du_permis">Superamento della patente</p></div>
+  </div>
+  <div class="gallery-item tall">
+    <img src="images/gallery-10.jpg" alt="Cliente avec son permis italien - Congratulazioni" loading="lazy">
+    <div class="gallery-caption"><h4 data-i18n="u.congratulazioni">Congratulazioni!</h4><p data-i18n="u.patente_italiana">Patente italiana</p></div>
+  </div>
+</div>
+
+<section class="video-divider">
+  <h3 data-i18n="gallery.videos_title">Testimonianze video</h3>
+  <span class="divider-line"></span>
+</section>
+
+<div class="gallery-grid">
+  <div class="gallery-video" data-video-item>
+    <video src="videos/gallery-01.mp4" loop playsinline preload="metadata" poster="images/gallery-02.jpg" data-audio="on"></video>
+    <div class="play-overlay"><svg viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg></div>
+    <div class="video-caption"><h4 data-i18n="u.temoignage_client">Testimonianza cliente</h4><p data-i18n="u.video_1_audio_on">Video 1 · Audio ON</p></div>
+  </div>
+  <div class="gallery-video" data-video-item>
+    <video src="videos/gallery-02.mp4" loop playsinline preload="metadata" poster="images/gallery-08.jpg" data-audio="on"></video>
+    <div class="play-overlay"><svg viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg></div>
+    <div class="video-caption"><h4 data-i18n="u.temoignage_client_1193">Testimonianza cliente</h4><p data-i18n="u.video_2_audio_on">Video 2 · Audio ON</p></div>
+  </div>
+  <div class="gallery-video" data-video-item>
+    <video src="videos/gallery-03.mp4" loop playsinline preload="metadata" poster="images/gallery-09.jpg" data-audio="on"></video>
+    <div class="play-overlay"><svg viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg></div>
+    <div class="video-caption"><h4 data-i18n="u.temoignage_client_1195">Testimonianza cliente</h4><p data-i18n="u.video_3_audio_on">Video 3 · Audio ON</p></div>
+  </div>
+</div>
+
+<script>
+(function(){
+  document.querySelectorAll('[data-video-item]').forEach(function(box){
+    var v = box.querySelector('video');
+    if (!v) return;
+    // Explicitly ensure audio is enabled on initialization
+    v.muted = false;
+    v.volume = 1.0;
+    v.defaultMuted = false;
+    v.removeAttribute('muted');
+
+    function playWithAudio(){
+      // Pause all other videos and reset their audio state
+      document.querySelectorAll('[data-video-item] video').forEach(function(other){
+        if (other !== v) {
+          other.pause();
+          other.muted = false;
+          other.closest('[data-video-item]').classList.remove('playing');
+        }
+      });
+      v.muted = false;
+      v.volume = 1.0;
+      var p = v.play();
+      if (p && p.catch) {
+        p.catch(function(err){
+          console.warn('Play with audio failed, trying unmuted retry', err);
+          v.muted = false;
+          return v.play();
+        }).catch(function(err){
+          console.warn('Play failed entirely', err);
+        });
+      }
+      box.classList.add('playing');
+    }
+
+    function pauseVideo(){
+      v.pause();
+      box.classList.remove('playing');
+    }
+
+    box.addEventListener('click', function(e){
+      e.preventDefault();
+      e.stopPropagation();
+      if (v.paused) playWithAudio();
+      else pauseVideo();
+    });
+
+    v.addEventListener('play', function(){
+      v.muted = false;
+      box.classList.add('playing');
+    });
+    v.addEventListener('pause', function(){
+      box.classList.remove('playing');
+    });
+    v.addEventListener('ended', function(){
+      box.classList.remove('playing');
+    });
+  });
+})();
+</script>
+
+<footer id="contatti" style="background: var(--asphalt); color: var(--cream); padding: 50px 6vw 30px;">
+  <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 30px; max-width: 1100px; margin: 0 auto;">
+    <div>
+      <h4 style="font-family: 'Oswald', sans-serif; font-size: 16px; margin-bottom: 12px; letter-spacing: 0.04em;">Giordano Patente</h4>
+      <p style="font-size: 14px; opacity: 0.8;" data-i18n="footer.hours">24 ore su 24</p>
+      <p style="font-size: 14px; opacity: 0.8;" data-i18n="footer.days">Lunedì a Domenica</p>
+    </div>
+    <div>
+      <h4 style="font-family: 'Oswald', sans-serif; font-size: 16px; margin-bottom: 12px; letter-spacing: 0.04em;" data-i18n="footer.contact">Contatti</h4>
+      <a href="https://wa.me/393510101837" style="display: block; font-size: 14px; opacity: 0.8; color: var(--cream); margin-bottom: 4px;">+39 351 010 1837</a>
+      <a href="mailto:giordanopatente39@gmail.com" style="font-size: 14px; opacity: 0.8; color: var(--cream);">giordanopatente39@gmail.com</a>
+    </div>
+  </div>
+  <div style="text-align: center; padding-top: 30px; margin-top: 30px; border-top: 1px solid rgba(246,243,236,0.12); font-size: 12px; opacity: 0.7;">
+    <span data-i18n="footer.copyright">© 2026 Giordano Patente. Tutti i diritti riservati.</span>
+  </div>
+</footer>
+
+  <script src="burger.js"></script>
+  <script src="i18n.js"></script>
+  <script>
+    document.addEventListener('click', function(e) {
+      if (e.target.closest('.theme-toggle')) {
+        e.preventDefault();
+        var isDark = document.documentElement.getAttribute('data-dark') === 'true';
+        if (isDark) { document.documentElement.removeAttribute('data-dark'); try { localStorage.setItem('gp-theme', 'light'); } catch(_) {} }
+        else { document.documentElement.setAttribute('data-dark', 'true'); try { localStorage.setItem('gp-theme', 'dark'); } catch(_) {} }
+      }
+    });
+    (function() {
+      try { if (localStorage.getItem('gp-cookie')) return; } catch(_) {}
+      var div = document.createElement('div');
+      div.className = 'cookie-banner';
+      div.innerHTML = '<p data-i18n="cookie.text">Utilizziamo i cookie per migliorare la tua esperienza. Continuando, accetti la nostra politica sulla privacy.</p><div class="cookie-actions"><button class="cookie-accept" data-cookie="accept" data-i18n="cookie.accept">Accetta</button><button class="cookie-refuse" data-cookie="refuse" data-i18n="cookie.refuse">Rifiuta</button></div>';
+      document.body.appendChild(div);
+      setTimeout(function() { div.classList.add('is-visible'); I18N.apply(); }, 800);
+      div.addEventListener('click', function(e) {
+        var btn = e.target.closest('[data-cookie]');
+        if (!btn) return;
+        try { localStorage.setItem('gp-cookie', btn.dataset.cookie); } catch(_) {}
+        div.classList.remove('is-visible');
+        setTimeout(function() { div.remove(); }, 400);
+      });
+    })();
+  </script>
+
+</body>
+</html>

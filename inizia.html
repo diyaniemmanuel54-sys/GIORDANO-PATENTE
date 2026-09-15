@@ -1,0 +1,1181 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title data-i18n="title.commencer">Inizia ora — Seleziona la tua patente — Giordano Patente</title>
+<meta name="description" content="Scegli la categoria di patente adatta a te e avvia la procedura in 7 giorni. Acconto 100 €, saldo a fine procedura. WhatsApp diretto.">
+<meta name="theme-color" content="#1c2023">
+<meta property="og:title" content="Commencer maintenant — Giordano Patente">
+<meta property="og:description" content="Seleziona la tua patente e avvia la procedura in 7 giorni.">
+<meta property="og:type" content="website">
+<meta property="og:locale" content="it_IT">
+<meta property="og:locale:alternate" content="it_IT">
+<meta property="og:locale:alternate" content="en_US">
+<meta property="og:locale:alternate" content="de_DE">
+<link rel="canonical" href="https://giordanopatente.it/inizia.html">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Oswald:wght@400;500;600;700&family=Work+Sans:wght@400;500;600&family=JetBrains+Mono:wght@500&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="style.css">
+  <link rel="stylesheet" href="i18n.css">
+  <script>
+    (function(){
+      try {
+        var t = localStorage.getItem('gp-theme');
+        if (t === 'dark') document.documentElement.setAttribute('data-dark', 'true');
+      } catch(e) {}
+    })();
+  </script>
+<style>
+.commencer-hero {
+  padding: 60px 6vw 30px;
+  max-width: 1000px;
+  margin: 0 auto;
+  text-align: center;
+}
+.commencer-hero .eyebrow {
+  color: var(--ochre);
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 12px;
+  letter-spacing: 0.12em;
+  margin-bottom: 16px;
+}
+.commencer-hero h1 {
+  font-size: clamp(36px, 6vw, 56px);
+  line-height: 1.05;
+  margin-bottom: 16px;
+}
+.commencer-hero .lead {
+  font-size: 17px;
+  color: #3a3a3a;
+  line-height: 1.6;
+  max-width: 60ch;
+  margin: 0 auto 30px;
+}
+[data-dark="true"] .commencer-hero .lead { color: #c4c0b6; }
+.step-progress {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  margin-bottom: 40px;
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 12px;
+  letter-spacing: 0.08em;
+  color: #6a6a6a;
+}
+[data-dark="true"] .step-progress { color: #a4a098; }
+.step-progress .step {
+  padding: 6px 14px;
+  border-radius: 2px;
+  border: 1px solid rgba(28,32,35,0.18);
+  background: #fff;
+}
+[data-dark="true"] .step-progress .step { background: #262b2f; border-color: rgba(246,243,236,0.18); }
+.step-progress .step.is-active {
+  background: var(--ochre);
+  color: var(--asphalt);
+  border-color: var(--ochre);
+  font-weight: 600;
+}
+.step-progress .arrow { opacity: 0.4; }
+
+.cats-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: 18px;
+  padding: 30px 6vw 40px;
+  max-width: 1200px;
+  margin: 0 auto;
+}
+.cat-card {
+  position: relative;
+  padding: 28px 24px;
+  background: #fff;
+  border: 2px solid rgba(28,32,35,0.1);
+  border-radius: 4px;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  text-align: left;
+}
+[data-dark="true"] .cat-card { background: #262b2f; border-color: rgba(246,243,236,0.12); }
+.cat-card:hover { border-color: var(--ochre); transform: translateY(-3px); box-shadow: 0 12px 30px -10px rgba(28,32,35,0.2); }
+.cat-card.is-selected {
+  border-color: var(--ochre);
+  background: rgba(229,160,47,0.06);
+  box-shadow: 0 12px 30px -10px rgba(229,160,47,0.3);
+}
+[data-dark="true"] .cat-card.is-selected { background: rgba(229,160,47,0.12); }
+.cat-card .check {
+  position: absolute;
+  top: 16px;
+  right: 16px;
+  width: 24px;
+  height: 24px;
+  border-radius: 50%;
+  border: 2px solid rgba(28,32,35,0.2);
+  background: #fff;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: all 0.2s ease;
+}
+[data-dark="true"] .cat-card .check { background: #1a1d20; border-color: rgba(246,243,236,0.2); }
+.cat-card.is-selected .check {
+  background: var(--ochre);
+  border-color: var(--ochre);
+}
+.cat-card.is-selected .check::after {
+  content: "✓";
+  color: #fff;
+  font-size: 14px;
+  font-weight: 700;
+}
+.cat-card .cat-mark {
+  font-family: 'Oswald', sans-serif;
+  font-size: 32px;
+  font-weight: 700;
+  color: var(--ochre);
+  line-height: 1;
+  margin-bottom: 4px;
+}
+.cat-card .cat-name {
+  font-family: 'Oswald', sans-serif;
+  font-size: 15px;
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+  color: var(--asphalt);
+  margin-bottom: 8px;
+}
+[data-dark="true"] .cat-card .cat-name { color: var(--cream); }
+.cat-card .cat-desc {
+  font-size: 13.5px;
+  line-height: 1.5;
+  color: #3a3a3a;
+  margin-bottom: 14px;
+}
+[data-dark="true"] .cat-card .cat-desc { color: #c4c0b6; }
+.cat-card .cat-price {
+  font-family: 'Oswald', sans-serif;
+  font-size: 24px;
+  font-weight: 600;
+  color: var(--asphalt);
+  border-top: 1px solid rgba(28,32,35,0.1);
+  padding-top: 12px;
+}
+[data-dark="true"] .cat-card .cat-price { color: var(--cream); border-color: rgba(246,243,236,0.12); }
+.cat-card .cat-price small {
+  font-size: 11px;
+  font-family: 'JetBrains Mono', monospace;
+  color: #6a6a6a;
+  display: block;
+  font-weight: 400;
+  letter-spacing: 0.04em;
+}
+[data-dark="true"] .cat-card .cat-price small { color: #a4a098; }
+.cat-card .cat-age {
+  position: absolute;
+  top: 16px;
+  left: 16px;
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 10px;
+  letter-spacing: 0.04em;
+  color: #6a6a6a;
+  background: rgba(28,32,35,0.06);
+  padding: 3px 8px;
+  border-radius: 2px;
+}
+[data-dark="true"] .cat-card .cat-age { background: rgba(246,243,236,0.08); color: #a4a098; }
+
+.combo-section {
+  padding: 30px 6vw;
+  max-width: 1200px;
+  margin: 0 auto;
+}
+.combo-section h2 {
+  text-align: center;
+  font-size: 28px;
+  margin-bottom: 24px;
+}
+.combo-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: 18px;
+}
+.combo-mini {
+  padding: 24px;
+  background: #fff;
+  border: 2px solid rgba(28,32,35,0.1);
+  border-radius: 4px;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+[data-dark="true"] .combo-mini { background: #262b2f; border-color: rgba(246,243,236,0.12); }
+.combo-mini:hover { border-color: var(--ochre); transform: translateY(-3px); }
+.combo-mini.is-selected {
+  border-color: var(--ochre);
+  background: rgba(229,160,47,0.06);
+}
+.combo-mini .tag {
+  display: inline-block;
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 10px;
+  letter-spacing: 0.08em;
+  background: var(--racing-green);
+  color: var(--cream);
+  padding: 3px 8px;
+  border-radius: 2px;
+  margin-bottom: 10px;
+}
+.combo-mini .combo-title {
+  font-family: 'Oswald', sans-serif;
+  font-size: 18px;
+  text-transform: uppercase;
+  margin-bottom: 6px;
+}
+.combo-mini .combo-desc {
+  font-size: 13px;
+  color: #3a3a3a;
+  line-height: 1.5;
+  margin-bottom: 12px;
+}
+[data-dark="true"] .combo-mini .combo-desc { color: #c4c0b6; }
+.combo-mini .combo-price {
+  font-family: 'Oswald', sans-serif;
+  font-size: 22px;
+  color: var(--ochre);
+  font-weight: 600;
+}
+
+.selection-bar {
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  background: var(--asphalt);
+  color: var(--cream);
+  padding: 18px 6vw;
+  z-index: 300;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 20px;
+  box-shadow: 0 -10px 30px -10px rgba(0,0,0,0.4);
+  transform: translateY(100%);
+  transition: transform 0.3s ease;
+}
+.selection-bar.is-visible { transform: translateY(0); }
+.selection-bar .sel-info { flex: 1; }
+.selection-bar .sel-info p { margin: 0; font-size: 13px; opacity: 0.75; font-family: 'JetBrains Mono', monospace; letter-spacing: 0.04em; }
+.selection-bar .sel-info h3 { margin: 2px 0 0; font-family: 'Oswald', sans-serif; font-size: 18px; }
+.selection-bar .sel-price { font-family: 'Oswald', sans-serif; font-size: 24px; color: var(--ochre); font-weight: 600; }
+.selection-bar .sel-cta {
+  background: var(--ochre);
+  color: var(--asphalt);
+  padding: 12px 28px;
+  border: 0;
+  border-radius: 2px;
+  font-family: 'Oswald', sans-serif;
+  font-size: 14px;
+  font-weight: 600;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  text-decoration: none;
+  display: inline-block;
+}
+.selection-bar .sel-cta:hover { background: #f0ac3f; transform: translateY(-2px); }
+@media (max-width: 700px) {
+  .selection-bar { flex-direction: column; align-items: stretch; gap: 10px; }
+  .selection-bar .sel-cta { text-align: center; }
+  body { padding-bottom: 140px; }
+}
+
+.payment-info {
+  background: rgba(229,160,47,0.08);
+  border-left: 3px solid var(--ochre);
+  padding: 20px 24px;
+  border-radius: 2px;
+  max-width: 800px;
+  margin: 30px auto;
+  font-size: 14px;
+  line-height: 1.6;
+}
+[data-dark="true"] .payment-info { background: rgba(229,160,47,0.15); }
+.payment-info strong { color: var(--ochre); }
+
+/* ====== PAYMENT MODAL ====== */
+.paymodal-backdrop {
+  position: fixed;
+  inset: 0;
+  background: rgba(20, 22, 24, 0.78);
+  backdrop-filter: blur(6px);
+  -webkit-backdrop-filter: blur(6px);
+  z-index: 1000;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 20px;
+  opacity: 0;
+  visibility: hidden;
+  transition: opacity 0.3s ease, visibility 0.3s ease;
+}
+.paymodal-backdrop.is-visible {
+  opacity: 1;
+  visibility: visible;
+}
+.paymodal {
+  background: var(--cream, #f6f3ec);
+  color: var(--asphalt, #1c2023);
+  border-radius: 4px;
+  max-width: 580px;
+  width: 100%;
+  max-height: 90vh;
+  overflow-y: auto;
+  box-shadow: 0 30px 80px rgba(0,0,0,0.5);
+  transform: translateY(20px) scale(0.98);
+  transition: transform 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+.paymodal-backdrop.is-visible .paymodal {
+  transform: translateY(0) scale(1);
+}
+[data-dark="true"] .paymodal {
+  background: #2a2e33;
+  color: #f6f3ec;
+}
+.paymodal-header {
+  padding: 28px 32px 16px;
+  border-bottom: 1px solid rgba(28,32,35,0.08);
+  position: relative;
+}
+[data-dark="true"] .paymodal-header { border-bottom-color: rgba(246,243,236,0.08); }
+.paymodal-header h2 {
+  font-family: 'Oswald', sans-serif;
+  font-size: 24px;
+  font-weight: 600;
+  margin: 0 0 6px;
+  letter-spacing: 0.01em;
+  padding-right: 30px;
+}
+.paymodal-header p {
+  font-size: 14px;
+  line-height: 1.5;
+  color: #5a5a5a;
+  margin: 0;
+}
+[data-dark="true"] .paymodal-header p { color: #c4c0b6; }
+.paymodal-close {
+  position: absolute;
+  top: 18px;
+  right: 18px;
+  background: transparent;
+  border: 0;
+  font-size: 24px;
+  width: 36px;
+  height: 36px;
+  border-radius: 50%;
+  cursor: pointer;
+  color: inherit;
+  opacity: 0.6;
+  transition: all 0.2s ease;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  line-height: 1;
+}
+.paymodal-close:hover { opacity: 1; background: rgba(0,0,0,0.06); }
+[data-dark="true"] .paymodal-close:hover { background: rgba(255,255,255,0.06); }
+.paymodal-summary {
+  padding: 16px 32px;
+  background: rgba(229,160,47,0.08);
+  border-bottom: 1px solid rgba(28,32,35,0.08);
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  font-size: 14px;
+  flex-wrap: wrap;
+  gap: 8px;
+}
+[data-dark="true"] .paymodal-summary { border-bottom-color: rgba(246,243,236,0.08); }
+.paymodal-summary .pm-cat { font-weight: 600; }
+.paymodal-summary .pm-deposit { font-family: 'Oswald', sans-serif; font-size: 18px; color: var(--ochre, #e5a02f); font-weight: 600; }
+.paymodal-body { padding: 24px 32px 28px; }
+.paymodal-method {
+  display: flex;
+  align-items: flex-start;
+  gap: 16px;
+  padding: 18px 20px;
+  border: 2px solid rgba(28,32,35,0.1);
+  border-radius: 4px;
+  margin-bottom: 12px;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  background: transparent;
+  text-align: left;
+  width: 100%;
+  font-family: inherit;
+  font-size: inherit;
+  color: inherit;
+}
+[data-dark="true"] .paymodal-method { border-color: rgba(246,243,236,0.12); }
+.paymodal-method:hover {
+  border-color: var(--ochre, #e5a02f);
+  background: rgba(229,160,47,0.06);
+  transform: translateY(-2px);
+}
+.paymodal-method-icon {
+  width: 48px;
+  height: 48px;
+  border-radius: 4px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-family: 'Oswald', sans-serif;
+  font-weight: 700;
+  font-size: 13px;
+  letter-spacing: 0.04em;
+  flex-shrink: 0;
+  background: var(--asphalt, #1c2023);
+  color: var(--cream, #f6f3ec);
+}
+.paymodal-method-icon.iban { background: #1c5cab; }
+.paymodal-method-icon.poste { background: #ff6900; color: #fff; }
+.paymodal-method-content { flex: 1; min-width: 0; }
+.paymodal-method-name {
+  font-family: 'Oswald', sans-serif;
+  font-size: 17px;
+  font-weight: 600;
+  margin-bottom: 4px;
+  display: block;
+}
+.paymodal-method-desc {
+  font-size: 13px;
+  line-height: 1.5;
+  color: #5a5a5a;
+  margin-bottom: 6px;
+  display: block;
+}
+[data-dark="true"] .paymodal-method-desc { color: #c4c0b6; }
+.paymodal-method-detail {
+  font-size: 12px;
+  color: #888;
+  font-family: 'JetBrains Mono', monospace;
+  display: block;
+}
+.paymodal-coord-row {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  margin: 8px 0 6px;
+  background: rgba(28,32,35,0.06);
+  padding: 6px 8px;
+  border-radius: 3px;
+  border: 1px dashed rgba(28,32,35,0.18);
+}
+[data-dark="true"] .paymodal-coord-row { background: rgba(246,243,236,0.08); border-color: rgba(246,243,236,0.18); }
+.paymodal-coord {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 13px;
+  font-weight: 500;
+  color: var(--asphalt, #1c2023);
+  word-break: break-all;
+  flex: 1;
+  min-width: 0;
+}
+[data-dark="true"] .paymodal-coord { color: var(--cream, #f6f3ec); }
+.paymodal-copy {
+  background: var(--asphalt, #1c2023);
+  color: var(--cream, #f6f3ec);
+  border: 0;
+  padding: 4px 10px;
+  border-radius: 3px;
+  font-size: 11px;
+  font-family: 'Oswald', sans-serif;
+  font-weight: 600;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  cursor: pointer;
+  white-space: nowrap;
+  flex-shrink: 0;
+  transition: all 0.2s ease;
+}
+.paymodal-copy:hover { background: var(--ochre, #e5a02f); color: var(--asphalt, #1c2023); }
+.paymodal-copy.is-copied { background: #2a9d3f; color: #fff; }
+.paymodal-whatsapp {
+  display: block;
+  text-align: center;
+  background: #25d366;
+  color: #fff;
+  padding: 14px 20px;
+  border-radius: 3px;
+  font-family: 'Oswald', sans-serif;
+  font-size: 14px;
+  font-weight: 600;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  text-decoration: none;
+  margin-top: 16px;
+  transition: all 0.2s ease;
+}
+.paymodal-whatsapp:hover { background: #1ebe57; transform: translateY(-2px); }
+.paymodal-footer {
+  padding: 16px 32px 24px;
+  text-align: center;
+  font-size: 12px;
+  color: #5a5a5a;
+  border-top: 1px solid rgba(28,32,35,0.06);
+}
+[data-dark="true"] .paymodal-footer { color: #c4c0b6; border-top-color: rgba(246,243,236,0.06); }
+.paymodal-cancel {
+  display: inline-block;
+  margin-top: 8px;
+  background: transparent;
+  border: 0;
+  color: inherit;
+  opacity: 0.7;
+  text-decoration: underline;
+  cursor: pointer;
+  font-size: 13px;
+  font-family: inherit;
+}
+.paymodal-cancel:hover { opacity: 1; }
+@media (max-width: 600px) {
+  .paymodal-header, .paymodal-body, .paymodal-footer, .paymodal-summary { padding-left: 20px; padding-right: 20px; }
+  .paymodal-header h2 { font-size: 20px; }
+  .paymodal-method { padding: 14px 16px; gap: 12px; }
+  .paymodal-method-icon { width: 40px; height: 40px; font-size: 11px; }
+  .paymodal-method-name { font-size: 15px; }
+}
+body.paymodal-open { overflow: hidden; }
+
+.section-divider {
+  text-align: center;
+  padding: 20px 6vw;
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 12px;
+  letter-spacing: 0.12em;
+  color: #6a6a6a;
+  text-transform: uppercase;
+}
+[data-dark="true"] .section-divider { color: #a4a098; }
+
+  /* ---------- ACTIVE NAV ---------- */
+  .nav-links a.active {
+    color: var(--ochre);
+    font-weight: 700;
+  }
+  .nav-links a.active::after { width: 100%; }
+  .nav-cta.active {
+    background: var(--ochre-dim);
+    pointer-events: none;
+  }
+
+  /* ---------- BURGER BUTTON ---------- */
+  .menu-toggle {
+    display: none;
+    background: transparent;
+    border: none;
+    cursor: pointer;
+    padding: 8px;
+    flex-direction: column;
+    gap: 5px;
+    width: 36px;
+    height: 36px;
+    justify-content: center;
+    align-items: center;
+    z-index: 101;
+  }
+  .menu-toggle-bar {
+    display: block;
+    width: 24px;
+    height: 2px;
+    background: var(--cream);
+    transition: transform 0.3s ease, opacity 0.3s ease;
+    border-radius: 1px;
+  }
+  .menu-toggle.is-open .menu-toggle-bar:nth-child(1) { transform: translateY(7px) rotate(45deg); }
+  .menu-toggle.is-open .menu-toggle-bar:nth-child(2) { opacity: 0; }
+  .menu-toggle.is-open .menu-toggle-bar:nth-child(3) { transform: translateY(-7px) rotate(-45deg); }
+
+  .nav-overlay {
+    position: fixed;
+    top: 0; left: 0; right: 0; bottom: 0;
+    background: rgba(0, 0, 0, 0.6);
+    z-index: 98;
+    opacity: 0;
+    visibility: hidden;
+    transition: opacity 0.3s ease, visibility 0.3s ease;
+  }
+  .nav-overlay.is-visible { opacity: 1; visibility: visible; }
+
+  .nav-drawer {
+    position: fixed;
+    top: 0; right: 0;
+    width: 280px;
+    max-width: 80vw;
+    height: 100vh;
+    background: var(--asphalt);
+    color: var(--cream);
+    z-index: 99;
+    padding: 80px 30px 30px;
+    transform: translateX(100%);
+    transition: transform 0.3s ease;
+    overflow-y: auto;
+    box-shadow: -4px 0 20px rgba(0, 0, 0, 0.3);
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+  }
+  .nav-drawer.is-open { transform: translateX(0); }
+  .nav-drawer-link {
+    display: block;
+    padding: 14px 12px;
+    color: var(--cream);
+    font-size: 15px;
+    font-weight: 500;
+    text-decoration: none;
+    border-bottom: 1px solid rgba(246, 243, 236, 0.08);
+    transition: color 0.2s ease, padding-left 0.2s ease;
+  }
+  .nav-drawer-link:hover, .nav-drawer-link:active { color: var(--ochre); padding-left: 18px; }
+  .nav-drawer-cta {
+    display: block;
+    margin-top: 20px;
+    padding: 14px 20px;
+    background: var(--ochre);
+    color: var(--asphalt);
+    text-align: center;
+    font-weight: 600;
+    font-size: 15px;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    border-radius: 2px;
+    text-decoration: none;
+    transition: background 0.2s ease;
+  }
+  .nav-drawer-cta:hover { background: var(--ochre-dim); }
+
+  @media (max-width: 860px) {
+    .menu-toggle { display: flex !important; }
+    .nav-links, .nav-cta { display: none; }
+    .menu-toggle { display: flex !important; }
+  }
+
+</style>
+</head>
+<body>
+
+<nav class="navbar">
+  <div class="logo">
+    <a href="index.html"><span class="logo-mark" data-i18n="nav.logo.mark">GIORDANO</span><span class="logo-sub" data-i18n="nav.logo.sub">PATENTE</span></a>
+  </div>
+  <div class="nav-links">
+    <a href="index.html" data-i18n="nav.home">Home</a>
+    <a href="chi-siamo.html" data-i18n="nav.about">Chi siamo</a>
+    <a href="perche.html" data-i18n="nav.why">Perché noi</a>
+    <a href="inizia.html" data-i18n="nav.prices" class="active">Prezzi</a>
+    <a href="informazioni.html" data-i18n="nav.informations">Informazioni</a>
+    <a href="procedura.html" data-i18n="nav.procedure">La procedura</a>
+    
+    <a href="galleria.html" data-i18n="nav.gallery">Galleria</a>
+    <a href="contact.html" data-i18n="nav.contact">Contatti</a>
+  </div>
+      <button class="theme-toggle" type="button" aria-label="Toggle theme">
+        <svg class="icon-sun" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="4"/><path d="M12 2v2M12 20v2M4.93 4.93l1.41 1.41M17.66 17.66l1.41 1.41M2 12h2M20 12h2M4.93 19.07l1.41-1.41M17.66 6.34l1.41-1.41"/></svg>
+        <svg class="icon-moon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/></svg>
+      </button>
+      <a href="contact.html" class="nav-cta" data-i18n="nav.book">Inizia</a>
+</nav>
+
+<section class="commencer-hero">
+  <p class="eyebrow" data-i18n="u.etape_1_2">FASE 1 / 2</p>
+  <h1 data-i18n="commencer.h1">Seleziona la tua patente</h1>
+  <p class="lead" data-i18n="commencer.lead">Scegli la categoria di patente che vuoi ottenere. Clicca su una scheda per continuare.</p>
+
+  <div class="step-progress">
+    <span class="step is-active" data-i18n="u.1_categorie">1. Categoria</span>
+    <span class="arrow">→</span>
+    <span class="step" data-i18n="u.2_contact">2. Contatto</span>
+    <span class="arrow">→</span>
+    <span class="step" data-i18n="u.3_acompte">3. Acconto</span>
+  </div>
+</section>
+
+<div class="cats-grid" id="catsGrid">
+
+  <div class="cat-card" data-cat="AM" data-price="650" data-name="Ciclomotore / Quadriciclo leggero" data-page="patente-am.html" data-i18n-name="cat.cyclomoteur.name">
+    <div class="check"></div>
+    <span class="cat-age" data-i18n="cat.age.14">Da 14 anni</span>
+    <div class="cat-mark">AM</div>
+    <div class="cat-name" data-i18n="cat.cyclomoteur.name">Ciclomotore / Quadriciclo leggero</div>
+    <p class="cat-desc" data-i18n="u.pour_les_cyclomoteurs_jusqu_a_50cc_et_les_quadricy">Per ciclomotori fino a 50cc e quadricicli leggeri. Prima patente per i giovani.</p>
+    <div class="cat-price">650 € <small><span data-i18n="commencer.deposit">Acconto</span> 100 € + <span data-i18n="commencer.balance">Saldo</span> 550 €</small></div>
+  </div>
+
+  <div class="cat-card" data-cat="A1" data-price="700" data-name="Moto leggera 125cc" data-page="patente-a1.html" data-i18n-name="cat.moto_125.name">
+    <div class="check"></div>
+    <span class="cat-age" data-i18n="cat.age.16">Da 16 anni</span>
+    <div class="cat-mark">A1</div>
+    <div class="cat-name" data-i18n="cat.moto_125.name">Moto leggera 125cc</div>
+    <p class="cat-desc" data-i18n="u.motocycles_jusqu_a_125cc_et_11_kw_ideal_pour_debut">Motocicli fino a 125cc e 11 kW. Ideale per iniziare con le due ruote.</p>
+    <div class="cat-price">700 € <small><span data-i18n="commencer.deposit">Acconto</span> 100 € + <span data-i18n="commencer.balance">Saldo</span> 600 €</small></div>
+  </div>
+
+  <div class="cat-card" data-cat="A2" data-price="700" data-name="Moto fino a 35 kW" data-page="patente-a2.html" data-i18n-name="cat.moto_35kw.name">
+    <div class="check"></div>
+    <span class="cat-age" data-i18n="cat.age.18">Da 18 anni</span>
+    <div class="cat-mark">A2</div>
+    <div class="cat-name" data-i18n="cat.moto_35kw.name">Moto fino a 35 kW</div>
+    <p class="cat-desc" data-i18n="u.moto_de_puissance_intermediaire_parfait_apres_l_a1">Moto di potenza intermedia, perfetta dopo l'A1.</p>
+    <div class="cat-price">700 € <small><span data-i18n="commencer.deposit">Acconto</span> 100 € + <span data-i18n="commencer.balance">Saldo</span> 600 €</small></div>
+  </div>
+
+  <div class="cat-card" data-cat="A" data-price="750" data-name="Moto senza limiti" data-page="patente-a-senza-limiti.html" data-i18n-name="cat.moto_sans_limite.name">
+    <div class="check"></div>
+    <span class="cat-age" data-i18n="cat.age.24">Da 24 anni</span>
+    <div class="cat-mark">A</div>
+    <div class="cat-name" data-i18n="cat.moto_sans_limite.name">Moto senza limiti</div>
+    <p class="cat-desc" data-i18n="u.toutes_motos_sans_limite_de_puissance_acces_direct">Tutte le moto, senza limite di potenza. Accesso diretto dopo i 24 anni o tramite A2 + 2 anni.</p>
+    <div class="cat-price">750 € <small><span data-i18n="commencer.deposit">Acconto</span> 100 € + <span data-i18n="commencer.balance">Saldo</span> 650 €</small></div>
+  </div>
+
+  <div class="cat-card is-selected" data-cat="B" data-price="800" data-name="Auto" data-page="patente-b.html">
+    <div class="check"></div>
+    <span class="cat-age" data-i18n="cat.age.18">Da 18 anni</span>
+    <div class="cat-mark">B</div>
+    <div class="cat-name" data-i18n="cat.voiture.name">Auto</div>
+    <p class="cat-desc"><span data-i18n="commencer.cat.b.desc">La patente più richiesta. Auto e veicoli fino a 3,5 tonnellate.</span> ⭐ <span data-i18n="commencer.recommended">Più popolare</span>.</p>
+    <div class="cat-price">800 € <small><span data-i18n="commencer.deposit">Acconto</span> 100 € + <span data-i18n="commencer.balance">Saldo</span> 700 €</small></div>
+  </div>
+
+  <div class="cat-card" data-cat="B1" data-price="750" data-name="Quadriciclo pesante" data-page="patente-b1.html" data-i18n-name="cat.quadricycle_lourd.name">
+    <div class="check"></div>
+    <span class="cat-age" data-i18n="cat.age.16">Da 16 anni</span>
+    <div class="cat-mark">B1</div>
+    <div class="cat-name" data-i18n="cat.quadricycle_lourd.name">Quadriciclo pesante</div>
+    <p class="cat-desc" data-i18n="u.quadricycles_motorises_jusqu_a_550_kg_sans_permis_">Quadricicli motorizzati fino a 550 kg, senza patente B.</p>
+    <div class="cat-price">750 € <small><span data-i18n="commencer.deposit">Acconto</span> 100 € + <span data-i18n="commencer.balance">Saldo</span> 650 €</small></div>
+  </div>
+
+  <div class="cat-card" data-cat="B96" data-price="900" data-name="Auto + rimorchio (B96)" data-page="patente-b96.html" data-i18n-name="cat.voiture_remorque.name">
+    <div class="check"></div>
+    <span class="cat-age" data-i18n="cat.age.b">Con B</span>
+    <div class="cat-mark">B96</div>
+    <div class="cat-name" data-i18n="cat.voiture_remorque.name">Auto + rimorchio (B96)</div>
+    <p class="cat-desc" data-i18n="u.pour_tracter_une_remorque_jusqu_a_4_25_t_au_total_">Per trainare un rimorchio fino a 4,25 t totali. Formazione breve senza esame.</p>
+    <div class="cat-price">900 € <small><span data-i18n="commencer.deposit">Acconto</span> 100 € + <span data-i18n="commencer.balance">Saldo</span> 800 €</small></div>
+  </div>
+
+  <div class="cat-card" data-cat="BE" data-price="900" data-name="Auto + rimorchio grande (BE)" data-page="patente-be.html" data-i18n-name="cat.voiture_grosse_remorque.name">
+    <div class="check"></div>
+    <span class="cat-age" data-i18n="cat.age.b">Con B</span>
+    <div class="cat-mark">BE</div>
+    <div class="cat-name" data-i18n="cat.voiture_grosse_remorque.name">Auto + rimorchio grande (BE)</div>
+    <p class="cat-desc" data-i18n="u.pour_tracter_une_remorque_au_dela_de_4_25_t_examen">Per trainare un rimorchio oltre 4,25 t. Esame pratico dedicato.</p>
+    <div class="cat-price">900 € <small><span data-i18n="commencer.deposit">Acconto</span> 100 € + <span data-i18n="commencer.balance">Saldo</span> 800 €</small></div>
+  </div>
+
+  <div class="cat-card" data-cat="C1" data-price="800" data-name="Camion leggero (C1)" data-page="patente-c1.html" data-i18n-name="cat.camion_leger.name">
+    <div class="check"></div>
+    <span class="cat-age" data-i18n="cat.age.18">Da 18 anni</span>
+    <div class="cat-mark">C1</div>
+    <div class="cat-name" data-i18n="cat.camion_leger.name">Camion leggero (C1)</div>
+    <p class="cat-desc" data-i18n="u.camions_de_3_5_a_7_5_tonnes_premier_pas_vers_le_tr">Camion da 3,5 a 7,5 tonnellate. Primo passo verso il trasporto professionale.</p>
+    <div class="cat-price">800 € <small><span data-i18n="commencer.deposit">Acconto</span> 100 € + <span data-i18n="commencer.balance">Saldo</span> 700 €</small></div>
+  </div>
+
+  <div class="cat-card" data-cat="C1E" data-price="900" data-name="Camion leggero + rimorchio" data-page="patente-c1e.html" data-i18n-name="cat.camion_leger_remorque.name">
+    <div class="check"></div>
+    <span class="cat-age" data-i18n="cat.age.c1">Con C1</span>
+    <div class="cat-mark">C1E</div>
+    <div class="cat-name" data-i18n="cat.camion_leger_remorque.name">Camion leggero + rimorchio</div>
+    <p class="cat-desc" data-i18n="u.c1_avec_remorque_ensemble_jusqu_a_12_tonnes_au_tot">C1 con rimorchio, insieme fino a 12 tonnellate totali.</p>
+    <div class="cat-price">900 € <small><span data-i18n="commencer.deposit">Acconto</span> 100 € + <span data-i18n="commencer.balance">Saldo</span> 800 €</small></div>
+  </div>
+
+  <div class="cat-card" data-cat="C" data-price="900" data-name="Camion pesante (C)" data-page="patente-c.html" data-i18n-name="cat.camion_lourd.name">
+    <div class="check"></div>
+    <span class="cat-age" data-i18n="cat.age.21">Da 21 anni</span>
+    <div class="cat-mark">C</div>
+    <div class="cat-name" data-i18n="cat.camion_lourd.name">Camion pesante (C)</div>
+    <p class="cat-desc" data-i18n="u.camions_de_plus_de_3_5_tonnes_sans_limite_de_masse">Camion oltre 3,5 tonnellate, senza limite di massa. Accesso pro.</p>
+    <div class="cat-price">900 € <small><span data-i18n="commencer.deposit">Acconto</span> 100 € + <span data-i18n="commencer.balance">Saldo</span> 800 €</small></div>
+  </div>
+
+  <div class="cat-card" data-cat="CE" data-price="1000" data-name="Semirimorchio (CE)" data-page="patente-ce.html" data-i18n-name="cat.semi_remorque.name">
+    <div class="check"></div>
+    <span class="cat-age" data-i18n="cat.age.c">Con C</span>
+    <div class="cat-mark">CE</div>
+    <div class="cat-name" data-i18n="cat.semi_remorque.name">Semirimorchio (CE)</div>
+    <p class="cat-desc" data-i18n="u.camions_avec_semi_remorque_combinaisons_illimitees">Camion con semi-rimorchio, combinazioni illimitate.</p>
+    <div class="cat-price">1 000 € <small><span data-i18n="commencer.deposit">Acconto</span> 100 € + <span data-i18n="commencer.balance">Saldo</span> 900 €</small></div>
+  </div>
+
+  <div class="cat-card" data-cat="D1" data-price="900" data-name="Minibus (D1)" data-page="patente-d1.html" data-i18n-name="cat.minibus.name">
+    <div class="check"></div>
+    <span class="cat-age" data-i18n="cat.age.21">Da 21 anni</span>
+    <div class="cat-mark">D1</div>
+    <div class="cat-name" data-i18n="cat.minibus.name">Minibus (D1)</div>
+    <p class="cat-desc" data-i18n="u.minibus_jusqu_a_16_passagers_longueur_max_8_m">Minibus fino a 16 passeggeri, lunghezza max 8 m.</p>
+    <div class="cat-price">900 € <small><span data-i18n="commencer.deposit">Acconto</span> 100 € + <span data-i18n="commencer.balance">Saldo</span> 800 €</small></div>
+  </div>
+
+  <div class="cat-card" data-cat="D1E" data-price="1000" data-name="Minibus + rimorchio" data-page="patente-d1e.html" data-i18n-name="cat.minibus_remorque.name">
+    <div class="check"></div>
+    <span class="cat-age" data-i18n="cat.age.d1">Con D1</span>
+    <div class="cat-mark">D1E</div>
+    <div class="cat-name" data-i18n="cat.minibus_remorque.name">Minibus + rimorchio</div>
+    <p class="cat-desc" data-i18n="u.minibus_avec_remorque_attelee">Minibus con rimorchio agganciato.</p>
+    <div class="cat-price">1 000 € <small><span data-i18n="commencer.deposit">Acconto</span> 100 € + <span data-i18n="commencer.balance">Saldo</span> 900 €</small></div>
+  </div>
+
+  <div class="cat-card" data-cat="D" data-price="1000" data-name="Bus & pullman (D)" data-page="patente-d.html" data-i18n-name="cat.bus.name">
+    <div class="check"></div>
+    <span class="cat-age" data-i18n="cat.age.24">Da 24 anni</span>
+    <div class="cat-mark">D</div>
+    <div class="cat-name" data-i18n="cat.bus.name">Bus & pullman (D)</div>
+    <p class="cat-desc" data-i18n="u.bus_et_autocars_de_plus_de_8_places_hors_conducteu">Bus e pullman con più di 8 posti (escluso il conducente).</p>
+    <div class="cat-price">1 000 € <small><span data-i18n="commencer.deposit">Acconto</span> 100 € + <span data-i18n="commencer.balance">Saldo</span> 900 €</small></div>
+  </div>
+
+  <div class="cat-card" data-cat="DE" data-price="1200" data-name="Bus articolato (DE)" data-page="patente-de.html" data-i18n-name="cat.bus_articule.name">
+    <div class="check"></div>
+    <span class="cat-age" data-i18n="cat.age.d">Con D</span>
+    <div class="cat-mark">DE</div>
+    <div class="cat-name" data-i18n="cat.bus_articule.name">Bus articolato (DE)</div>
+    <p class="cat-desc" data-i18n="u.bus_articules_ou_bus_avec_remorque">Bus articolati o bus con rimorchio.</p>
+    <div class="cat-price">1 200 € <small data-i18n="u.acompte_100_solde_1_100">Acconto 100 € + Saldo 1.100 €</small></div>
+  </div>
+
+  <div class="cat-card" data-cat="CQCP" data-price="1300" data-name="CQC Persone" data-page="patente-cqc-persone.html" data-i18n-name="cat.cqc_personnes.name">
+    <div class="check"></div>
+    <span class="cat-age" data-i18n="cat.age.pro">Pro</span>
+    <div class="cat-mark">CQC P</div>
+    <div class="cat-name" data-i18n="cat.cqc_personnes.name">CQC Persone</div>
+    <p class="cat-desc" data-i18n="u.carte_de_qualification_pour_le_transport_de_passag">Carta di qualificazione per il trasporto passeggeri.</p>
+    <div class="cat-price">1 300 € <small data-i18n="u.acompte_100_solde_1_200">Acconto 100 € + Saldo 1.200 €</small></div>
+  </div>
+
+  <div class="cat-card" data-cat="CQCM" data-price="1500" data-name="CQC Merci" data-page="patente-cqc-merci.html" data-i18n-name="cat.cqc_marchandises.name">
+    <div class="check"></div>
+    <span class="cat-age" data-i18n="cat.age.pro">Pro</span>
+    <div class="cat-mark">CQC M</div>
+    <div class="cat-name" data-i18n="cat.cqc_marchandises.name">CQC Merci</div>
+    <p class="cat-desc" data-i18n="u.carte_de_qualification_pour_le_transport_de_marcha">Carta di qualificazione per il trasporto merci.</p>
+    <div class="cat-price">1 500 € <small data-i18n="u.acompte_100_solde_1_400">Acconto 100 € + Saldo 1.400 €</small></div>
+  </div>
+
+  <div class="cat-card" data-cat="CQCE" data-price="800" data-name="Estensione CQC" data-page="patente-cqc-estensione.html" data-i18n-name="cat.cqc_extension.name">
+    <div class="check"></div>
+    <span class="cat-age" data-i18n="cat.age.pro">Pro</span>
+    <div class="cat-mark">CQC E</div>
+    <div class="cat-name" data-i18n="cat.cqc_extension.name">Estensione CQC</div>
+    <p class="cat-desc" data-i18n="u.extension_de_la_cqc_pour_les_titulaires_souhaitant">Estensione della CQC per i titolari che desiderano aggiungere il complementare.</p>
+    <div class="cat-price">800 € <small><span data-i18n="commencer.deposit">Acconto</span> 100 € + <span data-i18n="commencer.balance">Saldo</span> 700 €</small></div>
+  </div>
+
+  <div class="cat-card" data-cat="NAUT1" data-price="850" data-name="Patente nautica costiera motore" data-page="patente-nautica-12m-motore.html" data-i18n-name="cat.bateau_cotier_moteur.name">
+    <div class="check"></div>
+    <span class="cat-age" data-i18n="cat.age.nautique">Nautica</span>
+    <div class="cat-mark">12M M</div>
+    <div class="cat-name" data-i18n="cat.bateau_cotier_moteur.name">Patente nautica costiera motore</div>
+    <p class="cat-desc" data-i18n="u.navigation_jusqu_a_12_milles_des_cotes_moteur">Navigazione fino a 12 miglia dalla costa, motore.</p>
+    <div class="cat-price">850 € <small><span data-i18n="commencer.deposit">Acconto</span> 100 € + <span data-i18n="commencer.balance">Saldo</span> 750 €</small></div>
+  </div>
+
+  <div class="cat-card" data-cat="NAUT2" data-price="900" data-name="Barca costiera motore + vela" data-page="patente-nautica-12m-vela.html" data-i18n-name="cat.bateau_cotier_moteur_voile.name">
+    <div class="check"></div>
+    <span class="cat-age" data-i18n="cat.age.nautique">Nautica</span>
+    <div class="cat-mark">12M MV</div>
+    <div class="cat-name" data-i18n="cat.bateau_cotier_moteur_voile.name">Barca costiera motore + vela</div>
+    <p class="cat-desc" data-i18n="u.cotier_avec_extension_voile_jusqu_a_12_milles">Costiero con estensione vela, fino a 12 miglia.</p>
+    <div class="cat-price">900 € <small><span data-i18n="commencer.deposit">Acconto</span> 100 € + <span data-i18n="commencer.balance">Saldo</span> 800 €</small></div>
+  </div>
+
+  <div class="cat-card" data-cat="NAUT3" data-price="1000" data-name="Barca d'altura motore" data-page="patente-nautica-illimitata.html" data-i18n-name="cat.bateau_hauturier_moteur.name">
+    <div class="check"></div>
+    <span class="cat-age" data-i18n="cat.age.nautique">Nautica</span>
+    <div class="cat-mark">UNL M</div>
+    <div class="cat-name" data-i18n="cat.bateau_hauturier_moteur.name">Barca d'altura motore</div>
+    <p class="cat-desc" data-i18n="u.navigation_sans_limite_haute_mer_moteur">Navigazione senza limiti, alto mare, motore.</p>
+    <div class="cat-price">1 000 € <small><span data-i18n="commencer.deposit">Acconto</span> 100 € + <span data-i18n="commencer.balance">Saldo</span> 900 €</small></div>
+  </div>
+
+  <div class="cat-card" data-cat="NAUT4" data-price="1200" data-name="Altura motore + vela" data-page="patente-nautica-senza-limiti.html" data-i18n-name="cat.bateau_hauturier_moteur_voile.name">
+    <div class="check"></div>
+    <span class="cat-age" data-i18n="cat.age.nautique">Nautica</span>
+    <div class="cat-mark">UNL MV</div>
+    <div class="cat-name" data-i18n="cat.bateau_hauturier_moteur_voile.name">Altura motore + vela</div>
+    <p class="cat-desc" data-i18n="u.hauturier_complet_avec_voile_sans_limite">D'altura completo con vela, senza limiti.</p>
+    <div class="cat-price">1 200 € <small data-i18n="u.acompte_100_solde_1_100_1032">Acconto 100 € + Saldo 1.100 €</small></div>
+  </div>
+
+</div>
+
+<div class="section-divider" data-i18n="u.ou_economisez_avec_un_forfait_combine">— O RISPARMIA CON UN PACCHETTO COMBINATO —</div>
+
+<div class="combo-section">
+  <div class="combo-grid">
+
+    <div class="combo-mini" data-cat="AB" data-price="1000" data-name="Moto + Auto" data-page="combinazione-moto-auto.html" data-i18n-name="cat.sub.combi.ab">
+      <span class="tag">COMBINAZIONE</span>
+      <div class="combo-title" data-i18n="cat.sub.combi.ab">Moto + Auto</div>
+      <p class="combo-desc" data-i18n="u.le_duo_ideal_pour_rouler_sur_deux_et_quatre_roues_">La coppia ideale per guidare su due e quattro ruote con un unico percorso formativo.</p>
+      <div class="combo-price">1 000 €</div>
+    </div>
+
+    <div class="combo-mini" data-cat="CCQC" data-price="1500" data-name="Camion + CQC Pro" data-page="combinazione-mezzo-pesante-cqc.html" data-i18n-name="u.camion_cqc_pro">
+      <span class="tag" style="background: var(--signal-red);">COMBO PRO</span>
+      <div class="combo-title" data-i18n="u.camion_cqc_pro">Camion + CQC Pro</div>
+      <p class="combo-desc" data-i18n="u.tout_pour_devenir_conducteur_routier_professionnel">Tutto per diventare conducente stradale professionale in un unico percorso.</p>
+      <div class="combo-price">1 500 €</div>
+    </div>
+
+    <div class="combo-mini" data-cat="AMB" data-price="1000" data-name="Ciclomotore + Auto" data-page="combinazione-ciclomotore-auto.html" data-i18n-name="cat.sub.combi.amb">
+      <span class="tag" style="background: var(--ochre); color: var(--asphalt);">STARTER</span>
+      <div class="combo-title" data-i18n="cat.sub.combi.amb">Ciclomotore + Auto</div>
+      <p class="combo-desc" data-i18n="u.pour_les_1418_ans_commence_par_le_am_puis_enchaine">Per i 14-18 anni: inizia con l'AM, poi passa alla B.</p>
+      <div class="combo-price">1 000 €</div>
+    </div>
+
+  </div>
+</div>
+
+<div class="payment-info">
+  <strong data-i18n="u.comment_ca_marche">💡 Come funziona:</strong> <span data-i18n="prices.payment.desc">Si versa un acconto di 100€ per avviare la procedura, poi il saldo rimanente al termine della procedura. Acconto tramite bonifico bancario (IBAN) o PostePay. Ricevuta fiscale regolare fornita.</span>
+</div>
+
+<!-- ====== PAYMENT MODAL ====== -->
+<div class="paymodal-backdrop" id="paymodal" role="dialog" aria-modal="true" aria-labelledby="paymodal-title" aria-hidden="true">
+  <div class="paymodal">
+    <div class="paymodal-header">
+      <button type="button" class="paymodal-close" id="paymodalClose" aria-label="Chiudi">&times;</button>
+      <h2 id="paymodal-title" data-i18n="paymodal.title">Scegli il tuo metodo di pagamento</h2>
+      <p data-i18n="paymodal.sub">Per pagare l'acconto di 100 €, seleziona il tuo metodo di pagamento. Sarai reindirizzato a WhatsApp con i dati precompilati.</p>
+    </div>
+    <div class="paymodal-summary">
+      <span class="pm-cat" id="paymodalCat">Patente B</span>
+      <span class="pm-deposit" id="paymodalDeposit">Acconto: 100 €</span>
+    </div>
+    <div class="paymodal-body">
+      <div class="paymodal-method" data-method="iban">
+        <div class="paymodal-method-icon iban">IBAN</div>
+        <div class="paymodal-method-content">
+          <span class="paymodal-method-name" data-i18n="paymodal.iban.name">Bonifico IBAN</span>
+          <span class="paymodal-method-desc" data-i18n="paymodal.iban.desc">Tracciabilità bancaria totale. Bonifica l'acconto all'IBAN qui sotto e invia la prova su WhatsApp.</span>
+          <div class="paymodal-coord-row">
+            <code class="paymodal-coord" id="ibanCoord">IT17O0760102800001081208330</code>
+            <button type="button" class="paymodal-copy" data-copy="ibanCoord" data-i18n="paymodal.copy">Copia</button>
+          </div>
+          <span class="paymodal-method-detail" data-i18n="paymodal.iban.bank">Banca Intesa Sanpaolo · Codice fiscale: WMBPRC80R16Z306T</span>
+          <span class="paymodal-method-detail" data-i18n="paymodal.iban.detail">Tempo: 1-2 giorni lavorativi · Intestatario: Wamba Patrick</span>
+        </div>
+      </div>
+      <div class="paymodal-method" data-method="poste">
+        <div class="paymodal-method-icon poste">PP</div>
+        <div class="paymodal-method-content">
+          <span class="paymodal-method-name" data-i18n="paymodal.poste.name">PostePay</span>
+          <span class="paymodal-method-desc" data-i18n="paymodal.poste.desc">Conferma immediata. Ideale per acconto rapido. Ricarica la carta prepagata e invia la prova.</span>
+          <div class="paymodal-coord-row">
+            <code class="paymodal-coord" id="posteCoord">4023 6010 4997 2896</code>
+            <button type="button" class="paymodal-copy" data-copy="posteCoord" data-i18n="paymodal.copy">Copia</button>
+          </div>
+          <span class="paymodal-method-detail" data-i18n="paymodal.poste.owner">Intestatario: Wamba Patrick · Codice fiscale: WMBPRC80R16Z306T</span>
+        </div>
+      </div>
+      <a href="https://wa.me/393510101837?text=Buongiorno%2C%20vorrei%20avviare%20la%20mia%20procedura" target="_blank" rel="noopener" class="paymodal-whatsapp" data-i18n="paymodal.send_receipt_whatsapp">Invia la ricevuta su WhatsApp</a>
+    </div>
+    <div class="paymodal-footer">
+      <div data-i18n="paymodal.security">🔒 Transazione sicura — Ricevuta fiscale regolare fornita</div>
+      <button type="button" class="paymodal-cancel" data-i18n="commencer.cancel">Annulla</button>
+    </div>
+  </div>
+</div>
+
+<div class="selection-bar" id="selectionBar">
+  <div class="sel-info">
+    <p data-i18n="commencer.confirm_title">Categoria selezionata</p>
+    <h3 id="selName">Auto</h3>
+  </div>
+  <div class="sel-price" id="selPrice">800 €</div>
+  <a href="#" class="sel-cta" id="selCta" data-i18n="commencer.continue">Continua →</a>
+</div>
+
+<footer id="contatti" style="background: var(--asphalt); color: var(--cream); padding: 50px 6vw 30px; margin-top: 40px;">
+  <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 30px; max-width: 1100px; margin: 0 auto;">
+    <div>
+      <h4 style="font-family: 'Oswald', sans-serif; font-size: 16px; margin-bottom: 12px; letter-spacing: 0.04em;">Giordano Patente</h4>
+      <p style="font-size: 14px; opacity: 0.8;" data-i18n="footer.hours">24 ore su 24</p>
+      <p style="font-size: 14px; opacity: 0.8;" data-i18n="footer.days">Lunedì a Domenica</p>
+    </div>
+    <div>
+      <h4 style="font-family: 'Oswald', sans-serif; font-size: 16px; margin-bottom: 12px; letter-spacing: 0.04em;" data-i18n="footer.contact">Contatti</h4>
+      <a href="https://wa.me/393510101837" style="display: block; font-size: 14px; opacity: 0.8; color: var(--cream); margin-bottom: 4px;">+39 351 010 1837</a>
+      <a href="mailto:giordanopatente39@gmail.com" style="font-size: 14px; opacity: 0.8; color: var(--cream);">giordanopatente39@gmail.com</a>
+    </div>
+  </div>
+  <div style="text-align: center; padding-top: 30px; margin-top: 30px; border-top: 1px solid rgba(246,243,236,0.12); font-size: 12px; opacity: 0.7;">
+    <span data-i18n="footer.copyright">© 2026 Giordano Patente. Tutti i diritti riservati.</span>
+  </div>
+</footer>
+
+  <script src="burger.js"></script>
+  <script src="i18n.js"></script>
+  <script>
+    document.addEventListener('click', function(e) {
+      if (e.target.closest('.theme-toggle')) {
+        e.preventDefault();
+        var isDark = document.documentElement.getAttribute('data-dark') === 'true';
+        if (isDark) { document.documentElement.removeAttribute('data-dark'); try { localStorage.setItem('gp-theme', 'light'); } catch(_) {} }
+        else { document.documentElement.setAttribute('data-dark', 'true'); try { localStorage.setItem('gp-theme', 'dark'); } catch(_) {} }
+      }
+    });
+    (function() {
+      var selected = null;
+      var bar = document.getElementById('selectionBar');
+      var nameEl = document.getElementById('selName');
+      var priceEl = document.getElementById('selPrice');
+      var ctaEl = document.getElementById('selCta');
+
+      // Payment modal elements
+      var paymodal = document.getElementById('paymodal');
+      var paymodalClose = document.getElementById('paymodalClose');
+      var paymodalCat = document.getElementById('paymodalCat');
+      var paymodalDeposit = document.getElementById('paymodalDeposit');
+
+      function openPayModal() {
+        if (!selected) return;
+        paymodalCat.textContent = 'Patente ' + selected.cat + ' — ' + selected.name;
+        var priceNum = parseInt(selected.price, 10) || 0;
+        paymodalDeposit.textContent = 'Acconto: 100 € / Totale: ' + priceNum + ' €';
+        paymodal.classList.add('is-visible');
+        paymodal.setAttribute('aria-hidden', 'false');
+        document.body.classList.add('paymodal-open');
+        if (typeof I18N !== 'undefined' && I18N.apply) I18N.apply();
+      }
+      function closePayModal() {
+        paymodal.classList.remove('is-visible');
+        paymodal.setAttribute('aria-hidden', 'true');
+        document.body.classList.remove('paymodal-open');
+      }
+      function proceedToPayment(method) {
+        if (!selected) return;
+        var methodLabel = method === 'iban' ? 'Bonifico IBAN' : 'PostePay';
+        var msg = 'Buongiorno, vorrei avviare la procedura per la Patente ' + selected.cat + ' (' + selected.name + '). ' +
+                  'Tariffa: ' + selected.price + ' €. ' +
+                  'Metodo di pagamento scelto per l\'acconto: ' + methodLabel + '.';
+        var url = 'https://wa.me/393510101837?text=' + encodeURIComponent(msg);
+        window.open(url, '_blank', 'noopener');
+        closePayModal();
+      }
+
+      paymodalClose.addEventListener('click', closePayModal);
+      paymodal.addEventListener('click', function(e) {
+        if (e.target === paymodal) closePayModal();
+      });
+      document.querySelectorAll('.paymodal-cancel').forEach(function(btn) {
+        btn.addEventListener('click', closePayModal);
+      });
+      document.querySelectorAll('.paymodal-copy').forEach(function(btn) {
+        btn.addEventListener('click', function() {
+          var targetId = btn.dataset.copy;
+          var text = document.getElementById(targetId).textContent.replace(/\s+/g, ' ').trim();
+          if (navigator.clipboard && navigator.clipboard.writeText) {
+            navigator.clipboard.writeText(text).then(function() {
+              var orig = btn.textContent;
+              btn.textContent = '✓ Copiato';
+              btn.classList.add('is-copied');
+              setTimeout(function() { btn.textContent = orig; btn.classList.remove('is-copied'); }, 1800);
+            });
+          } else {
+            var ta = document.createElement('textarea');
+            ta.value = text; document.body.appendChild(ta); ta.select();
+            try { document.execCommand('copy'); } catch(_) {}
+            document.body.removeChild(ta);
+            var orig = btn.textContent;
+            btn.textContent = '✓ Copiato';
+            btn.classList.add('is-copied');
+            setTimeout(function() { btn.textContent = orig; btn.classList.remove('is-copied'); }, 1800);
+          }
+        });
+      });
+      document.addEventListener('keydown', function(e) {
+        if (e.key === 'Escape' && paymodal.classList.contains('is-visible')) closePayModal();
+      });
+
+      function getCardName(card) {
+        // Prefer live translated label from .cat-name or combo title
+        var nameEl = card.querySelector('.cat-name, .combo-title, .combo-name, [data-i18n*=".name"], [data-i18n*="combi"], [data-i18n="u.camion_cqc_pro"]');
+        if (nameEl) {
+          var t = (nameEl.textContent || '').replace(/\s+/g, ' ').trim();
+          if (t) return t;
+        }
+        // Fallback: i18n key on data-i18n-name or data-name-key
+        var key = card.dataset.i18nName || card.getAttribute('data-i18n-name');
+        if (key && typeof I18N !== 'undefined' && I18N.t) {
+          var tr = I18N.t(key);
+          if (tr && tr !== key) return tr.replace(/^\[[^\]]+\]\s*/, '');
+        }
+        return card.dataset.name || '';
+      }
+
+      function selectCard(card) {
+        document.querySelectorAll('.cat-card, .combo-mini').forEach(function(c){ c.classList.remove('is-selected'); });
+        card.classList.add('is-selected');
+        selected = {
+          cat: card.dataset.cat,
+          price: card.dataset.price,
+          name: getCardName(card),
+          page: card.dataset.page,
+          nameKey: card.dataset.i18nName || ''
+        };
+        nameEl.textContent = selected.cat + ' — ' + selected.name;
+        priceEl.textContent = selected.price + ' €';
+        ctaEl.href = '#';
+        bar.classList.add('is-visible');
+      }
+
+      ctaEl.addEventListener('click', function(e) {
+        e.preventDefault();
+        if (selected) openPayModal();
+      });
+
+      document.querySelectorAll('.cat-card, .combo-mini').forEach(function(card) {
+        card.addEventListener('click', function() { selectCard(card); });
+      });
+
+
+      document.addEventListener('langchange', function() {
+        if (!selected) return;
+        var card = document.querySelector('.cat-card.is-selected, .combo-mini.is-selected');
+        if (card) {
+          selected.name = getCardName(card);
+          nameEl.textContent = selected.cat + ' — ' + selected.name;
+        }
+      });
+
+      // Pre-select B
+      var bCard = document.querySelector('.cat-card[data-cat="B"]');
+      if (bCard) selectCard(bCard);
+    })();
+    (function() {
+      try { if (localStorage.getItem('gp-cookie')) return; } catch(_) {}
+      var div = document.createElement('div');
+      div.className = 'cookie-banner';
+      div.innerHTML = '<p data-i18n="cookie.text">Utilizziamo i cookie per migliorare la tua esperienza. Continuando, accetti la nostra politica sulla privacy.</p><div class="cookie-actions"><button class="cookie-accept" data-cookie="accept" data-i18n="cookie.accept">Accetta</button><button class="cookie-refuse" data-cookie="refuse" data-i18n="cookie.refuse">Rifiuta</button></div>';
+      document.body.appendChild(div);
+      setTimeout(function() { div.classList.add('is-visible'); I18N.apply(); }, 800);
+      div.addEventListener('click', function(e) {
+        var btn = e.target.closest('[data-cookie]');
+        if (!btn) return;
+        try { localStorage.setItem('gp-cookie', btn.dataset.cookie); } catch(_) {}
+        div.classList.remove('is-visible');
+        setTimeout(function() { div.remove(); }, 400);
+      });
+    })();
+  </script>
+
+</body>
+</html>
