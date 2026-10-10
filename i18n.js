@@ -78,7 +78,7 @@
       'chi.team.title': "Il nostro team", 'chi.team.desc': "Istruttori certificati, multilingue.",
       'common.from': "a partire da", 'common.learn_more': "Scopri di più", 'common.view_all': "Vedi tutto",
       'common.back': "Indietro", 'common.most_popular': 'Il più richiesto',
-      'cookie.text': "Utilizziamo i cookie per migliorare la tua esperienza. Continuando, accetti la nostra politica sulla privacy.",
+      'cookie.text': "Utilizziamo i cookie per migliorare la tua esperienza. Continuando, accetti la nostra <a href='privacy.html'>politica sulla privacy</a>.",
       'cookie.accept': "Accetta", 'cookie.refuse': "Rifiuta",
       'cat.label.AM': 'AM', 'cat.label.A1': 'A1', 'cat.label.A2': 'A2', 'cat.label.A': 'A',
       'cat.label.B1': 'B1', 'cat.label.B': 'B', 'cat.label.B96': 'B96', 'cat.label.BE': 'BE',
